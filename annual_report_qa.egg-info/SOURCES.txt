@@ -17,3 +17,5 @@ app/retrieval/__init__.py
 evaluation/__init__.py
 evaluation/metrics.py
 evaluation/run_eval.py
+tests/test_config.py
+tests/test_qdrant.py

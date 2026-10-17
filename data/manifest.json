@@ -1,3 +1,53 @@
 {
-  "documents": []
+  "schema_version": 1,
+  "documents": [
+    {
+      "doc_id": "infosys_fy2025",
+      "company": "Infosys",
+      "fiscal_year": "2024-25",
+      "fiscal_year_end": "2025-03-31",
+      "title": "Infosys Integrated Annual Report 2024-25",
+      "filename": "infosys_fy2025.pdf",
+      "source_url": "https://www.infosys.com/investors/reports-filings/annual-report/annual/documents/infosys-ar-25.pdf",
+      "sha256": "a2b9acdfbe79586ffdbe1780c4f14e5b2630743a4c81ee626f812f4c2fff1b44",
+      "downloaded_at": "2026-10-17T05:23:34.895143+00:00",
+      "pdf_pages": 369
+    },
+    {
+      "doc_id": "infosys_fy2024",
+      "company": "Infosys",
+      "fiscal_year": "2023-24",
+      "fiscal_year_end": "2024-03-31",
+      "title": "Infosys Integrated Annual Report 2023-24",
+      "filename": "infosys_fy2024.pdf",
+      "source_url": "https://www.infosys.com/investors/reports-filings/annual-report/annual/documents/infosys-ar-24.pdf",
+      "sha256": "93fcc9d4e549ec623178f36ce3d420ade3b301a1e48ed90e063f167c516746ff",
+      "downloaded_at": "2026-10-17T06:10:15.058279+00:00",
+      "pdf_pages": 352
+    },
+    {
+      "doc_id": "tcs_fy2025",
+      "company": "TCS",
+      "fiscal_year": "2024-25",
+      "fiscal_year_end": "2025-03-31",
+      "title": "TCS Integrated Annual Report 2024-25",
+      "filename": "tcs_fy2025.pdf",
+      "source_url": "https://www.tcs.com/content/dam/tcs/investor-relations/financial-statements/2024-25/ar/annual-report-2024-2025.pdf",
+      "sha256": "62ace414871697ed4c7ef34fd235fc3c89ed6208a30afe5ff2e49b5260fd8a57",
+      "downloaded_at": "2026-10-17T06:13:37.925585+00:00",
+      "pdf_pages": 336
+    },
+    {
+      "doc_id": "tcs_fy2024",
+      "company": "TCS",
+      "fiscal_year": "2023-24",
+      "fiscal_year_end": "2024-03-31",
+      "title": "TCS Integrated Annual Report 2023-24",
+      "filename": "tcs_fy2024.pdf",
+      "source_url": "https://www.tcs.com/content/dam/tcs/investor-relations/financial-statements/2023-24/ar/annual-report-2023-2024.pdf",
+      "sha256": "4368b3466c37a083d50bfc19580d993652172937d8b3f11e6660001ee2af607f",
+      "downloaded_at": "2026-10-17T06:17:22.219274+00:00",
+      "pdf_pages": 340
+    }
+  ]
 }

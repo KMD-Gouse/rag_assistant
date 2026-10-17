@@ -7,6 +7,7 @@ Description-Content-Type: text/markdown
 Requires-Dist: pydantic<3,>=2
 Requires-Dist: pydantic-settings<3,>=2
 Requires-Dist: qdrant-client<2,>=1
+Requires-Dist: pymupdf<2,>=1.24
 Provides-Extra: dev
 Requires-Dist: pytest<10,>=8; extra == "dev"
 

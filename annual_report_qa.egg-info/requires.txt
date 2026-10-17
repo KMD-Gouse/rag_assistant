@@ -1,6 +1,7 @@
 pydantic<3,>=2
 pydantic-settings<3,>=2
 qdrant-client<2,>=1
+pymupdf<2,>=1.24
 
 [dev]
 pytest<10,>=8
