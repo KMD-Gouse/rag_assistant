@@ -1,0 +1,20 @@
+Metadata-Version: 2.4
+Name: annual-report-qa
+Version: 0.1.0
+Summary: Citation-focused Q&A over company annual reports
+Requires-Python: <3.13,>=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: pydantic<3,>=2
+Requires-Dist: pydantic-settings<3,>=2
+Requires-Dist: qdrant-client<2,>=1
+Provides-Extra: dev
+Requires-Dist: pytest<10,>=8; extra == "dev"
+
+# Annual Report Q&A
+
+A citation-focused RAG application for answering and comparing questions across
+Infosys, TCS, and Wipro annual reports.
+
+The project is being built incrementally. The first milestone is a Python
+project skeleton that can connect to a local Qdrant instance.
+

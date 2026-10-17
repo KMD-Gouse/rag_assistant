@@ -1,0 +1,6 @@
+pydantic<3,>=2
+pydantic-settings<3,>=2
+qdrant-client<2,>=1
+
+[dev]
+pytest<10,>=8
