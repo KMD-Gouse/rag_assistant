@@ -13,6 +13,7 @@ dependencies = [
     "pydantic-settings>=2,<3",
     "qdrant-client>=1,<2",
     "pymupdf>=1.24,<2",
+    "sentence-transformers>=3,<6",
 ]
 [project.optional-dependencies]
 dev = [
