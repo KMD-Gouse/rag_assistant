@@ -6,24 +6,32 @@ from pathlib import Path
 import pymupdf
 import pytest
 
+from app.ingestion.manifest import (
+    ManifestDocument,
+    get_manifest_document,
+)
 from app.ingestion.parse import (
-    MANIFEST_PATH,
     RAW_REPORTS_DIR,
     detect_printed_page,
     extract_page_tables,
-    load_document_metadata,
     parse_pdf,
     save_pages,
 )
 from app.ingestion.schema import ExtractedPage
 
 
-TEST_METADATA = {
-    "doc_id": "test_report",
-    "company": "Test Company",
-    "fiscal_year": "2024-25",
-    "filename": "test_report.pdf",
-}
+TEST_METADATA = ManifestDocument(
+    doc_id="test_report",
+    company="Test Company",
+    fiscal_year="2024-25",
+    fiscal_year_end="2025-03-31",
+    title="Test Annual Report",
+    filename="test_report.pdf",
+    source_url="https://example.com/test_report.pdf",
+    sha256="a" * 64,
+    downloaded_at="2026-10-19T00:00:00+00:00",
+    pdf_pages=2,
+)
 
 
 def create_test_pdf(pdf_path: Path) -> None:
@@ -82,7 +90,7 @@ def test_parse_pdf_rejects_missing_file(tmp_path: Path) -> None:
 def test_parse_pdf_preserves_pages_metadata_and_empty_page(
     tmp_path: Path,
 ) -> None:
-    pdf_path = tmp_path / TEST_METADATA["filename"]
+    pdf_path = tmp_path / TEST_METADATA.filename
     create_test_pdf(pdf_path)
 
     pages = parse_pdf(pdf_path, TEST_METADATA)
@@ -119,7 +127,7 @@ def test_extract_page_tables_preserves_headers_and_rows(
 
 
 def test_parse_pdf_is_stable(tmp_path: Path) -> None:
-    pdf_path = tmp_path / TEST_METADATA["filename"]
+    pdf_path = tmp_path / TEST_METADATA.filename
     create_test_pdf(pdf_path)
 
     first_result = parse_pdf(pdf_path, TEST_METADATA)
@@ -148,11 +156,8 @@ def test_save_pages_writes_valid_jsonl(tmp_path: Path) -> None:
 
 @pytest.mark.integration
 def test_infosys_fy2025_parser() -> None:
-    metadata = load_document_metadata(
-        MANIFEST_PATH,
-        "infosys_fy2025",
-    )
-    pdf_path = RAW_REPORTS_DIR / metadata["filename"]
+    metadata = get_manifest_document("infosys_fy2025")
+    pdf_path = RAW_REPORTS_DIR / metadata.filename
 
     pages = parse_pdf(pdf_path, metadata)
 

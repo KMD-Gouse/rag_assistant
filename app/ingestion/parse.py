@@ -1,46 +1,22 @@
 """Parse annual-report PDFs into page-level JSONL records."""
 
-import json
+import argparse
 import re
 from pathlib import Path
-from typing import Any
 
 import pymupdf
 
+from app.ingestion.manifest import (
+    ManifestDocument,
+    get_manifest_document,
+    get_manifest_document_ids,
+)
 from app.ingestion.schema import ExtractedPage, ExtractedTable
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
-MANIFEST_PATH = PROJECT_ROOT / "data" / "manifest.json"
 RAW_REPORTS_DIR = PROJECT_ROOT / "data" / "raw"
 PROCESSED_REPORTS_DIR = PROJECT_ROOT / "data" / "processed"
-
-TARGET_DOC_ID = "infosys_fy2025"
-
-
-def load_document_metadata(
-    manifest_path: Path,
-    doc_id: str,
-) -> dict[str, Any]:
-    """Load one document's metadata from the manifest."""
-
-    manifest = json.loads(
-        manifest_path.read_text(encoding="utf-8")
-    )
-
-    matches = [
-        document
-        for document in manifest["documents"]
-        if document["doc_id"] == doc_id
-    ]
-
-    if len(matches) != 1:
-        raise ValueError(
-            f"Expected one manifest entry for {doc_id!r}, "
-            f"found {len(matches)}."
-        )
-
-    return matches[0]
 
 
 def extract_page_text(page: pymupdf.Page) -> str:
@@ -169,7 +145,7 @@ def detect_printed_page(
 
 def parse_pdf(
     pdf_path: Path,
-    document_metadata: dict[str, Any],
+    document_metadata: ManifestDocument,
 ) -> list[ExtractedPage]:
     """Parse every page of one annual-report PDF."""
 
@@ -189,9 +165,9 @@ def parse_pdf(
 
         for pdf_page, page in enumerate(document, start=1):
             parsed_page = ExtractedPage(
-                doc_id=document_metadata["doc_id"],
-                company=document_metadata["company"],
-                fiscal_year=document_metadata["fiscal_year"],
+                doc_id=document_metadata.doc_id,
+                company=document_metadata.company,
+                fiscal_year=document_metadata.fiscal_year,
                 pdf_page=pdf_page,
                 printed_page=detect_printed_page(
                     page,
@@ -199,7 +175,7 @@ def parse_pdf(
                 ),
                 text=extract_page_text(page),
                 tables=extract_page_tables(page),
-                source_filename=document_metadata["filename"],
+                source_filename=document_metadata.filename,
             )
 
             parsed_pages.append(parsed_page)
@@ -224,18 +200,15 @@ def save_pages(
             output_file.write("\n")
 
 
-def main() -> None:
-    """Parse only the initial Infosys FY2025 report."""
+def parse_document(doc_id: str) -> list[ExtractedPage]:
+    """Parse and save one report selected by document ID."""
 
-    metadata = load_document_metadata(
-        manifest_path=MANIFEST_PATH,
-        doc_id=TARGET_DOC_ID,
-    )
+    metadata = get_manifest_document(doc_id)
 
-    pdf_path = RAW_REPORTS_DIR / metadata["filename"]
+    pdf_path = RAW_REPORTS_DIR / metadata.filename
     output_path = (
         PROCESSED_REPORTS_DIR
-        / f"{TARGET_DOC_ID}.pages.jsonl"
+        / f"{doc_id}.pages.jsonl"
     )
 
     pages = parse_pdf(
@@ -243,11 +216,9 @@ def main() -> None:
         document_metadata=metadata,
     )
 
-    expected_pages = metadata["pdf_pages"]
-
-    if len(pages) != expected_pages:
+    if len(pages) != metadata.pdf_pages:
         raise ValueError(
-            f"Expected {expected_pages} pages, "
+            f"Expected {metadata.pdf_pages} pages, "
             f"parsed {len(pages)}."
         )
 
@@ -258,10 +229,31 @@ def main() -> None:
         for page in pages
     )
 
-    print(f"Parsed document: {TARGET_DOC_ID}")
+    print(f"Parsed document: {doc_id}")
+    print(f"Company: {metadata.company}")
+    print(f"Fiscal year: {metadata.fiscal_year}")
     print(f"Parsed pages: {len(pages)}")
     print(f"Extracted tables: {table_count}")
     print(f"Output: {output_path}")
+
+    return pages
+
+
+def main() -> None:
+    """Parse one manifest report selected by document ID."""
+
+    argument_parser = argparse.ArgumentParser(
+        description=(
+            "Parse an annual-report PDF into page JSONL."
+        )
+    )
+    argument_parser.add_argument(
+        "doc_id",
+        choices=get_manifest_document_ids(),
+        help="Document ID from data/manifest.json.",
+    )
+    arguments = argument_parser.parse_args()
+    parse_document(arguments.doc_id)
 
 
 if __name__ == "__main__":

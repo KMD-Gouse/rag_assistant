@@ -1,8 +1,10 @@
+import argparse
 import math
 import re
 from pathlib import Path
 from typing import Literal
 
+from app.ingestion.manifest import get_manifest_document_ids
 from app.ingestion.schema import (
     DocumentChunk,
     ExtractedPage,
@@ -17,8 +19,6 @@ REPORT_TITLE_PATTERN = re.compile(
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 PROCESSED_REPORTS_DIR = PROJECT_ROOT / "data" / "processed"
-
-TARGET_DOC_ID = "infosys_fy2025"
 
 MIN_MEANINGFUL_CHARACTERS = 20
 
@@ -706,16 +706,16 @@ def save_chunks(
             output_file.write("\n")
 
 
-def main() -> None:
-    """Chunk the parsed Infosys FY2025 report."""
+def chunk_document(doc_id: str) -> list[DocumentChunk]:
+    """Chunk and save one parsed report selected by document ID."""
 
     input_path = (
         PROCESSED_REPORTS_DIR
-        / f"{TARGET_DOC_ID}.pages.jsonl"
+        / f"{doc_id}.pages.jsonl"
     )
     output_path = (
         PROCESSED_REPORTS_DIR
-        / f"{TARGET_DOC_ID}.chunks.jsonl"
+        / f"{doc_id}.chunks.jsonl"
     )
 
     pages = load_pages(input_path)
@@ -746,6 +746,23 @@ def main() -> None:
         print(f"Largest chunk: {max(token_counts)} tokens")
 
     print(f"Output: {output_path}")
+
+    return chunks
+
+
+def main() -> None:
+    """Chunk one parsed report selected by document ID."""
+
+    argument_parser = argparse.ArgumentParser(
+        description="Chunk one parsed annual report."
+    )
+    argument_parser.add_argument(
+        "doc_id",
+        choices=get_manifest_document_ids(),
+        help="Document ID from data/manifest.json.",
+    )
+    arguments = argument_parser.parse_args()
+    chunk_document(arguments.doc_id)
 
 
 if __name__ == "__main__":
