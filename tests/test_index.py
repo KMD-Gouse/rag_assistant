@@ -11,6 +11,7 @@ from app.ingestion.embed import EMBEDDING_DIMENSION
 from app.ingestion.index import (
     build_qdrant_points,
     document_is_current,
+    document_index_version_is_current,
     ensure_collection,
     expected_point_ids,
     load_document_checksum,
@@ -141,6 +142,7 @@ def test_unchanged_document_is_current() -> None:
 
     assert point_ids == expected_point_ids(chunks)
     assert checksums == {checksum}
+    assert document_index_version_is_current(client, COLLECTION_NAME, "test_report")
     assert document_is_current(
         chunks,
         checksum,

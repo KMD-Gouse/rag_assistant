@@ -1,0 +1,30 @@
+{
+  "created_at": "2026-10-22T21:47:13.127758+05:30",
+  "split": "dev",
+  "k": 5,
+  "candidates_per_method": 50,
+  "rerank_candidates": 50,
+  "rrf_k": 60,
+  "reranker_model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+  "reranker_revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+  "max_pair_tokens": 512,
+  "batch_size": 8,
+  "embedding_model": "BAAI/bge-small-en-v1.5",
+  "bm25_k1": 1.5,
+  "bm25_b": 0.75,
+  "corpus_sha256": "f1975cb50ad8371ede084a3317e4a60580eae19be3f6e542c539ea771145b543",
+  "corpus_chunks": 4149,
+  "dataset_sha256": "1cd0a40847c2c9e79a202fc772ba7fe5b34a3abb643a9d74edd01464efbf6fe3",
+  "collection": "annual_report_chunks",
+  "packages": {
+    "sentence-transformers": "5.7.0",
+    "transformers": "5.20.1",
+    "torch": "2.14.1",
+    "qdrant-client": "1.19.1"
+  },
+  "query_policy": "Supplied history then question; no gold metadata filters.",
+  "reranker_input": "Question/history paired with chunk text only; model truncates long pairs.",
+  "timing_policy": "Sequential stage sums after one warm-up; no corpus/model loading.",
+  "frozen_before_held_out": true,
+  "revision_source": "Verified local cached main ref used by offline dev run"
+}

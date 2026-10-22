@@ -18,11 +18,60 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 RAW_REPORTS_DIR = PROJECT_ROOT / "data" / "raw"
 PROCESSED_REPORTS_DIR = PROJECT_ROOT / "data" / "processed"
 
+# TCS FY2024-25 embeds a subset font whose ToUnicode map assigns decimal
+# digits to the contiguous Greek code points U+03EC..U+03F5. Other symbols
+# below are likewise deterministic font-map substitutions verified against
+# rendered pages. Keep this character-level: never infer or rewrite values.
+PDF_CHARACTER_TRANSLATION = str.maketrans(
+    {
+        **{chr(0x03EC + digit): str(digit) for digit in range(10)},
+        "༤": "₹",
+        "й": "%",
+        "н": "+",
+        "͘": ".",
+        "͗": ":",
+        "ͻ": "•",
+    }
+)
+
+
+def repair_extracted_text(text: str) -> str:
+    """Repair known PDF font mappings and split capitalized word fragments."""
+
+    repaired = text.translate(PDF_CHARACTER_TRANSLATION)
+    # Some text runs split a capitalized word after its first letter, e.g.
+    # ``M\nanaging`` and ``W\ne``. Joining only an uppercase one-letter
+    # fragment avoids merging normal prose line wraps.
+    return re.sub(r"(?<!\w)([A-Z])\s*\n\s*([a-z])", r"\1\2", repaired)
+
+
+def repair_table_cell(text: str) -> str:
+    """Repair a table cell and collapse spacing inside numeric-only cells."""
+
+    repaired = repair_extracted_text(text)
+    # A few TCS BRSR table headers use decorative / subset glyphs without a
+    # usable Unicode mapping. These replacements are constrained by their
+    # surrounding labels and were checked against the rendered PDF pages.
+    repaired = repaired.replace("FY 2�2��", "FY 2025*")
+    repaired = repaired.replace("FY 2�2�", "FY 2025")
+    if "water discharged75� Parameter Water discharge" in repaired:
+        repaired = repaired[repaired.index("Parameter Water discharge") :]
+        repaired = repaired.replace("�in kilolitres (KL)�", "[in kilolitres (KL)]")
+    if repaired.startswith("arameter ater withdrawal by source"):
+        repaired = "Parameter Water withdrawal by source" + repaired.removeprefix(
+            "arameter ater withdrawal by source"
+        )
+    stripped = repaired.strip()
+    if re.fullmatch(r"[₹`$€£\d\s,.:;%()+\-/]+", stripped):
+        return re.sub(r"(?<=\d)\s+(?=[\d.,:%])|(?<=[.,:])\s+(?=\d)", "", repaired)
+    return repaired
+
 
 def extract_page_text(page: pymupdf.Page) -> str:
-    """Extract text in the PDF's native content-stream order."""
+    """Extract native-order text without PDF-generated intra-word spaces."""
 
-    return page.get_text("text", sort=False)
+    flags = pymupdf.TEXTFLAGS_TEXT | pymupdf.TEXT_INHIBIT_SPACES
+    return repair_extracted_text(page.get_text("text", sort=False, flags=flags))
 
 
 def _normalized_cells(
@@ -72,14 +121,64 @@ def extract_page_tables(
 
     found_tables = page.find_tables()
     extracted_tables: list[ExtractedTable] = []
+    flags = pymupdf.TEXTFLAGS_TEXT | pymupdf.TEXT_INHIBIT_SPACES
+    page_words = page.get_text("words", flags=flags, sort=False) if found_tables.tables else []
+
+    def text_in_cell(cell_rect: tuple[float, float, float, float] | None) -> str:
+        if cell_rect is None:
+            return ""
+        rectangle = pymupdf.Rect(cell_rect)
+        return " ".join(
+            word[4]
+            for word in page_words
+            if rectangle.contains(
+                pymupdf.Point((word[0] + word[2]) / 2, (word[1] + word[3]) / 2)
+            )
+        )
 
     for table_index, table in enumerate(
         found_tables.tables,
         start=1,
     ):
-        rows = table.extract()
+        extracted_rows = table.extract()
+        geometry_rows = list(table.rows)
+        raw_headers = list(table.header.names) if table.header is not None else []
+        # Remove a duplicated header before geometry reconstruction. Adjacent
+        # header cells can overlap slightly, which otherwise pulls a neighbor's
+        # text into the reconstructed value and defeats equality detection.
+        if (
+            extracted_rows
+            and raw_headers
+            and _normalized_cells(extracted_rows[0]) == _normalized_cells(raw_headers)
+        ):
+            extracted_rows = extracted_rows[1:]
+            geometry_rows = geometry_rows[1:]
+        rows = []
+        for extracted_row, geometry_row in zip(extracted_rows, geometry_rows, strict=True):
+            cells: list[str | None] = []
+            for extracted_cell, cell_rect in zip(extracted_row, geometry_row.cells, strict=True):
+                if extracted_cell is None:
+                    cells.append(None)
+                    continue
+                # ``table.extract()`` uses a separate text path that can add
+                # spaces inside words and clip a final digit at cell borders.
+                # Reconstruct from the page's clean word stream, retaining the
+                # extractor value only when a cell contains no mapped words.
+                direct = text_in_cell(cell_rect)
+                for leading_symbol in ("%", "₹", "$", "€", "£"):
+                    if (
+                        extracted_cell.lstrip().startswith(leading_symbol)
+                        and not direct.lstrip().startswith(leading_symbol)
+                    ):
+                        direct = f"{leading_symbol} {direct}"
+                repaired = repair_table_cell(direct or extracted_cell)
+                cells.append(repaired)
+            rows.append(cells)
         headers = (
-            list(table.header.names)
+            [
+                repair_table_cell(header) if header is not None else None
+                for header in raw_headers
+            ]
             if table.header is not None
             else []
         )

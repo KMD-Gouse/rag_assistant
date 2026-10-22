@@ -13,7 +13,7 @@ QuestionType = Literal[
     "unanswerable",
 ]
 
-DatasetSplit = Literal["dev", "held_out"]
+DatasetSplit = Literal["dev", "held_out", "development", "challenge"]
 MessageRole = Literal["user", "assistant"]
 
 
@@ -35,6 +35,9 @@ class Evidence(BaseModel):
     pdf_page: int = Field(ge=1)
     printed_page: str | None = None
     evidence_text: str = Field(min_length=1)
+    # Locations sharing a group are alternatives for the same required fact.
+    # A missing group preserves the original one-location-per-fact behavior.
+    group: str | None = Field(default=None, pattern=r"^[a-z0-9_]+$")
 
 
 class EvaluationQuestion(BaseModel):

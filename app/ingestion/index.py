@@ -27,6 +27,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 MANIFEST_PATH = PROJECT_ROOT / "data" / "manifest.json"
 TARGET_DOC_ID = "infosys_fy2025"
 QDRANT_UPLOAD_BATCH_SIZE = 128
+INGESTION_VERSION = 3
 
 
 def load_document_checksum(
@@ -84,6 +85,7 @@ def make_point_payload(
         "content_type": chunk.content_type,
         "text": chunk.text,
         "document_checksum": document_checksum,
+        "ingestion_version": INGESTION_VERSION,
     }
 
 
@@ -169,6 +171,30 @@ def load_existing_document_state(
             break
 
     return point_ids, checksums
+
+
+def document_index_version_is_current(
+    client: QdrantClient,
+    collection_name: str,
+    doc_id: str,
+) -> bool:
+    """Require every stored point to use the current parsing/index contract."""
+
+    versions: set[int | None] = set()
+    offset = None
+    while True:
+        records, offset = client.scroll(
+            collection_name=collection_name,
+            scroll_filter=make_document_filter(doc_id),
+            limit=256,
+            offset=offset,
+            with_payload=["ingestion_version"],
+            with_vectors=False,
+        )
+        versions.update((record.payload or {}).get("ingestion_version") for record in records)
+        if offset is None:
+            break
+    return versions == {INGESTION_VERSION}
 
 
 def expected_point_ids(
@@ -309,6 +335,10 @@ def index_documents(
             document_checksum=document_checksum,
             existing_point_ids=existing_point_ids,
             existing_checksums=existing_checksums,
+        ) and document_index_version_is_current(
+            client=client,
+            collection_name=collection_name,
+            doc_id=doc_id,
         ):
             print(f"{doc_id} is already current; skipping.")
             counts[doc_id] = len(chunks)

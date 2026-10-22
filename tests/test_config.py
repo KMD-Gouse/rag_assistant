@@ -1,7 +1,12 @@
+import pytest
+
 from app.config import Settings
 
 
-def test_default_settings() -> None:
+def test_default_settings(monkeypatch: pytest.MonkeyPatch) -> None:
+    # _env_file=None disables .env, but process environment still takes priority.
+    for key in ("QDRANT_URL", "QDRANT_COLLECTION", "EMBEDDING_MODEL", "RERANKER_MODEL"):
+        monkeypatch.delenv(key, raising=False)
     settings = Settings(_env_file=None)
 
     assert settings.qdrant_url == "http://localhost:6333"

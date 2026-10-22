@@ -53,6 +53,7 @@ def require_payload(
         "content_type",
         "text",
         "document_checksum",
+        "ingestion_version",
     }
 
     missing_fields = required_fields - payload.keys()

@@ -3,7 +3,19 @@ import pytest
 from evaluation.metrics import (
     document_recall_at_k,
     evidence_recall_at_k,
+    grouped_document_recall_at_k,
+    grouped_evidence_recall_at_k,
 )
+
+
+def test_grouped_recall_accepts_alternative_pages() -> None:
+    groups = [
+        {("infosys_fy2024", 23), ("infosys_fy2024", 10)},
+        {("infosys_fy2025", 24), ("infosys_fy2025", 10)},
+    ]
+    retrieved = [("infosys_fy2024", 10), ("infosys_fy2025", 10)]
+    assert grouped_evidence_recall_at_k(groups, retrieved, 2) == 1.0
+    assert grouped_document_recall_at_k(groups, retrieved, 2) == 1.0
 
 
 def test_evidence_recall_at_k_finds_all_evidence() -> None:

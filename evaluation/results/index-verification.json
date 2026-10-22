@@ -1,0 +1,109 @@
+{
+  "points": 4149,
+  "missing_ids": [],
+  "extra_ids": [],
+  "differences": [
+    {
+      "chunk": "infosys_fy2025:p0212:prose:001",
+      "field": "section",
+      "local": "March 31, 2025 and March 31, 2024 is as follows:",
+      "indexed": "The break-up of current and non-current lease liabilities as at"
+    },
+    {
+      "chunk": "infosys_fy2025:p0293:prose:001",
+      "field": "section",
+      "local": "A summary of changes in the carrying amount of goodwill",
+      "indexed": "Brand or"
+    },
+    {
+      "chunk": "infosys_fy2025:p0213:prose:001",
+      "field": "section",
+      "local": "Less than 1",
+      "indexed": "To be completed in"
+    },
+    {
+      "chunk": "infosys_fy2025:p0293:prose:002",
+      "field": "section",
+      "local": "A summary of changes in the carrying amount of goodwill",
+      "indexed": "Brand or"
+    },
+    {
+      "chunk": "infosys_fy2025:p0325:prose:002",
+      "field": "section",
+      "local": "The Group as a lessor",
+      "indexed": "Lease liability and ROU asset have been separately presented in"
+    },
+    {
+      "chunk": "infosys_fy2025:p0318:prose:002",
+      "field": "section",
+      "local": "Deferred income taxes are not provided on the undistributed",
+      "indexed": "Deferred income tax liabilities have not been recognized on"
+    },
+    {
+      "chunk": "infosys_fy2025:p0286:prose:002",
+      "field": "section",
+      "local": "Revenue from fixed-price maintenance contract is recognized",
+      "indexed": "Fixed-price maintenance revenue is recognized ratably on a"
+    },
+    {
+      "chunk": "infosys_fy2025:p0212:prose:002",
+      "field": "section",
+      "local": "March 31, 2025 and March 31, 2024 is as follows:",
+      "indexed": "The break-up of current and non-current lease liabilities as at"
+    },
+    {
+      "chunk": "infosys_fy2025:p0224:prose:002",
+      "field": "section",
+      "local": "Level 1",
+      "indexed": "As at"
+    },
+    {
+      "chunk": "infosys_fy2025:p0303:prose:002",
+      "field": "section",
+      "local": "Level 1",
+      "indexed": "As at"
+    },
+    {
+      "chunk": "infosys_fy2025:p0286:prose:001",
+      "field": "section",
+      "local": "Revenue from fixed-price maintenance contract is recognized",
+      "indexed": "Fixed-price maintenance revenue is recognized ratably on a"
+    },
+    {
+      "chunk": "infosys_fy2025:p0303:prose:001",
+      "field": "section",
+      "local": "Level 1",
+      "indexed": "As at"
+    },
+    {
+      "chunk": "infosys_fy2025:p0286:prose:003",
+      "field": "section",
+      "local": "Revenue from fixed-price maintenance contract is recognized",
+      "indexed": "Fixed-price maintenance revenue is recognized ratably on a"
+    },
+    {
+      "chunk": "infosys_fy2025:p0325:prose:001",
+      "field": "section",
+      "local": "The Group as a lessor",
+      "indexed": "Lease liability and ROU asset have been separately presented in"
+    },
+    {
+      "chunk": "infosys_fy2025:p0318:prose:001",
+      "field": "section",
+      "local": "Deferred income taxes are not provided on the undistributed",
+      "indexed": "Deferred income tax liabilities have not been recognized on"
+    },
+    {
+      "chunk": "infosys_fy2025:p0059:prose:001",
+      "field": "section",
+      "local": "Electronics City, Hosur Road",
+      "indexed": "Annexure A"
+    },
+    {
+      "chunk": "infosys_fy2025:p0224:prose:001",
+      "field": "section",
+      "local": "Level 1",
+      "indexed": "As at"
+    }
+  ]
+}

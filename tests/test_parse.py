@@ -14,9 +14,46 @@ from app.ingestion.parse import (
     RAW_REPORTS_DIR,
     detect_printed_page,
     extract_page_tables,
+    extract_page_text,
     parse_pdf,
+    repair_extracted_text,
+    repair_table_cell,
     save_pages,
 )
+
+
+def test_repair_extracted_text_fixes_verified_tcs_font_mapping() -> None:
+    corrupted = "T h e total was ϲ,3ϲ,ϴ33; growth 13͘3й; D н E; ༤ crore."
+
+    assert repair_extracted_text(corrupted) == (
+        "T h e total was 6,36,833; growth 13.3%; D + E; ₹ crore."
+    )
+
+
+def test_repair_extracted_text_joins_split_capitalized_word() -> None:
+    assert repair_extracted_text("M\nanaging Director\nfinancial\nresults") == (
+        "Managing Director\nfinancial\nresults"
+    )
+
+
+def test_repair_table_cell_compacts_numeric_spacing_only() -> None:
+    assert repair_table_cell("6 4. 8") == "64.8"
+    assert repair_table_cell("FY 2025 FY 2024") == "FY 2025 FY 2024"
+
+
+def test_repair_table_cell_fixes_verified_tcs_brsr_headers() -> None:
+    assert repair_table_cell("FY 2�2��") == "FY 2025*"
+    assert repair_table_cell(
+        "Provide the following details related to water discharged75� "
+        "Parameter Water discharge by destination and level of treatment "
+        "�in kilolitres (KL)�"
+    ) == (
+        "Parameter Water discharge by destination and level of treatment "
+        "[in kilolitres (KL)]"
+    )
+    assert repair_table_cell(
+        "arameter ater withdrawal by source (in kilolitres)"
+    ) == "Parameter Water withdrawal by source (in kilolitres)"
 from app.ingestion.schema import ExtractedPage
 
 
@@ -184,3 +221,19 @@ def test_infosys_fy2025_parser() -> None:
         ensure_ascii=False,
     )
     assert "1,62,990" in page_15_content
+
+
+@pytest.mark.integration
+def test_tcs_fy2025_font_repairs_match_rendered_pages() -> None:
+    pdf_path = RAW_REPORTS_DIR / "tcs_fy2025.pdf"
+    with pymupdf.open(pdf_path) as document:
+        page_13 = extract_page_text(document[12])
+        page_88 = extract_page_text(document[87])
+        page_131 = extract_page_text(document[130])
+
+    assert "607,979 associates globally" in page_13
+    assert "LTM attrition in IT services at 13.3%" in " ".join(page_13.split())
+    assert "Revenue from operations\n255,324" in page_88
+    assert "Permanent (D)\n6,07,979" in page_131
+    assert "Total employees (D + E)\n6,36,833" in page_131
+    assert not any(character in page_131 for character in "ϬϭϮϯϰϱϲϳϴϵ")
