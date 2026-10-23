@@ -171,3 +171,29 @@ with BM25 at 67.65% and 42.65%. No tuning or post-hoc relabelling was performed
 after the challenge run. See
 [the final development analysis](evaluation/results/benchmark-v2-final-development-analysis.md)
 and [challenge analysis](evaluation/results/benchmark-v2-challenge-analysis.md).
+
+## Week 6: single-turn grounded generation
+
+`answer_question()` runs the frozen benchmark-v2 retrieval pipeline, sends the
+top five chunks to Groq, validates Groq's strict JSON response with Pydantic,
+and returns trusted citation metadata from the retrieved chunks. The model
+only chooses evidence IDs and verbatim quotes; it cannot invent document IDs
+or page numbers. Unknown evidence IDs, duplicate citations, and quotes absent
+from the cited chunk cause an abstention.
+
+The default `RAG_MIN_EVIDENCE_SUFFICIENCY=0.70` is an explicit heuristic gate
+on the model's assessment of whether the retrieved text directly supports the
+complete answer. It is not a calibrated correctness probability. Empty
+retrieval, a model `answerable=false` decision, a score below the gate, or
+invalid citations returns `I don't know based on the available annual reports.`
+
+Copy `.env.example` to `.env`, set `GROQ_API_KEY`, keep the Qdrant container
+running, then execute one turn:
+
+```powershell
+python -m app.generation "What revenue did TCS report in FY2024-25?"
+```
+
+The API endpoint uses Groq Chat Completions with strict JSON Schema output on
+`openai/gpt-oss-20b`. Offline tests use an injected retriever and generator,
+so citation and abstention behavior can be verified without an API key.

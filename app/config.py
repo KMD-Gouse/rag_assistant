@@ -27,6 +27,14 @@ class Settings(BaseSettings):
 
     groq_api_key: SecretStr | None = None
     groq_model: str = "openai/gpt-oss-20b"
+    groq_api_url: str = "https://api.groq.com/openai/v1/chat/completions"
+    groq_timeout_seconds: float = 30.0
+
+    rag_top_k: int = 5
+    rag_candidate_limit: int = 50
+    rag_min_evidence_sufficiency: float = 0.70
+    rag_reranker_model: str = "cross-encoder/ms-marco-MiniLM-L-6-v2"
+    rag_reranker_revision: str = "233902d25c440f23af6f7d6e94d2946bac0bee0a"
 
 
 @lru_cache
