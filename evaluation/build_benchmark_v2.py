@@ -18,19 +18,34 @@ ALTERNATIVES = {
         (0, "infosys_revenue_fy2025", "infosys_fy2025", 15, "28-29", "Revenues ₹1,62,990 cr"),
         (0, "infosys_revenue_fy2025", "infosys_fy2025", 73, "101", "Consolidated revenue 1,62,990 for 2025"),
     ],
-    "q005": [(0, "employees_fy2024", "infosys_fy2024", 10, "18-19", "3,17,240 Employees")],
     "q013": [
         (0, "employees_fy2024", "infosys_fy2024", 10, "18-19", "3,17,240 Employees"),
         (0, "employees_fy2024", "infosys_fy2024", 36, "63", "3,17,240 employees on a consolidated basis"),
         (1, "employees_fy2025", "infosys_fy2025", 10, "18-19", "3,23,578 Employees"),
     ],
-    "q018": [(0, "infosys_revenue_fy2025", "infosys_fy2025", 73, "101", "Consolidated revenue 1,62,990 for 2025")],
+    "q005": [
+        (0, "employees_fy2024", "infosys_fy2024", 10, "18-19", "3,17,240 Employees"),
+        (0, "employees_fy2024", "infosys_fy2024", 36, "63", "3,17,240 employees on a consolidated basis"),
+    ],
+    "q016": [
+        (0, "employees_fy2024", "infosys_fy2024", 10, "18-19", "3,17,240 Employees"),
+        (0, "employees_fy2024", "infosys_fy2024", 36, "63", "3,17,240 employees on a consolidated basis"),
+    ],
+    "q018": [
+        (0, "infosys_revenue_fy2025", "infosys_fy2025", 15, "28-29", "Revenues ₹1,62,990 cr"),
+        (0, "infosys_revenue_fy2025", "infosys_fy2025", 73, "101", "Consolidated revenue 1,62,990 for 2025"),
+    ],
     "q023": [(0, "active_clients_fy2024", "infosys_fy2024", 21, "40-41", "Total no. of active clients 1,882")],
     "q036": [(0, "tcs_dividend_fy2025", "tcs_fy2025", 69, None, "dividends for FY 2025 would amount to ₹126 per equity share")],
     "q042": [(0, "cash_march_2024", "infosys_fy2025", 33, "61", "₹39,005 crore consolidated as on March 31, 2024")],
     "q043": [(0, "cash_fy2025", "infosys_fy2025", 33, "61", "₹47,549 crore on a consolidated basis as on March 31, 2025")],
+    "q044": [
+        (0, "cash_march_2024", "infosys_fy2025", 33, "61", "₹39,005 crore consolidated as on March 31, 2024"),
+        (1, "cash_fy2025", "infosys_fy2025", 33, "61", "₹47,549 crore on a consolidated basis as on March 31, 2025"),
+    ],
     "q046": [(0, "clients_50m_fy2025", "infosys_fy2025", 80, "108", "50 million dollar + 85")],
     "q048": [(1, "clients_50m_fy2025", "infosys_fy2025", 80, "108", "50 million dollar + 85")],
+    "q049": [(0, "large_deal_tcv_fy2025", "infosys_fy2025", 21, "40-41", "total contract value of over US$11.6 billion in large deals")],
     "q051": [(1, "large_deal_tcv_fy2025", "infosys_fy2025", 21, "40-41", "total contract value of over US$11.6 billion in large deals")],
 }
 

@@ -31,10 +31,10 @@
 
 | Method | Median query latency (ms) |
 |---|---:|
-| v1_dense | 30.9 |
-| bm25 | 9.7 |
-| v2_hybrid | 41.4 |
-| v3_reranked | 2187.0 |
+| v1_dense | 5046.5 |
+| bm25 | 7.0 |
+| v2_hybrid | 5053.4 |
+| v3_reranked | 6857.9 |
 
 Timing excludes corpus loading, model loading and one warm-up query. Hybrid/v3 timings sum sequential stage times; these are single-run measurements, not a production throughput benchmark. All queries, including unanswerable ones, are timed.
 

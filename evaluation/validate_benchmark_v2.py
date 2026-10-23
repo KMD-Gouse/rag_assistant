@@ -72,6 +72,23 @@ def validate_benchmark() -> list[EvaluationQuestion]:
             }
             if not expected_numbers.issubset(page_numbers):
                 raise ValueError(f"Alternative evidence text not found on page for {question.id}.")
+
+    # A named fact reused by several questions must accept the same locations
+    # everywhere. Otherwise two equivalent questions receive different credit.
+    locations_by_group: dict[str, frozenset[tuple[str, int]]] = {}
+    for question in questions:
+        for group in {e.group for e in question.evidence if e.group}:
+            locations = frozenset(
+                (e.doc_id, e.pdf_page)
+                for e in question.evidence
+                if e.group == group
+            )
+            previous = locations_by_group.setdefault(group, locations)
+            if locations != previous:
+                raise ValueError(
+                    f"Evidence group {group} is inconsistent in {question.id}: "
+                    f"{sorted(locations)} != {sorted(previous)}."
+                )
     return questions
 
 

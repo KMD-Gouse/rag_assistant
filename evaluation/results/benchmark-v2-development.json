@@ -9,7 +9,7 @@
       "document_recall": 0.9696969696969697,
       "mrr": 0.2409090909090909,
       "all_evidence_hit": 0.30303030303030304,
-      "median_latency_ms": 30.89709999039769
+      "median_latency_ms": 5046.498949988745
     },
     {
       "method": "v1_dense",
@@ -20,7 +20,7 @@
       "document_recall": 0.9285714285714286,
       "mrr": 0.42857142857142855,
       "all_evidence_hit": 0.14285714285714285,
-      "median_latency_ms": 30.264200060628355
+      "median_latency_ms": 5037.28599997703
     },
     {
       "method": "v1_dense",
@@ -31,7 +31,7 @@
       "document_recall": 1.0,
       "mrr": 0.08981481481481482,
       "all_evidence_hit": 0.2777777777777778,
-      "median_latency_ms": 30.77964996919036
+      "median_latency_ms": 5046.660849999171
     },
     {
       "method": "v1_dense",
@@ -42,7 +42,7 @@
       "document_recall": 0.8333333333333334,
       "mrr": 0.6666666666666666,
       "all_evidence_hit": 0.6666666666666666,
-      "median_latency_ms": 39.925399934872985
+      "median_latency_ms": 5062.621999997646
     },
     {
       "method": "v1_dense",
@@ -53,7 +53,7 @@
       "document_recall": 1.0,
       "mrr": 0.26666666666666666,
       "all_evidence_hit": 0.4,
-      "median_latency_ms": 30.898600001819432
+      "median_latency_ms": 5055.315100005828
     },
     {
       "method": "v1_dense",
@@ -64,7 +64,7 @@
       "document_recall": null,
       "mrr": null,
       "all_evidence_hit": null,
-      "median_latency_ms": 30.612100032158196
+      "median_latency_ms": 5045.432999962941
     },
     {
       "method": "bm25",
@@ -75,7 +75,7 @@
       "document_recall": 0.9848484848484849,
       "mrr": 0.5116161616161616,
       "all_evidence_hit": 0.7575757575757576,
-      "median_latency_ms": 9.741349960677326
+      "median_latency_ms": 6.9687499781139195
     },
     {
       "method": "bm25",
@@ -86,7 +86,7 @@
       "document_recall": 1.0,
       "mrr": 0.45714285714285713,
       "all_evidence_hit": 0.42857142857142855,
-      "median_latency_ms": 12.091199983842671
+      "median_latency_ms": 8.395600016228855
     },
     {
       "method": "bm25",
@@ -97,7 +97,7 @@
       "document_recall": 1.0,
       "mrr": 0.5194444444444445,
       "all_evidence_hit": 0.8333333333333334,
-      "median_latency_ms": 8.820249931886792
+      "median_latency_ms": 5.5140500189736485
     },
     {
       "method": "bm25",
@@ -108,7 +108,7 @@
       "document_recall": 0.8333333333333334,
       "mrr": 0.4166666666666667,
       "all_evidence_hit": 0.6666666666666666,
-      "median_latency_ms": 17.88440009113401
+      "median_latency_ms": 13.237599981948733
     },
     {
       "method": "bm25",
@@ -119,7 +119,7 @@
       "document_recall": 1.0,
       "mrr": 0.6166666666666667,
       "all_evidence_hit": 1.0,
-      "median_latency_ms": 14.420700026676059
+      "median_latency_ms": 10.018100030720234
     },
     {
       "method": "bm25",
@@ -130,7 +130,7 @@
       "document_recall": null,
       "mrr": null,
       "all_evidence_hit": null,
-      "median_latency_ms": 8.128999965265393
+      "median_latency_ms": 4.803700023330748
     },
     {
       "method": "v2_hybrid",
@@ -141,7 +141,7 @@
       "document_recall": 1.0,
       "mrr": 0.40454545454545454,
       "all_evidence_hit": 0.45454545454545453,
-      "median_latency_ms": 41.354549990501255
+      "median_latency_ms": 5053.388950007502
     },
     {
       "method": "v2_hybrid",
@@ -152,7 +152,7 @@
       "document_recall": 1.0,
       "mrr": 0.6,
       "all_evidence_hit": 0.2857142857142857,
-      "median_latency_ms": 43.27349993400276
+      "median_latency_ms": 5049.056199961342
     },
     {
       "method": "v2_hybrid",
@@ -163,7 +163,7 @@
       "document_recall": 1.0,
       "mrr": 0.30462962962962964,
       "all_evidence_hit": 0.5,
-      "median_latency_ms": 40.577099891379476
+      "median_latency_ms": 5052.808999957051
     },
     {
       "method": "v2_hybrid",
@@ -174,7 +174,7 @@
       "document_recall": 1.0,
       "mrr": 0.7777777777777778,
       "all_evidence_hit": 0.6666666666666666,
-      "median_latency_ms": 54.86209993250668
+      "median_latency_ms": 5077.801399980672
     },
     {
       "method": "v2_hybrid",
@@ -185,7 +185,7 @@
       "document_recall": 1.0,
       "mrr": 0.26666666666666666,
       "all_evidence_hit": 0.4,
-      "median_latency_ms": 45.54640001151711
+      "median_latency_ms": 5062.317700008862
     },
     {
       "method": "v2_hybrid",
@@ -196,7 +196,7 @@
       "document_recall": null,
       "mrr": null,
       "all_evidence_hit": null,
-      "median_latency_ms": 37.63480007182807
+      "median_latency_ms": 5049.6236999752
     },
     {
       "method": "v3_reranked",
@@ -207,7 +207,7 @@
       "document_recall": 1.0,
       "mrr": 0.9166666666666666,
       "all_evidence_hit": 1.0,
-      "median_latency_ms": 2187.031650042627
+      "median_latency_ms": 6857.861149997916
     },
     {
       "method": "v3_reranked",
@@ -218,7 +218,7 @@
       "document_recall": 1.0,
       "mrr": 1.0,
       "all_evidence_hit": 1.0,
-      "median_latency_ms": 2214.0333000570536
+      "median_latency_ms": 6860.077299992554
     },
     {
       "method": "v3_reranked",
@@ -229,7 +229,7 @@
       "document_recall": 1.0,
       "mrr": 0.9166666666666666,
       "all_evidence_hit": 1.0,
-      "median_latency_ms": 2182.3540499899536
+      "median_latency_ms": 6859.271300025284
     },
     {
       "method": "v3_reranked",
@@ -240,7 +240,7 @@
       "document_recall": 1.0,
       "mrr": 0.75,
       "all_evidence_hit": 1.0,
-      "median_latency_ms": 2251.528299995698
+      "median_latency_ms": 6941.462999908254
     },
     {
       "method": "v3_reranked",
@@ -251,7 +251,7 @@
       "document_recall": 1.0,
       "mrr": 0.9,
       "all_evidence_hit": 1.0,
-      "median_latency_ms": 2249.9107000185177
+      "median_latency_ms": 6930.414599948563
     },
     {
       "method": "v3_reranked",
@@ -262,7 +262,7 @@
       "document_recall": null,
       "mrr": null,
       "all_evidence_hit": null,
-      "median_latency_ms": 1917.5118000712246
+      "median_latency_ms": 6694.35170001816
     }
   ],
   "questions": [
@@ -278,7 +278,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 49.46230002678931,
+      "latency_ms": 5060.572099988349,
       "retrieved": [
         {
           "point_id": "878c5f01-62c2-5494-93f5-f5e8906e5cbc",
@@ -379,7 +379,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 25.57939989492297,
+      "latency_ms": 12.342699919827282,
       "retrieved": [
         {
           "point_id": "878c5f01-62c2-5494-93f5-f5e8906e5cbc",
@@ -480,7 +480,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 75.33349993173033,
+      "latency_ms": 5073.4107999596745,
       "retrieved": [
         {
           "point_id": "878c5f01-62c2-5494-93f5-f5e8906e5cbc",
@@ -581,7 +581,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 2457.373999990523,
+      "latency_ms": 6906.170999980532,
       "retrieved": [
         {
           "point_id": "878c5f01-62c2-5494-93f5-f5e8906e5cbc",
@@ -682,7 +682,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 38.39730005711317,
+      "latency_ms": 5037.28599997703,
       "retrieved": [
         {
           "point_id": "878c5f01-62c2-5494-93f5-f5e8906e5cbc",
@@ -783,7 +783,7 @@
         "mrr": 0.2,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 197.20179995056242,
+      "latency_ms": 11.603699997067451,
       "retrieved": [
         {
           "point_id": "9eb819c5-0100-5983-bce1-47c4ccd882be",
@@ -884,7 +884,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 235.80719996243715,
+      "latency_ms": 5049.056199961342,
       "retrieved": [
         {
           "point_id": "878c5f01-62c2-5494-93f5-f5e8906e5cbc",
@@ -985,7 +985,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 3188.0132000660524,
+      "latency_ms": 7087.854899931699,
       "retrieved": [
         {
           "point_id": "878c5f01-62c2-5494-93f5-f5e8906e5cbc",
@@ -1086,7 +1086,7 @@
         "mrr": 0.25,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 28.690199949778616,
+      "latency_ms": 5047.886500018649,
       "retrieved": [
         {
           "point_id": "eef08d0f-e372-591d-8c41-da5133d32cd5",
@@ -1187,7 +1187,7 @@
         "mrr": 0.3333333333333333,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 7.069800049066544,
+      "latency_ms": 5.286899977363646,
       "retrieved": [
         {
           "point_id": "9e21e084-c6af-503c-afc8-a99dda122585",
@@ -1288,7 +1288,7 @@
         "mrr": 0.0,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 36.114599904976785,
+      "latency_ms": 5053.334199939854,
       "retrieved": [
         {
           "point_id": "a8d331bb-25c1-5f53-81b8-46f1f42f484b",
@@ -1389,7 +1389,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 2224.317199899815,
+      "latency_ms": 6855.645000003278,
       "retrieved": [
         {
           "point_id": "ad5e2ee6-60c6-5833-828d-a0cae3f03432",
@@ -1490,7 +1490,7 @@
         "mrr": 0.0,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 30.898600001819432,
+      "latency_ms": 5042.0807000482455,
       "retrieved": [
         {
           "point_id": "6f5a211a-fbf2-58df-8037-1840beacd8a7",
@@ -1591,7 +1591,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 14.420700026676059,
+      "latency_ms": 11.093299952335656,
       "retrieved": [
         {
           "point_id": "092ec323-b941-5a1c-92b1-ce57cc27d390",
@@ -1692,7 +1692,7 @@
         "mrr": 0.0,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 45.54640001151711,
+      "latency_ms": 5053.4437000751495,
       "retrieved": [
         {
           "point_id": "4a6a8e5e-a957-57ea-bd9e-ed2371cf78c3",
@@ -1793,7 +1793,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 2277.5495999958366,
+      "latency_ms": 6939.521900028922,
       "retrieved": [
         {
           "point_id": "092ec323-b941-5a1c-92b1-ce57cc27d390",
@@ -1894,7 +1894,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 29.14579992648214,
+      "latency_ms": 5036.90629999619,
       "retrieved": [
         {
           "point_id": "947e9d6c-0fd3-5b9b-bf48-f6376874d44c",
@@ -1995,7 +1995,7 @@
         "mrr": 0.25,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 12.076799990609288,
+      "latency_ms": 7.713200058788061,
       "retrieved": [
         {
           "point_id": "46ae3f98-04f4-5125-aa3d-4dcb092f20a0",
@@ -2096,7 +2096,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 41.47649998776615,
+      "latency_ms": 5044.882100075483,
       "retrieved": [
         {
           "point_id": "947e9d6c-0fd3-5b9b-bf48-f6376874d44c",
@@ -2197,7 +2197,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 2334.1687999200076,
+      "latency_ms": 7036.0133001813665,
       "retrieved": [
         {
           "point_id": "5914a825-69a0-5266-9610-85aa7f9f8206",
@@ -2298,7 +2298,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 35.19999992568046,
+      "latency_ms": 5065.131000010297,
       "retrieved": [
         {
           "point_id": "6b446bb4-0c6d-5ffc-898f-ca571680e465",
@@ -2399,7 +2399,7 @@
         "mrr": 0.25,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 17.88440009113401,
+      "latency_ms": 13.237599981948733,
       "retrieved": [
         {
           "point_id": "9eb819c5-0100-5983-bce1-47c4ccd882be",
@@ -2500,7 +2500,7 @@
         "mrr": 0.3333333333333333,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 53.361899917945266,
+      "latency_ms": 5078.523600008339,
       "retrieved": [
         {
           "point_id": "9eb819c5-0100-5983-bce1-47c4ccd882be",
@@ -2601,7 +2601,7 @@
         "mrr": 0.25,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 2160.9483999200165,
+      "latency_ms": 6823.87480000034,
       "retrieved": [
         {
           "point_id": "9eb819c5-0100-5983-bce1-47c4ccd882be",
@@ -2702,7 +2702,7 @@
         "mrr": 0.0,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 39.925399934872985,
+      "latency_ms": 5039.411499979906,
       "retrieved": [
         {
           "point_id": "419a82d1-6e75-5827-8b2d-497886263aef",
@@ -2803,7 +2803,7 @@
         "mrr": 0.0,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 14.514400041662157,
+      "latency_ms": 9.764099959284067,
       "retrieved": [
         {
           "point_id": "9eb819c5-0100-5983-bce1-47c4ccd882be",
@@ -2904,7 +2904,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 54.86209993250668,
+      "latency_ms": 5049.356899922714,
       "retrieved": [
         {
           "point_id": "878c5f01-62c2-5494-93f5-f5e8906e5cbc",
@@ -3005,7 +3005,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 2261.0071999952197,
+      "latency_ms": 6941.462999908254,
       "retrieved": [
         {
           "point_id": "878c5f01-62c2-5494-93f5-f5e8906e5cbc",
@@ -3106,7 +3106,7 @@
         "mrr": 0.0,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 30.3700000513345,
+      "latency_ms": 5062.027600011788,
       "retrieved": [
         {
           "point_id": "62b9a486-7b1b-57dc-b937-c19f46c97a83",
@@ -3207,7 +3207,7 @@
         "mrr": 0.5,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 10.082699940539896,
+      "latency_ms": 7.308900007046759,
       "retrieved": [
         {
           "point_id": "dd65ac0b-8dee-5ab2-8d91-d08044e028d0",
@@ -3308,7 +3308,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 40.83159996662289,
+      "latency_ms": 5069.502400001511,
       "retrieved": [
         {
           "point_id": "5914a825-69a0-5266-9610-85aa7f9f8206",
@@ -3409,7 +3409,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 2214.0333000570536,
+      "latency_ms": 7007.264000014402,
       "retrieved": [
         {
           "point_id": "5914a825-69a0-5266-9610-85aa7f9f8206",
@@ -3510,7 +3510,7 @@
         "mrr": null,
         "all_evidence_hit": null
       },
-      "latency_ms": 28.918700059875846,
+      "latency_ms": 5043.306400068104,
       "retrieved": [
         {
           "point_id": "ed2ee2f1-04cf-5481-b6d6-db28a955c9d0",
@@ -3611,7 +3611,7 @@
         "mrr": null,
         "all_evidence_hit": null
       },
-      "latency_ms": 5.86859998293221,
+      "latency_ms": 4.45959996432066,
       "retrieved": [
         {
           "point_id": "c7e1065a-952a-5373-a7c3-3e0478e00587",
@@ -3712,7 +3712,7 @@
         "mrr": null,
         "all_evidence_hit": null
       },
-      "latency_ms": 35.157799953594804,
+      "latency_ms": 5047.9365000501275,
       "retrieved": [
         {
           "point_id": "5914a825-69a0-5266-9610-85aa7f9f8206",
@@ -3813,7 +3813,7 @@
         "mrr": null,
         "all_evidence_hit": null
       },
-      "latency_ms": 2145.8653999725357,
+      "latency_ms": 6888.137000030838,
       "retrieved": [
         {
           "point_id": "5914a825-69a0-5266-9610-85aa7f9f8206",
@@ -3914,7 +3914,7 @@
         "mrr": 0.0,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 32.07420010585338,
+      "latency_ms": 5046.3972999714315,
       "retrieved": [
         {
           "point_id": "a047ef08-079d-5cbf-8abe-cb369f7a01f9",
@@ -4015,7 +4015,7 @@
         "mrr": 0.3333333333333333,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 11.597499949857593,
+      "latency_ms": 7.5527000008150935,
       "retrieved": [
         {
           "point_id": "0813ba0c-1b1a-5e73-8687-0a43c64e71b6",
@@ -4116,7 +4116,7 @@
         "mrr": 0.0,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 43.887500069104135,
+      "latency_ms": 5054.096299922094,
       "retrieved": [
         {
           "point_id": "0813ba0c-1b1a-5e73-8687-0a43c64e71b6",
@@ -4217,7 +4217,7 @@
         "mrr": 0.5,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 2249.9107000185177,
+      "latency_ms": 6978.347499971278,
       "retrieved": [
         {
           "point_id": "0813ba0c-1b1a-5e73-8687-0a43c64e71b6",
@@ -4318,7 +4318,7 @@
         "mrr": 0.3333333333333333,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 28.228800045326352,
+      "latency_ms": 5055.315100005828,
       "retrieved": [
         {
           "point_id": "ed0dedfe-20df-5838-b35f-93b782ea4563",
@@ -4419,7 +4419,7 @@
         "mrr": 0.25,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 9.286699932999909,
+      "latency_ms": 6.831499980762601,
       "retrieved": [
         {
           "point_id": "877b5798-3c13-50ff-a070-a5354687f6c8",
@@ -4520,7 +4520,7 @@
         "mrr": 0.3333333333333333,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 37.7347000176087,
+      "latency_ms": 5062.317700008862,
       "retrieved": [
         {
           "point_id": "ed0dedfe-20df-5838-b35f-93b782ea4563",
@@ -4621,7 +4621,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 2044.567000004463,
+      "latency_ms": 6814.548199996352,
       "retrieved": [
         {
           "point_id": "64a32be8-8b21-5ec4-8180-37da443dc9cc",
@@ -4722,7 +4722,7 @@
         "mrr": 0.0,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 29.49560002889484,
+      "latency_ms": 5053.216899977997,
       "retrieved": [
         {
           "point_id": "6b26760c-d556-517b-9011-cd25d4f77845",
@@ -4823,7 +4823,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 8.228700025938451,
+      "latency_ms": 4.66529990080744,
       "retrieved": [
         {
           "point_id": "ad5e2ee6-60c6-5833-828d-a0cae3f03432",
@@ -4924,7 +4924,7 @@
         "mrr": 0.5,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 38.01050002221018,
+      "latency_ms": 5058.070999919437,
       "retrieved": [
         {
           "point_id": "6b26760c-d556-517b-9011-cd25d4f77845",
@@ -5025,7 +5025,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 2190.27390005067,
+      "latency_ms": 6800.524299964309,
       "retrieved": [
         {
           "point_id": "ad5e2ee6-60c6-5833-828d-a0cae3f03432",
@@ -5126,7 +5126,7 @@
         "mrr": 0.3333333333333333,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 32.560399966314435,
+      "latency_ms": 5051.397799979895,
       "retrieved": [
         {
           "point_id": "eef08d0f-e372-591d-8c41-da5133d32cd5",
@@ -5227,7 +5227,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 8.076899917796254,
+      "latency_ms": 4.497600020840764,
       "retrieved": [
         {
           "point_id": "ad5e2ee6-60c6-5833-828d-a0cae3f03432",
@@ -5328,7 +5328,7 @@
         "mrr": 0.0,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 40.928499889560044,
+      "latency_ms": 5056.0564999468625,
       "retrieved": [
         {
           "point_id": "5ab80f83-2cff-5f9a-a5ff-1137467fb5af",
@@ -5429,7 +5429,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 2174.4341999292374,
+      "latency_ms": 6871.071000001393,
       "retrieved": [
         {
           "point_id": "ad5e2ee6-60c6-5833-828d-a0cae3f03432",
@@ -5530,7 +5530,7 @@
         "mrr": null,
         "all_evidence_hit": null
       },
-      "latency_ms": 40.998400072567165,
+      "latency_ms": 5044.32079999242,
       "retrieved": [
         {
           "point_id": "6a0ca850-f0b1-59eb-9110-34c7aac33487",
@@ -5631,7 +5631,7 @@
         "mrr": null,
         "all_evidence_hit": null
       },
-      "latency_ms": 8.128999965265393,
+      "latency_ms": 5.015800008550286,
       "retrieved": [
         {
           "point_id": "8a7a69c6-3008-5bd6-b89e-0a99318afc6c",
@@ -5732,7 +5732,7 @@
         "mrr": null,
         "all_evidence_hit": null
       },
-      "latency_ms": 49.375200062058866,
+      "latency_ms": 5049.500599969178,
       "retrieved": [
         {
           "point_id": "a3a1f8b8-03f3-5ea8-ad1e-97811adbcac0",
@@ -5833,7 +5833,7 @@
         "mrr": null,
         "all_evidence_hit": null
       },
-      "latency_ms": 1917.5118000712246,
+      "latency_ms": 6769.409599946812,
       "retrieved": [
         {
           "point_id": "327d5ecf-917b-589f-a784-52937a670a29",
@@ -5934,7 +5934,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 30.264200060628355,
+      "latency_ms": 5045.980299939401,
       "retrieved": [
         {
           "point_id": "0c1233a2-de11-5554-9780-59bc37828b70",
@@ -6035,7 +6035,7 @@
         "mrr": 0.5,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 14.554399996995926,
+      "latency_ms": 10.750800021924078,
       "retrieved": [
         {
           "point_id": "260ef7a6-7add-5821-bef8-45d3e84f5c60",
@@ -6136,7 +6136,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 45.06789997685701,
+      "latency_ms": 5056.906500016339,
       "retrieved": [
         {
           "point_id": "0c1233a2-de11-5554-9780-59bc37828b70",
@@ -6237,7 +6237,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 2183.789400034584,
+      "latency_ms": 6844.775500008836,
       "retrieved": [
         {
           "point_id": "0c1233a2-de11-5554-9780-59bc37828b70",
@@ -6338,7 +6338,7 @@
         "mrr": 0.0,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 28.2293000491336,
+      "latency_ms": 5046.618100022897,
       "retrieved": [
         {
           "point_id": "0b52b030-99a6-5fba-b1b2-3931f2bb3fce",
@@ -6439,7 +6439,7 @@
         "mrr": 0.0,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 7.802400039508939,
+      "latency_ms": 5.502399988472462,
       "retrieved": [
         {
           "point_id": "8bf90a04-19af-5bf0-9120-6d9fc65bfb90",
@@ -6540,7 +6540,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 36.27689997665584,
+      "latency_ms": 5052.283799974248,
       "retrieved": [
         {
           "point_id": "6199abff-dab4-510a-aa9c-22a87a85b4a5",
@@ -6641,7 +6641,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 1955.7318000588566,
+      "latency_ms": 6635.21919993218,
       "retrieved": [
         {
           "point_id": "6199abff-dab4-510a-aa9c-22a87a85b4a5",
@@ -6742,7 +6742,7 @@
         "mrr": 0.0,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 33.106000046245754,
+      "latency_ms": 5027.069499948993,
       "retrieved": [
         {
           "point_id": "878c5f01-62c2-5494-93f5-f5e8906e5cbc",
@@ -6843,7 +6843,7 @@
         "mrr": 0.0,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 8.78139992710203,
+      "latency_ms": 6.161099998280406,
       "retrieved": [
         {
           "point_id": "f0e1fea4-3c09-5cf6-ac46-419deaebc9b2",
@@ -6944,7 +6944,7 @@
         "mrr": 0.0,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 42.16820001602173,
+      "latency_ms": 5033.384999958798,
       "retrieved": [
         {
           "point_id": "03fc7969-f378-5b05-ad70-cec6ed1683bd",
@@ -7045,7 +7045,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 2230.8906000107527,
+      "latency_ms": 6727.465200005099,
       "retrieved": [
         {
           "point_id": "b8d49329-d2b4-5e0e-9d18-8b425fa76c08",
@@ -7146,7 +7146,7 @@
         "mrr": 0.3333333333333333,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 33.74919993802905,
+      "latency_ms": 5048.778000054881,
       "retrieved": [
         {
           "point_id": "9eb819c5-0100-5983-bce1-47c4ccd882be",
@@ -7247,7 +7247,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 11.844300082884729,
+      "latency_ms": 5.915299989283085,
       "retrieved": [
         {
           "point_id": "786b4166-484d-5ec8-b9a7-3d363f9578a0",
@@ -7348,7 +7348,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 45.83439999260008,
+      "latency_ms": 5054.832900059409,
       "retrieved": [
         {
           "point_id": "0b5c32ce-9f93-5d5c-a174-076e6eef72db",
@@ -7449,7 +7449,7 @@
         "mrr": 0.5,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 2126.814499963075,
+      "latency_ms": 6798.280099988915,
       "retrieved": [
         {
           "point_id": "6cf21807-07d3-5189-9139-8960877d8c9e",
@@ -7550,7 +7550,7 @@
         "mrr": null,
         "all_evidence_hit": null
       },
-      "latency_ms": 24.98129999730736,
+      "latency_ms": 5047.08089993801,
       "retrieved": []
     },
     {
@@ -7565,7 +7565,7 @@
         "mrr": null,
         "all_evidence_hit": null
       },
-      "latency_ms": 9.441800066269934,
+      "latency_ms": 5.29380002990365,
       "retrieved": []
     },
     {
@@ -7580,7 +7580,7 @@
         "mrr": null,
         "all_evidence_hit": null
       },
-      "latency_ms": 34.452400053851306,
+      "latency_ms": 5052.397200022824,
       "retrieved": []
     },
     {
@@ -7595,7 +7595,7 @@
         "mrr": null,
         "all_evidence_hit": null
       },
-      "latency_ms": 34.5038000959903,
+      "latency_ms": 5052.443000022322,
       "retrieved": []
     },
     {
@@ -7610,7 +7610,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 41.56749998219311,
+      "latency_ms": 5062.621999997646,
       "retrieved": [
         {
           "point_id": "0c1233a2-de11-5554-9780-59bc37828b70",
@@ -7711,7 +7711,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 24.269399931654334,
+      "latency_ms": 15.012299991212785,
       "retrieved": [
         {
           "point_id": "0c1233a2-de11-5554-9780-59bc37828b70",
@@ -7812,7 +7812,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 66.11039990093559,
+      "latency_ms": 5077.801399980672,
       "retrieved": [
         {
           "point_id": "0c1233a2-de11-5554-9780-59bc37828b70",
@@ -7913,7 +7913,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 2251.528299995698,
+      "latency_ms": 6951.639199978672,
       "retrieved": [
         {
           "point_id": "0c1233a2-de11-5554-9780-59bc37828b70",
@@ -8014,7 +8014,7 @@
         "mrr": 0.0,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 30.89910000562668,
+      "latency_ms": 5029.222900047898,
       "retrieved": [
         {
           "point_id": "40680143-76a6-56c6-aaa4-7c1665dda0b8",
@@ -8115,7 +8115,7 @@
         "mrr": 0.25,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 12.091199983842671,
+      "latency_ms": 8.395600016228855,
       "retrieved": [
         {
           "point_id": "4450bb50-fe0d-5329-b22f-6aa35c649f6f",
@@ -8216,7 +8216,7 @@
         "mrr": 0.0,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 43.27349993400276,
+      "latency_ms": 5037.7816000254825,
       "retrieved": [
         {
           "point_id": "852f75ef-2639-5918-91bf-0e6f6be3581f",
@@ -8317,7 +8317,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 2131.7540999734774,
+      "latency_ms": 6798.097599996254,
       "retrieved": [
         {
           "point_id": "6460e892-49a8-55c8-95fe-83435f9974a4",
@@ -8418,7 +8418,7 @@
         "mrr": 0.0,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 29.22320005018264,
+      "latency_ms": 5062.744900002144,
       "retrieved": [
         {
           "point_id": "6b446bb4-0c6d-5ffc-898f-ca571680e465",
@@ -8519,7 +8519,7 @@
         "mrr": 0.0,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 6.185899954289198,
+      "latency_ms": 4.1262999875471,
       "retrieved": [
         {
           "point_id": "9801e700-a812-558f-98f7-4829ed122a14",
@@ -8620,7 +8620,7 @@
         "mrr": 0.3333333333333333,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 35.640600020997226,
+      "latency_ms": 5067.024899995886,
       "retrieved": [
         {
           "point_id": "6b446bb4-0c6d-5ffc-898f-ca571680e465",
@@ -8721,7 +8721,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 1937.062600045465,
+      "latency_ms": 6682.720100041479,
       "retrieved": [
         {
           "point_id": "6199abff-dab4-510a-aa9c-22a87a85b4a5",
@@ -8822,7 +8822,7 @@
         "mrr": 0.0,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 30.89559997897595,
+      "latency_ms": 5062.794400029816,
       "retrieved": [
         {
           "point_id": "f81fce70-e747-5a8d-ad98-8ceb8d326386",
@@ -8923,7 +8923,7 @@
         "mrr": 0.5,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 15.639599994756281,
+      "latency_ms": 10.018100030720234,
       "retrieved": [
         {
           "point_id": "0813ba0c-1b1a-5e73-8687-0a43c64e71b6",
@@ -9024,7 +9024,7 @@
         "mrr": 0.0,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 46.76240007393062,
+      "latency_ms": 5073.005400015973,
       "retrieved": [
         {
           "point_id": "f81fce70-e747-5a8d-ad98-8ceb8d326386",
@@ -9125,7 +9125,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 2222.779600066133,
+      "latency_ms": 6930.414599948563,
       "retrieved": [
         {
           "point_id": "092ec323-b941-5a1c-92b1-ce57cc27d390",
@@ -9226,7 +9226,7 @@
         "mrr": 0.0,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 27.269600075669587,
+      "latency_ms": 5036.420000018552,
       "retrieved": [
         {
           "point_id": "b7dc7bc8-5ff6-5ef1-892d-ee49a1e47fe1",
@@ -9327,7 +9327,7 @@
         "mrr": 0.5,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 16.342899994924664,
+      "latency_ms": 12.29709992185235,
       "retrieved": [
         {
           "point_id": "877b5798-3c13-50ff-a070-a5354687f6c8",
@@ -9428,7 +9428,7 @@
         "mrr": 0.2,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 43.85100002400577,
+      "latency_ms": 5048.884799936786,
       "retrieved": [
         {
           "point_id": "145c885b-dabe-5788-9b97-0525aca7bed7",
@@ -9529,7 +9529,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 2056.3498999690637,
+      "latency_ms": 6754.940300015733,
       "retrieved": [
         {
           "point_id": "7ce56923-27f3-52e3-a63a-e4ea72293590",
@@ -9630,7 +9630,7 @@
         "mrr": 0.0,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 28.281599981710315,
+      "latency_ms": 5044.610599987209,
       "retrieved": [
         {
           "point_id": "7c9f1d9a-ba13-5bbd-a896-151e9653fd49",
@@ -9731,7 +9731,7 @@
         "mrr": 0.3333333333333333,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 10.359000065363944,
+      "latency_ms": 7.105999975465238,
       "retrieved": [
         {
           "point_id": "8a179e9f-db1a-5269-8f8b-c0da373c7df5",
@@ -9832,7 +9832,7 @@
         "mrr": 0.2,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 38.87400007806718,
+      "latency_ms": 5051.90289998427,
       "retrieved": [
         {
           "point_id": "e977e4fa-964a-561b-bc71-4747c9441502",
@@ -9933,7 +9933,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 2314.2544999718666,
+      "latency_ms": 6891.871799947694,
       "retrieved": [
         {
           "point_id": "ef1e2ab8-4a5c-5c7a-9038-576ebd7dc6cc",
@@ -10034,7 +10034,7 @@
         "mrr": null,
         "all_evidence_hit": null
       },
-      "latency_ms": 27.74619997944683,
+      "latency_ms": 5049.179199966602,
       "retrieved": []
     },
     {
@@ -10049,7 +10049,7 @@
         "mrr": null,
         "all_evidence_hit": null
       },
-      "latency_ms": 7.75749993044883,
+      "latency_ms": 4.803700023330748,
       "retrieved": []
     },
     {
@@ -10064,7 +10064,7 @@
         "mrr": null,
         "all_evidence_hit": null
       },
-      "latency_ms": 35.533899907022715,
+      "latency_ms": 5054.005299927667,
       "retrieved": []
     },
     {
@@ -10079,7 +10079,7 @@
         "mrr": null,
         "all_evidence_hit": null
       },
-      "latency_ms": 35.58529994916171,
+      "latency_ms": 5054.044499993324,
       "retrieved": []
     },
     {
@@ -10094,7 +10094,7 @@
         "mrr": 0.0,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 43.96989999804646,
+      "latency_ms": 5047.756499960087,
       "retrieved": [
         {
           "point_id": "72c0b159-a002-5831-9398-9f4be750cce8",
@@ -10195,7 +10195,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 9.505199966952205,
+      "latency_ms": 5.525700049474835,
       "retrieved": [
         {
           "point_id": "a798c318-0e26-52ba-bfcc-288a3f81bb4d",
@@ -10296,7 +10296,7 @@
         "mrr": 0.25,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 53.78479999490082,
+      "latency_ms": 5053.472799947485,
       "retrieved": [
         {
           "point_id": "0c0036ea-514c-5993-ab04-3e243a81d2a1",
@@ -10397,7 +10397,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 2165.1225000387058,
+      "latency_ms": 6882.1762999286875,
       "retrieved": [
         {
           "point_id": "a798c318-0e26-52ba-bfcc-288a3f81bb4d",
@@ -10498,7 +10498,7 @@
         "mrr": 0.0,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 28.475599945522845,
+      "latency_ms": 5046.599099994637,
       "retrieved": [
         {
           "point_id": "31b31e8d-93eb-551d-8f95-42733314effc",
@@ -10599,7 +10599,7 @@
         "mrr": 0.2,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 7.020100019872189,
+      "latency_ms": 4.889300093054771,
       "retrieved": [
         {
           "point_id": "e3f6ad4e-becc-5869-999f-64adf2e73284",
@@ -10700,7 +10700,7 @@
         "mrr": 0.0,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 35.72729998268187,
+      "latency_ms": 5051.6469000140205,
       "retrieved": [
         {
           "point_id": "e3f6ad4e-becc-5869-999f-64adf2e73284",
@@ -10801,7 +10801,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 2157.361299963668,
+      "latency_ms": 6911.722399992868,
       "retrieved": [
         {
           "point_id": "6460e892-49a8-55c8-95fe-83435f9974a4",
@@ -10902,7 +10902,7 @@
         "mrr": 0.0,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 30.141600058414042,
+      "latency_ms": 5035.518100019544,
       "retrieved": [
         {
           "point_id": "419a82d1-6e75-5827-8b2d-497886263aef",
@@ -11003,7 +11003,7 @@
         "mrr": 0.5,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 15.332799986936152,
+      "latency_ms": 10.920999920926988,
       "retrieved": [
         {
           "point_id": "e3f6ad4e-becc-5869-999f-64adf2e73284",
@@ -11104,7 +11104,7 @@
         "mrr": 0.0,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 45.709499972872436,
+      "latency_ms": 5046.599399996921,
       "retrieved": [
         {
           "point_id": "947e9d6c-0fd3-5b9b-bf48-f6376874d44c",
@@ -11205,7 +11205,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 2117.675599991344,
+      "latency_ms": 6854.880300001241,
       "retrieved": [
         {
           "point_id": "6460e892-49a8-55c8-95fe-83435f9974a4",
@@ -11306,7 +11306,7 @@
         "mrr": 0.0,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 28.096200083382428,
+      "latency_ms": 5046.398799982853,
       "retrieved": [
         {
           "point_id": "072680ce-92b1-5abe-a0c3-363630e705c2",
@@ -11407,7 +11407,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 9.54279990401119,
+      "latency_ms": 5.4612000240013,
       "retrieved": [
         {
           "point_id": "092ec323-b941-5a1c-92b1-ce57cc27d390",
@@ -11508,7 +11508,7 @@
         "mrr": 0.0,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 37.89799998048693,
+      "latency_ms": 5052.017299924046,
       "retrieved": [
         {
           "point_id": "2c935cfc-becb-52f4-b01a-1c1dede37ec3",
@@ -11609,7 +11609,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 2133.5146999917924,
+      "latency_ms": 6835.680000018328,
       "retrieved": [
         {
           "point_id": "092ec323-b941-5a1c-92b1-ce57cc27d390",
@@ -11710,7 +11710,7 @@
         "mrr": 0.0,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 28.65420002490282,
+      "latency_ms": 5065.2970999944955,
       "retrieved": [
         {
           "point_id": "6023bef9-2db2-52eb-b16e-ad278f1d172a",
@@ -11811,7 +11811,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 8.859099936671555,
+      "latency_ms": 7.649100036360323,
       "retrieved": [
         {
           "point_id": "6460e892-49a8-55c8-95fe-83435f9974a4",
@@ -11912,7 +11912,7 @@
         "mrr": 0.0,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 37.78390004299581,
+      "latency_ms": 5073.165099951439,
       "retrieved": [
         {
           "point_id": "4f4ba87e-1abc-5380-b7f5-2836b28cc899",
@@ -12013,7 +12013,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 2145.3280999558046,
+      "latency_ms": 6862.89760004729,
       "retrieved": [
         {
           "point_id": "6460e892-49a8-55c8-95fe-83435f9974a4",
@@ -12114,7 +12114,7 @@
         "mrr": 0.0,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 29.182699974626303,
+      "latency_ms": 5045.4628999577835,
       "retrieved": [
         {
           "point_id": "1d8211ac-b1d2-5068-ab8f-8a61022f61d4",
@@ -12215,7 +12215,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 11.814099969342351,
+      "latency_ms": 8.212400018237531,
       "retrieved": [
         {
           "point_id": "092ec323-b941-5a1c-92b1-ce57cc27d390",
@@ -12316,7 +12316,7 @@
         "mrr": 0.2,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 41.23259999323636,
+      "latency_ms": 5053.840899956413,
       "retrieved": [
         {
           "point_id": "f7a7a102-2d29-5cb6-b44e-e4b473bcb583",
@@ -12417,7 +12417,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 2318.8353999285027,
+      "latency_ms": 6860.077299992554,
       "retrieved": [
         {
           "point_id": "6460e892-49a8-55c8-95fe-83435f9974a4",
@@ -12518,7 +12518,7 @@
         "mrr": null,
         "all_evidence_hit": null
       },
-      "latency_ms": 31.859299982897937,
+      "latency_ms": 5050.912800012156,
       "retrieved": [
         {
           "point_id": "eef08d0f-e372-591d-8c41-da5133d32cd5",
@@ -12619,7 +12619,7 @@
         "mrr": null,
         "all_evidence_hit": null
       },
-      "latency_ms": 8.376499987207353,
+      "latency_ms": 4.807199933566153,
       "retrieved": [
         {
           "point_id": "eef08d0f-e372-591d-8c41-da5133d32cd5",
@@ -12720,7 +12720,7 @@
         "mrr": null,
         "all_evidence_hit": null
       },
-      "latency_ms": 40.55839998181909,
+      "latency_ms": 5055.88290002197,
       "retrieved": [
         {
           "point_id": "eef08d0f-e372-591d-8c41-da5133d32cd5",
@@ -12821,7 +12821,7 @@
         "mrr": null,
         "all_evidence_hit": null
       },
-      "latency_ms": 2370.016500004567,
+      "latency_ms": 6744.619100005366,
       "retrieved": [
         {
           "point_id": "5ab80f83-2cff-5f9a-a5ff-1137467fb5af",
@@ -12922,7 +12922,7 @@
         "mrr": 0.0,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 32.06369990948588,
+      "latency_ms": 5046.703599975444,
       "retrieved": [
         {
           "point_id": "7ef68e69-368e-529a-baff-b3cea88bf10a",
@@ -13023,7 +13023,7 @@
         "mrr": 0.25,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 14.213999966159463,
+      "latency_ms": 9.32059995830059,
       "retrieved": [
         {
           "point_id": "912b74be-6fc7-5ed5-ab9b-797fed561e35",
@@ -13124,7 +13124,7 @@
         "mrr": 0.0,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 46.55059997458011,
+      "latency_ms": 5056.192499934696,
       "retrieved": [
         {
           "point_id": "5ab80f83-2cff-5f9a-a5ff-1137467fb5af",
@@ -13225,7 +13225,7 @@
         "mrr": 0.5,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 2540.9692999674007,
+      "latency_ms": 6956.086099962704,
       "retrieved": [
         {
           "point_id": "912b74be-6fc7-5ed5-ab9b-797fed561e35",
@@ -13326,7 +13326,7 @@
         "mrr": 0.0,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 34.48739997111261,
+      "latency_ms": 5037.562500103377,
       "retrieved": [
         {
           "point_id": "eef08d0f-e372-591d-8c41-da5133d32cd5",
@@ -13427,7 +13427,7 @@
         "mrr": 0.2,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 12.309800018556416,
+      "latency_ms": 11.42019999679178,
       "retrieved": [
         {
           "point_id": "8e100170-6e58-501c-9fd8-30a6c8eb5c5a",
@@ -13528,7 +13528,7 @@
         "mrr": 0.0,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 47.23949998151511,
+      "latency_ms": 5049.457200104371,
       "retrieved": [
         {
           "point_id": "912b74be-6fc7-5ed5-ab9b-797fed561e35",
@@ -13629,7 +13629,7 @@
         "mrr": 0.5,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 2633.605399983935,
+      "latency_ms": 7101.546300109476,
       "retrieved": [
         {
           "point_id": "5ab80f83-2cff-5f9a-a5ff-1137467fb5af",
@@ -13730,7 +13730,7 @@
         "mrr": 0.2,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 32.7759999781847,
+      "latency_ms": 5038.923599990085,
       "retrieved": [
         {
           "point_id": "7a1f1189-0d0c-5c39-813d-12fa32358ab6",
@@ -13831,7 +13831,7 @@
         "mrr": 0.2,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 7.922900025732815,
+      "latency_ms": 3.99450003169477,
       "retrieved": [
         {
           "point_id": "652f119d-31a2-57e1-9765-4b14a8bf5fe7",
@@ -13932,7 +13932,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 40.9732999978587,
+      "latency_ms": 5043.090599938296,
       "retrieved": [
         {
           "point_id": "260ef7a6-7add-5821-bef8-45d3e84f5c60",
@@ -14033,7 +14033,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 2429.535200004466,
+      "latency_ms": 6891.182899940759,
       "retrieved": [
         {
           "point_id": "260ef7a6-7add-5821-bef8-45d3e84f5c60",
@@ -14134,7 +14134,7 @@
         "mrr": 0.5,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 32.9546999419108,
+      "latency_ms": 54613.32250002306,
       "retrieved": [
         {
           "point_id": "878c5f01-62c2-5494-93f5-f5e8906e5cbc",
@@ -14235,7 +14235,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 6.997099961154163,
+      "latency_ms": 11.293399962596595,
       "retrieved": [
         {
           "point_id": "260ef7a6-7add-5821-bef8-45d3e84f5c60",
@@ -14336,7 +14336,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 40.22569989319891,
+      "latency_ms": 54624.93900000118,
       "retrieved": [
         {
           "point_id": "260ef7a6-7add-5821-bef8-45d3e84f5c60",
@@ -14437,7 +14437,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 2234.0162999462336,
+      "latency_ms": 57148.7533999607,
       "retrieved": [
         {
           "point_id": "260ef7a6-7add-5821-bef8-45d3e84f5c60",
@@ -14538,7 +14538,7 @@
         "mrr": null,
         "all_evidence_hit": null
       },
-      "latency_ms": 30.612100032158196,
+      "latency_ms": 5045.432999962941,
       "retrieved": [
         {
           "point_id": "692d3f8f-741f-5d81-b3d3-60fc40de2060",
@@ -14639,7 +14639,7 @@
         "mrr": null,
         "all_evidence_hit": null
       },
-      "latency_ms": 6.728300009854138,
+      "latency_ms": 4.021800006739795,
       "retrieved": [
         {
           "point_id": "d92a76d2-fe72-5904-af08-388837b65498",
@@ -14740,7 +14740,7 @@
         "mrr": null,
         "all_evidence_hit": null
       },
-      "latency_ms": 37.63480007182807,
+      "latency_ms": 5049.6236999752,
       "retrieved": [
         {
           "point_id": "a3a1f8b8-03f3-5ea8-ad1e-97811adbcac0",
@@ -14841,7 +14841,7 @@
         "mrr": null,
         "all_evidence_hit": null
       },
-      "latency_ms": 2141.0839000018314,
+      "latency_ms": 6694.35170001816,
       "retrieved": [
         {
           "point_id": "6da9d6db-6c9e-5c95-bd3f-945208a65257",
@@ -14942,7 +14942,7 @@
         "mrr": 0.0,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 36.22330003418028,
+      "latency_ms": 5032.086300081573,
       "retrieved": [
         {
           "point_id": "6b446bb4-0c6d-5ffc-898f-ca571680e465",
@@ -15043,7 +15043,7 @@
         "mrr": 0.3333333333333333,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 9.939900017343462,
+      "latency_ms": 4.549700068309903,
       "retrieved": [
         {
           "point_id": "9801e700-a812-558f-98f7-4829ed122a14",
@@ -15144,7 +15144,7 @@
         "mrr": 0.0,
         "all_evidence_hit": 0.0
       },
-      "latency_ms": 46.53739999048412,
+      "latency_ms": 5036.8093001889065,
       "retrieved": [
         {
           "point_id": "6b446bb4-0c6d-5ffc-898f-ca571680e465",
@@ -15245,7 +15245,7 @@
         "mrr": 1.0,
         "all_evidence_hit": 1.0
       },
-      "latency_ms": 2340.3870000038296,
+      "latency_ms": 6665.392200113274,
       "retrieved": [
         {
           "point_id": "9d5ff87d-2a1d-53aa-a3d2-ee5999e5cc24",
@@ -15346,7 +15346,7 @@
         "mrr": null,
         "all_evidence_hit": null
       },
-      "latency_ms": 31.4797000028193,
+      "latency_ms": 5045.1274999650195,
       "retrieved": []
     },
     {
@@ -15361,7 +15361,7 @@
         "mrr": null,
         "all_evidence_hit": null
       },
-      "latency_ms": 9.145100018940866,
+      "latency_ms": 4.1884999955073,
       "retrieved": []
     },
     {
@@ -15376,7 +15376,7 @@
         "mrr": null,
         "all_evidence_hit": null
       },
-      "latency_ms": 40.65850004553795,
+      "latency_ms": 5049.3407000321895,
       "retrieved": []
     },
     {
@@ -15391,7 +15391,7 @@
         "mrr": null,
         "all_evidence_hit": null
       },
-      "latency_ms": 40.722700068727136,
+      "latency_ms": 5049.386500031687,
       "retrieved": []
     }
   ],
@@ -17305,10 +17305,10 @@
         }
       ],
       "stage_ms": {
-        "dense": 49.46230002678931,
-        "bm25": 25.57939989492297,
-        "fusion": 0.29180001001805067,
-        "reranker": 2382.0405000587925
+        "dense": 5060.572099988349,
+        "bm25": 12.342699919827282,
+        "fusion": 0.4960000514984131,
+        "reranker": 1832.7602000208572
       }
     },
     {
@@ -19504,10 +19504,10 @@
         }
       ],
       "stage_ms": {
-        "dense": 38.39730005711317,
-        "bm25": 197.20179995056242,
-        "fusion": 0.20809995476156473,
-        "reranker": 2952.206000103615
+        "dense": 5037.28599997703,
+        "bm25": 11.603699997067451,
+        "fusion": 0.16649998724460602,
+        "reranker": 2038.7986999703571
       }
     },
     {
@@ -21441,10 +21441,10 @@
         }
       ],
       "stage_ms": {
-        "dense": 28.690199949778616,
-        "bm25": 7.069800049066544,
-        "fusion": 0.3545999061316252,
-        "reranker": 2188.2025999948382
+        "dense": 5047.886500018649,
+        "bm25": 5.286899977363646,
+        "fusion": 0.1607999438419938,
+        "reranker": 1802.3108000634238
       }
     },
     {
@@ -23497,10 +23497,10 @@
         }
       ],
       "stage_ms": {
-        "dense": 30.898600001819432,
-        "bm25": 14.420700026676059,
-        "fusion": 0.22709998302161694,
-        "reranker": 2232.0031999843195
+        "dense": 5042.0807000482455,
+        "bm25": 11.093299952335656,
+        "fusion": 0.26970007456839085,
+        "reranker": 1886.0781999537721
       }
     },
     {
@@ -25651,10 +25651,10 @@
         }
       ],
       "stage_ms": {
-        "dense": 29.14579992648214,
-        "bm25": 12.076799990609288,
-        "fusion": 0.2539000706747174,
-        "reranker": 2292.6922999322414
+        "dense": 5036.90629999619,
+        "bm25": 7.713200058788061,
+        "fusion": 0.2626000205054879,
+        "reranker": 1991.1312001058832
       }
     },
     {
@@ -27737,10 +27737,10 @@
         }
       ],
       "stage_ms": {
-        "dense": 35.19999992568046,
-        "bm25": 17.88440009113401,
-        "fusion": 0.2774999011307955,
-        "reranker": 2107.5865000020713
+        "dense": 5065.131000010297,
+        "bm25": 13.237599981948733,
+        "fusion": 0.1550000160932541,
+        "reranker": 1745.351199992001
       }
     },
     {
@@ -27773,6 +27773,13 @@
         },
         {
           "doc_id": "infosys_fy2025",
+          "pdf_page": 15,
+          "printed_page": "28-29",
+          "evidence_text": "Revenues ₹1,62,990 cr",
+          "group": "infosys_revenue_fy2025"
+        },
+        {
+          "doc_id": "infosys_fy2025",
           "pdf_page": 73,
           "printed_page": "101",
           "evidence_text": "Consolidated revenue 1,62,990 for 2025",
@@ -27787,6 +27794,10 @@
             [
               "infosys_fy2025",
               10
+            ],
+            [
+              "infosys_fy2025",
+              15
             ],
             [
               "infosys_fy2025",
@@ -29976,10 +29987,10 @@
         }
       ],
       "stage_ms": {
-        "dense": 39.925399934872985,
-        "bm25": 14.514400041662157,
-        "fusion": 0.422299955971539,
-        "reranker": 2206.145100062713
+        "dense": 5039.411499979906,
+        "bm25": 9.764099959284067,
+        "fusion": 0.18129998352378607,
+        "reranker": 1892.10609998554
       }
     },
     {
@@ -32198,10 +32209,10 @@
         }
       ],
       "stage_ms": {
-        "dense": 30.3700000513345,
-        "bm25": 10.082699940539896,
-        "fusion": 0.37889997474849224,
-        "reranker": 2173.2017000904307
+        "dense": 5062.027600011788,
+        "bm25": 7.308900007046759,
+        "fusion": 0.16589998267591,
+        "reranker": 1937.761600012891
       }
     },
     {
@@ -34212,10 +34223,10 @@
         }
       ],
       "stage_ms": {
-        "dense": 28.918700059875846,
-        "bm25": 5.86859998293221,
-        "fusion": 0.37049991078674793,
-        "reranker": 2110.707600018941
+        "dense": 5043.306400068104,
+        "bm25": 4.45959996432066,
+        "fusion": 0.1705000177025795,
+        "reranker": 1840.2004999807104
       }
     },
     {
@@ -36217,10 +36228,10 @@
         }
       ],
       "stage_ms": {
-        "dense": 32.07420010585338,
-        "bm25": 11.597499949857593,
-        "fusion": 0.21580001339316368,
-        "reranker": 2206.0231999494135
+        "dense": 5046.3972999714315,
+        "bm25": 7.5527000008150935,
+        "fusion": 0.14629994984716177,
+        "reranker": 1924.2512000491843
       }
     },
     {
@@ -38234,10 +38245,10 @@
         }
       ],
       "stage_ms": {
-        "dense": 28.228800045326352,
-        "bm25": 9.286699932999909,
-        "fusion": 0.21920003928244114,
-        "reranker": 2006.8322999868542
+        "dense": 5055.315100005828,
+        "bm25": 6.831499980762601,
+        "fusion": 0.17110002227127552,
+        "reranker": 1752.2304999874905
       }
     },
     {
@@ -40302,10 +40313,10 @@
         }
       ],
       "stage_ms": {
-        "dense": 29.49560002889484,
-        "bm25": 8.228700025938451,
-        "fusion": 0.2861999673768878,
-        "reranker": 2152.2634000284597
+        "dense": 5053.216899977997,
+        "bm25": 4.66529990080744,
+        "fusion": 0.18880004063248634,
+        "reranker": 1742.4533000448719
       }
     },
     {
@@ -42358,10 +42369,10 @@
         }
       ],
       "stage_ms": {
-        "dense": 32.560399966314435,
-        "bm25": 8.076899917796254,
-        "fusion": 0.29120000544935465,
-        "reranker": 2133.5057000396773
+        "dense": 5051.397799979895,
+        "bm25": 4.497600020840764,
+        "fusion": 0.16109994612634182,
+        "reranker": 1815.0145000545308
       }
     },
     {
@@ -44420,10 +44431,10 @@
         }
       ],
       "stage_ms": {
-        "dense": 40.998400072567165,
-        "bm25": 8.128999965265393,
-        "fusion": 0.24780002422630787,
-        "reranker": 1868.1366000091657
+        "dense": 5044.32079999242,
+        "bm25": 5.015800008550286,
+        "fusion": 0.1639999682083726,
+        "reranker": 1719.9089999776334
       }
     },
     {
@@ -46558,10 +46569,10 @@
         }
       ],
       "stage_ms": {
-        "dense": 30.264200060628355,
-        "bm25": 14.554399996995926,
-        "fusion": 0.2492999192327261,
-        "reranker": 2138.721500057727
+        "dense": 5045.980299939401,
+        "bm25": 10.750800021924078,
+        "fusion": 0.175400055013597,
+        "reranker": 1787.8689999924973
       }
     },
     {
@@ -48626,10 +48637,10 @@
         }
       ],
       "stage_ms": {
-        "dense": 28.2293000491336,
-        "bm25": 7.802400039508939,
-        "fusion": 0.24519988801330328,
-        "reranker": 1919.4549000822008
+        "dense": 5046.618100022897,
+        "bm25": 5.502399988472462,
+        "fusion": 0.16329996287822723,
+        "reranker": 1582.9353999579325
       }
     },
     {
@@ -50750,10 +50761,10 @@
         }
       ],
       "stage_ms": {
-        "dense": 33.106000046245754,
-        "bm25": 8.78139992710203,
-        "fusion": 0.2808000426739454,
-        "reranker": 2188.722399994731
+        "dense": 5027.069499948993,
+        "bm25": 6.161099998280406,
+        "fusion": 0.15440001152455807,
+        "reranker": 1694.080200046301
       }
     },
     {
@@ -52744,10 +52755,10 @@
         }
       ],
       "stage_ms": {
-        "dense": 33.74919993802905,
-        "bm25": 11.844300082884729,
-        "fusion": 0.24089997168630362,
-        "reranker": 2080.980099970475
+        "dense": 5048.778000054881,
+        "bm25": 5.915299989283085,
+        "fusion": 0.13960001524537802,
+        "reranker": 1743.4471999295056
       }
     },
     {
@@ -52774,10 +52785,10 @@
       "cross_encoder_pool": [],
       "reranked_pool": [],
       "stage_ms": {
-        "dense": 24.98129999730736,
-        "bm25": 9.441800066269934,
-        "fusion": 0.02929999027401209,
-        "reranker": 0.05140004213899374
+        "dense": 5047.08089993801,
+        "bm25": 5.29380002990365,
+        "fusion": 0.022500054910779,
+        "reranker": 0.04579999949783087
       }
     },
     {
@@ -54808,10 +54819,10 @@
         }
       ],
       "stage_ms": {
-        "dense": 41.56749998219311,
-        "bm25": 24.269399931654334,
-        "fusion": 0.2734999870881438,
-        "reranker": 2185.4179000947624
+        "dense": 5062.621999997646,
+        "bm25": 15.012299991212785,
+        "fusion": 0.16709999181330204,
+        "reranker": 1873.8377999980003
       }
     },
     {
@@ -56887,10 +56898,10 @@
         }
       ],
       "stage_ms": {
-        "dense": 30.89910000562668,
-        "bm25": 12.091199983842671,
-        "fusion": 0.2831999445334077,
-        "reranker": 2088.4806000394747
+        "dense": 5029.222900047898,
+        "bm25": 8.395600016228855,
+        "fusion": 0.16309996135532856,
+        "reranker": 1760.3159999707714
       }
     },
     {
@@ -58870,10 +58881,10 @@
         }
       ],
       "stage_ms": {
-        "dense": 29.22320005018264,
-        "bm25": 6.185899954289198,
-        "fusion": 0.23150001652538776,
-        "reranker": 1901.4220000244677
+        "dense": 5062.744900002144,
+        "bm25": 4.1262999875471,
+        "fusion": 0.1537000061944127,
+        "reranker": 1615.695200045593
       }
     },
     {
@@ -60841,10 +60852,10 @@
         }
       ],
       "stage_ms": {
-        "dense": 30.89559997897595,
-        "bm25": 15.639599994756281,
-        "fusion": 0.2272001001983881,
-        "reranker": 2176.017199992202
+        "dense": 5062.794400029816,
+        "bm25": 10.018100030720234,
+        "fusion": 0.19289995543658733,
+        "reranker": 1857.4091999325901
       }
     },
     {
@@ -62835,10 +62846,10 @@
         }
       ],
       "stage_ms": {
-        "dense": 27.269600075669587,
-        "bm25": 16.342899994924664,
-        "fusion": 0.23849995341151953,
-        "reranker": 2012.498899945058
+        "dense": 5036.420000018552,
+        "bm25": 12.29709992185235,
+        "fusion": 0.16769999638199806,
+        "reranker": 1706.0555000789464
       }
     },
     {
@@ -64897,10 +64908,10 @@
         }
       ],
       "stage_ms": {
-        "dense": 28.281599981710315,
-        "bm25": 10.359000065363944,
-        "fusion": 0.23340003099292517,
-        "reranker": 2275.3804998937994
+        "dense": 5044.610599987209,
+        "bm25": 7.105999975465238,
+        "fusion": 0.18630002159625292,
+        "reranker": 1839.9688999634236
       }
     },
     {
@@ -64927,10 +64938,10 @@
       "cross_encoder_pool": [],
       "reranked_pool": [],
       "stage_ms": {
-        "dense": 27.74619997944683,
-        "bm25": 7.75749993044883,
-        "fusion": 0.030199997127056122,
-        "reranker": 0.05140004213899374
+        "dense": 5049.179199966602,
+        "bm25": 4.803700023330748,
+        "fusion": 0.022399937734007835,
+        "reranker": 0.03920006565749645
       }
     },
     {
@@ -67023,10 +67034,10 @@
         }
       ],
       "stage_ms": {
-        "dense": 43.96989999804646,
-        "bm25": 9.505199966952205,
-        "fusion": 0.30970002990216017,
-        "reranker": 2111.337700043805
+        "dense": 5047.756499960087,
+        "bm25": 5.525700049474835,
+        "fusion": 0.19059993792325258,
+        "reranker": 1828.7034999812022
       }
     },
     {
@@ -69062,10 +69073,10 @@
         }
       ],
       "stage_ms": {
-        "dense": 28.475599945522845,
-        "bm25": 7.020100019872189,
-        "fusion": 0.2316000172868371,
-        "reranker": 2121.633999980986
+        "dense": 5046.599099994637,
+        "bm25": 4.889300093054771,
+        "fusion": 0.15849992632865906,
+        "reranker": 1860.0754999788478
       }
     },
     {
@@ -71203,10 +71214,10 @@
         }
       ],
       "stage_ms": {
-        "dense": 30.141600058414042,
-        "bm25": 15.332799986936152,
-        "fusion": 0.23509992752224207,
-        "reranker": 2071.9661000184715
+        "dense": 5035.518100019544,
+        "bm25": 10.920999920926988,
+        "fusion": 0.16030005645006895,
+        "reranker": 1808.2809000043198
       }
     },
     {
@@ -71227,7 +71238,14 @@
           "pdf_page": 15,
           "printed_page": "28",
           "evidence_text": "Large deal TCV (Total contract value in US$ billion) 11.6",
-          "group": null
+          "group": "large_deal_tcv_fy2025"
+        },
+        {
+          "doc_id": "infosys_fy2025",
+          "pdf_page": 21,
+          "printed_page": "40-41",
+          "evidence_text": "total contract value of over US$11.6 billion in large deals",
+          "group": "large_deal_tcv_fy2025"
         }
       ],
       "failure_stages": [
@@ -71238,6 +71256,10 @@
             [
               "infosys_fy2025",
               15
+            ],
+            [
+              "infosys_fy2025",
+              21
             ]
           ],
           "stage": "hit"
@@ -71249,6 +71271,10 @@
         [
           "infosys_fy2025",
           15
+        ],
+        [
+          "infosys_fy2025",
+          21
         ]
       ],
       "lost_pages": [],
@@ -73378,10 +73404,10 @@
         }
       ],
       "stage_ms": {
-        "dense": 28.096200083382428,
-        "bm25": 9.54279990401119,
-        "fusion": 0.2589999930933118,
-        "reranker": 2095.6167000113055
+        "dense": 5046.398799982853,
+        "bm25": 5.4612000240013,
+        "fusion": 0.157299917191267,
+        "reranker": 1783.6627000942826
       }
     },
     {
@@ -75485,10 +75511,10 @@
         }
       ],
       "stage_ms": {
-        "dense": 28.65420002490282,
-        "bm25": 8.859099936671555,
-        "fusion": 0.2706000814214349,
-        "reranker": 2107.544199912809
+        "dense": 5065.2970999944955,
+        "bm25": 7.649100036360323,
+        "fusion": 0.2188999205827713,
+        "reranker": 1789.7325000958517
       }
     },
     {
@@ -77707,10 +77733,10 @@
         }
       ],
       "stage_ms": {
-        "dense": 29.182699974626303,
-        "bm25": 11.814099969342351,
-        "fusion": 0.23580004926770926,
-        "reranker": 2277.6027999352664
+        "dense": 5045.4628999577835,
+        "bm25": 8.212400018237531,
+        "fusion": 0.16559998039156199,
+        "reranker": 1806.2364000361413
       }
     },
     {
@@ -79837,10 +79863,10 @@
         }
       ],
       "stage_ms": {
-        "dense": 31.859299982897937,
-        "bm25": 8.376499987207353,
-        "fusion": 0.3226000117138028,
-        "reranker": 2329.458100022748
+        "dense": 5050.912800012156,
+        "bm25": 4.807199933566153,
+        "fusion": 0.1629000762477517,
+        "reranker": 1688.7361999833956
       }
     },
     {
@@ -81791,10 +81817,10 @@
         }
       ],
       "stage_ms": {
-        "dense": 32.06369990948588,
-        "bm25": 14.213999966159463,
-        "fusion": 0.27290009893476963,
-        "reranker": 2494.4186999928206
+        "dense": 5046.703599975444,
+        "bm25": 9.32059995830059,
+        "fusion": 0.16830000095069408,
+        "reranker": 1899.8936000280082
       }
     },
     {
@@ -83813,10 +83839,10 @@
         }
       ],
       "stage_ms": {
-        "dense": 34.48739997111261,
-        "bm25": 12.309800018556416,
-        "fusion": 0.4422999918460846,
-        "reranker": 2586.36590000242
+        "dense": 5037.562500103377,
+        "bm25": 11.42019999679178,
+        "fusion": 0.47450000420212746,
+        "reranker": 2052.089100005105
       }
     },
     {
@@ -85830,10 +85856,10 @@
         }
       ],
       "stage_ms": {
-        "dense": 32.7759999781847,
-        "bm25": 7.922900025732815,
-        "fusion": 0.27439999394118786,
-        "reranker": 2388.561900006607
+        "dense": 5038.923599990085,
+        "bm25": 3.99450003169477,
+        "fusion": 0.1724999165162444,
+        "reranker": 1848.0923000024632
       }
     },
     {
@@ -87864,10 +87890,10 @@
         }
       ],
       "stage_ms": {
-        "dense": 32.9546999419108,
-        "bm25": 6.997099961154163,
-        "fusion": 0.2738999901339412,
-        "reranker": 2193.7906000530347
+        "dense": 54613.32250002306,
+        "bm25": 11.293399962596595,
+        "fusion": 0.3231000155210495,
+        "reranker": 2523.8143999595195
       }
     },
     {
@@ -90011,10 +90037,10 @@
         }
       ],
       "stage_ms": {
-        "dense": 30.612100032158196,
-        "bm25": 6.728300009854138,
-        "fusion": 0.29440002981573343,
-        "reranker": 2103.4490999300033
+        "dense": 5045.432999962941,
+        "bm25": 4.021800006739795,
+        "fusion": 0.1689000055193901,
+        "reranker": 1644.72800004296
       }
     },
     {
@@ -91999,10 +92025,10 @@
         }
       ],
       "stage_ms": {
-        "dense": 36.22330003418028,
-        "bm25": 9.939900017343462,
-        "fusion": 0.3741999389603734,
-        "reranker": 2293.8496000133455
+        "dense": 5032.086300081573,
+        "bm25": 4.549700068309903,
+        "fusion": 0.17330003902316093,
+        "reranker": 1628.5828999243677
       }
     },
     {
@@ -92029,15 +92055,15 @@
       "cross_encoder_pool": [],
       "reranked_pool": [],
       "stage_ms": {
-        "dense": 31.4797000028193,
-        "bm25": 9.145100018940866,
-        "fusion": 0.03370002377778292,
-        "reranker": 0.06420002318918705
+        "dense": 5045.1274999650195,
+        "bm25": 4.1884999955073,
+        "fusion": 0.024700071662664413,
+        "reranker": 0.04579999949783087
       }
     }
   ],
   "metadata": {
-    "created_at": "2026-10-23T08:00:58.574540+00:00",
+    "created_at": "2026-10-23T12:55:13.352864+00:00",
     "split": "development",
     "k": 5,
     "candidates_per_method": 50,
@@ -92054,7 +92080,7 @@
     "corpus_sha256": "dd609b16ab6d2468944d398308177c4311d00db247bdac2b2b57b48520adc5c1",
     "corpus_chunks": 4083,
     "dataset": "evaluation\\benchmark_v2.jsonl",
-    "dataset_sha256": "c72f2363ae7eafe00ad7ce76b0ec97b9422ab7706d1ec04939470a9a896e3d56",
+    "dataset_sha256": "70bb0805c13e3dd86e6d8d444a998f5da9dc4cd100613dea92a175209b196625",
     "collection": "annual_report_chunks",
     "packages": {
       "sentence-transformers": "5.7.0",

@@ -78,3 +78,9 @@ in the top five: corpus misses, candidate misses, fusion-cutoff misses, and
 final top-five misses are all zero. There are no unresolved labeled-evidence
 review items. Keep the `challenge` split reserved until this configuration is
 frozen; it was not run during this repair.
+
+The final pre-challenge audit, fusion decision, component ablations, corrected
+cross-encoder MRR, and 27-run weight-sensitivity grid are recorded in
+`evaluation/results/benchmark-v2-final-development-analysis.md`. The locked
+models, hashes, filters, candidate budgets, and weights are recorded in
+`evaluation/results/benchmark-v2-frozen-config.json`.
