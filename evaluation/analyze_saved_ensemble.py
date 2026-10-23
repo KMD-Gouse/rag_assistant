@@ -102,6 +102,7 @@ def main() -> None:
         type=Path,
         default=Path("evaluation/benchmark_v2.jsonl"),
     )
+    parser.add_argument("--split", default="development")
     parser.add_argument(
         "--output-prefix",
         type=Path,
@@ -113,7 +114,7 @@ def main() -> None:
     questions = {
         item["id"]: item
         for item in load_jsonl(args.dataset)
-        if item["split"] == "development" and item["answerable"]
+        if item["split"] == args.split and item["answerable"]
     }
     diagnostics = {
         item["question_id"]: item

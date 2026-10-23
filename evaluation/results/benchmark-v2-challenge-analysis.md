@@ -51,3 +51,8 @@ of unbiased population performance. Its original questions existed before the
 final freeze and had previously been inspected. A stronger future test would
 use independently authored questions whose results remain sealed until the
 entire answer-generation and citation pipeline is frozen.
+
+Cross-encoder-only challenge performance and the empty-retrieval abstention
+proxy were computed afterward from the saved rankings and are explicitly
+reported as post-hoc diagnostics in
+`evaluation/results/benchmark-v2-posthoc-diagnostics.md`.
