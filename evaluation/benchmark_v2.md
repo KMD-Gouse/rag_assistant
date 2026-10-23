@@ -84,3 +84,9 @@ cross-encoder MRR, and 27-run weight-sensitivity grid are recorded in
 `evaluation/results/benchmark-v2-final-development-analysis.md`. The locked
 models, hashes, filters, candidate budgets, and weights are recorded in
 `evaluation/results/benchmark-v2-frozen-config.json`.
+
+After commit `02d7637` was tagged `retrieval-v2-pre-challenge`, the challenge
+split was run once without subsequent tuning. The frozen ensemble achieved
+0.8824 evidence recall@5 and 0.6814 MRR@5, compared with BM25 at 0.6765 and
+0.4265. The immutable result and three remaining failures are documented in
+`evaluation/results/benchmark-v2-challenge-analysis.md`.

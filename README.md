@@ -164,5 +164,10 @@ Benchmark v2 is described in
 [evaluation/benchmark_v2.md](evaluation/benchmark_v2.md). It adds grouped
 alternative evidence and a more balanced 40-question development / 20-question
 challenge split while preserving the original Week 4/5 files and scores. The
-development split now has 100% evidence recall@5 and no unresolved labeled-
-evidence losses; the challenge split remains unrun.
+development split has 100% evidence recall@5. The configuration was frozen at
+tag `retrieval-v2-pre-challenge`, then run once on the challenge split: the
+final ensemble reached 88.24% evidence recall@5 and 68.14% MRR@5, compared
+with BM25 at 67.65% and 42.65%. No tuning or post-hoc relabelling was performed
+after the challenge run. See
+[the final development analysis](evaluation/results/benchmark-v2-final-development-analysis.md)
+and [challenge analysis](evaluation/results/benchmark-v2-challenge-analysis.md).
