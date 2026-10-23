@@ -4,7 +4,7 @@ from types import SimpleNamespace
 
 import pytest
 
-from app.retrieval.reranker import Reranker, RerankedRetriever
+from app.retrieval.reranker import Reranker, RerankedRetriever, ensemble_rank
 from evaluation.week5 import diagnose, evaluate_week5, render_analysis
 from tests.test_hybrid import point, question
 
@@ -42,6 +42,25 @@ def test_empty_pool_does_not_load_model_and_ties_are_stable():
         ranker.rerank(" ", [])
     with pytest.raises(ValueError):
         ranker.rerank("query", [point(1, "")])
+
+
+def test_ensemble_promotes_exact_content_phrase() -> None:
+    exact = point(1, "The total contract value was US$39.4 billion.")
+    broad = point(2, "The proposed transaction had a high total value.")
+    results = ensemble_rank(
+        "What total contract value was reported?",
+        [broad, exact],
+        [broad, exact],
+        limit=2,
+    )
+    assert [result.id for result in results] == [1, 2]
+
+
+def test_ensemble_rejects_invalid_input() -> None:
+    with pytest.raises(ValueError):
+        ensemble_rank(" ", [], [], 1)
+    with pytest.raises(ValueError):
+        ensemble_rank("query", [], [], 0)
 
 
 def test_reranked_retriever_forwards_filters_and_candidate_budget():

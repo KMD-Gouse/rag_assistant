@@ -1,10 +1,22 @@
 """Cross-encoder reranking of a fixed hybrid candidate pool."""
 
 from functools import lru_cache
+import re
 
 import numpy as np
 
 from app.config import get_settings
+
+
+ENSEMBLE_RRF_K = 60
+ENSEMBLE_FUSION_WEIGHT = 0.5
+ENSEMBLE_RERANK_WEIGHT = 4.0
+ENSEMBLE_PHRASE_WEIGHT = 0.005
+PHRASE_STOPWORDS = {
+    "a", "an", "and", "as", "at", "by", "did", "each", "for", "from",
+    "how", "in", "it", "its", "of", "on", "report", "reported", "the",
+    "to", "was", "were", "what", "which",
+}
 
 
 @lru_cache(maxsize=2)
@@ -61,6 +73,45 @@ class Reranker:
                 for i in order[:limit]]
 
 
+def _content_bigrams(text: str) -> set[tuple[str, str]]:
+    tokens = re.findall(r"[a-z0-9]+", text.casefold())
+    return {
+        (tokens[index], tokens[index + 1])
+        for index in range(len(tokens) - 1)
+        if tokens[index] not in PHRASE_STOPWORDS
+        and tokens[index + 1] not in PHRASE_STOPWORDS
+    }
+
+
+def ensemble_rank(question, fused, reranked, limit=5):
+    """Blend retrieval and cross-encoder ranks with exact phrase evidence."""
+
+    if not question.strip() or limit < 1:
+        raise ValueError("A non-empty question and positive limit are required.")
+    fused_by_id = {str(point.id): point for point in fused}
+    fused_ranks = {str(point.id): rank for rank, point in enumerate(fused, start=1)}
+    reranked_ranks = {str(point.id): rank for rank, point in enumerate(reranked, start=1)}
+    query_bigrams = _content_bigrams(question)
+    scored = []
+    for point_id, point in fused_by_id.items():
+        rerank_position = reranked_ranks.get(point_id)
+        if rerank_position is None:
+            continue
+        text = (point.payload or {}).get("text", "")
+        phrase_matches = len(query_bigrams.intersection(_content_bigrams(text)))
+        score = (
+            ENSEMBLE_FUSION_WEIGHT / (ENSEMBLE_RRF_K + fused_ranks[point_id])
+            + ENSEMBLE_RERANK_WEIGHT / (ENSEMBLE_RRF_K + rerank_position)
+            + ENSEMBLE_PHRASE_WEIGHT * phrase_matches
+        )
+        scored.append((score, point_id, point))
+    scored.sort(key=lambda item: (-item[0], item[1]))
+    return [
+        point.model_copy(update={"score": score})
+        for score, _, point in scored[:limit]
+    ]
+
+
 class RerankedRetriever:
     def __init__(self, hybrid, reranker, rerank_candidates=50):
         if not 1 <= rerank_candidates <= hybrid.candidate_limit:
@@ -73,4 +124,5 @@ class RerankedRetriever:
         if not 1 <= limit <= self.rerank_candidates:
             raise ValueError("Final limit must fit within the rerank pool.")
         candidates = self.hybrid.search(question, limit=self.rerank_candidates, **filters)
-        return self.reranker.rerank(question, candidates, limit)
+        reranked = self.reranker.rerank(question, candidates, len(candidates) or limit)
+        return ensemble_rank(question, candidates, reranked, limit)

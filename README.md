@@ -153,11 +153,16 @@ The CLI infers exact company and fiscal-year constraints from explicit query
 text. Multi-company and multi-year comparisons use multi-value filters. The
 full names `Infosys Limited` and `Tata Consultancy Services` map to their
 canonical company values, and previous-fiscal-year follow-ups resolve from
-supplied history. The reranker also receives company, fiscal year, and document
+supplied history. The cross-encoder receives company, fiscal year, and document
 ID alongside each passage so similar figures from different reports are
-distinguishable.
+distinguishable. Its final ordering blends the hybrid and cross-encoder ranks
+with a small exact content-bigram signal. This preserves precise phrases such
+as “total contract value” when the neural score alone ranks broader passages
+too highly.
 
 Benchmark v2 is described in
 [evaluation/benchmark_v2.md](evaluation/benchmark_v2.md). It adds grouped
 alternative evidence and a more balanced 40-question development / 20-question
-challenge split while preserving the original Week 4/5 files and scores.
+challenge split while preserving the original Week 4/5 files and scores. The
+development split now has 100% evidence recall@5 and no unresolved labeled-
+evidence losses; the challenge split remains unrun.

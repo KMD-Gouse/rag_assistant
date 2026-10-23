@@ -48,5 +48,5 @@ def test_benchmark_v2_is_balanced_and_has_verified_alternatives() -> None:
     assert Counter(q.split for q in questions) == {"development": 40, "challenge": 20}
     q013 = next(question for question in questions if question.id == "q013")
     groups = Counter(evidence.group for evidence in q013.evidence)
-    assert groups["employees_fy2024"] == 2
+    assert groups["employees_fy2024"] == 3
     assert groups["employees_fy2025"] == 2

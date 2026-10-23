@@ -11,6 +11,13 @@ from statistics import mean, median
 from time import perf_counter
 
 from app.retrieval.hybrid import reciprocal_rank_fusion
+from app.retrieval.reranker import (
+    ENSEMBLE_FUSION_WEIGHT,
+    ENSEMBLE_PHRASE_WEIGHT,
+    ENSEMBLE_RERANK_WEIGHT,
+    ENSEMBLE_RRF_K,
+    ensemble_rank,
+)
 from evaluation.run_eval import evidence_groups, retrieval_query, score_results, render_table
 from evaluation.validate_dataset import QUESTIONS_PATH, validate_dataset
 
@@ -72,7 +79,8 @@ def evaluate_week5(questions, dense_search, bm25, reranker,
         pool = union[:pool_size]
         fusion_ms = (perf_counter() - start) * 1000
         start = perf_counter()
-        reranked = reranker.rerank(query, pool, limit=len(pool) or k)
+        cross_encoder_ranked = reranker.rerank(query, pool, limit=len(pool) or k)
+        reranked = ensemble_rank(query, pool, cross_encoder_ranked, limit=len(pool) or k)
         rerank_ms = (perf_counter() - start) * 1000
         rankings = dict(zip(METHODS, [dense[:k], sparse[:k], pool[:k], reranked[:k]]))
         latencies = dict(zip(METHODS, [dense_ms, sparse_ms,
@@ -83,8 +91,10 @@ def evaluate_week5(questions, dense_search, bm25, reranker,
                          "answerable": question.answerable, "method": method,
                          "query": query, "metrics": score_results(question, results, k),
                          "latency_ms": latencies[method], "retrieved": serialize(results)})
-        expected = {(e.doc_id, e.pdf_page) for e in question.evidence}
         v2_keys, v3_keys = evidence_keys(pool[:k]), evidence_keys(reranked[:k])
+        groups = evidence_groups(question)
+        v2_group_hits = {index for index, group in enumerate(groups) if group.intersection(v2_keys)}
+        v3_group_hits = {index for index, group in enumerate(groups) if group.intersection(v3_keys)}
         diagnostics.append({
             "question_id": question.id, "type": question.type, "query": query,
             "inferred_filters": filters,
@@ -92,11 +102,20 @@ def evaluate_week5(questions, dense_search, bm25, reranker,
             "failure_stages": diagnose(question, corpus_pages, union, pool, reranked[:k]),
             "union_evidence_recall": score_results(question, union, max(1, len(union)))["evidence_recall"],
             "pool_evidence_recall": score_results(question, pool, max(1, len(pool)))["evidence_recall"],
-            "gained_pages": [list(key) for key in sorted(expected & (v3_keys - v2_keys))],
-            "lost_pages": [list(key) for key in sorted(expected & (v2_keys - v3_keys))],
+            "gained_pages": [
+                list(key)
+                for index in sorted(v3_group_hits - v2_group_hits)
+                for key in sorted(groups[index].intersection(v3_keys))
+            ],
+            "lost_pages": [
+                list(key)
+                for index in sorted(v2_group_hits - v3_group_hits)
+                for key in sorted(groups[index].intersection(v2_keys))
+            ],
             "dense_ids": [str(p.id) for p in dense],
             "bm25_ids": [str(p.id) for p in sparse],
             "fused_candidates": serialize(union),
+            "cross_encoder_pool": [{"point_id": str(p.id), "score": p.score} for p in cross_encoder_ranked],
             "reranked_pool": [{"point_id": str(p.id), "score": p.score} for p in reranked],
             "stage_ms": {"dense": dense_ms, "bm25": sparse_ms,
                          "fusion": fusion_ms, "reranker": rerank_ms},
@@ -135,14 +154,18 @@ def render_analysis(report):
         values = [d[key] for d in report["diagnostics"] if d[key] is not None]
         if values:
             lines += ["", f"Macro {key}: {mean(values):.4f}."]
-    lines += ["", "## Questions requiring review", "",
-              "| Question | Type | Missing evidence stages | Gained pages | Lost pages |",
-              "|---|---|---|---|---|"]
+    lines += ["", "## Questions requiring review", ""]
+    review_rows = []
     for item in report["diagnostics"]:
         misses = [f"{e['doc_id']} p{e['pdf_page']}: {e['stage']}" for e in item["failure_stages"] if e["stage"] != "hit"]
         if misses or item["lost_pages"]:
-            lines.append(f"| {item['question_id']} | {item['type']} | {'; '.join(misses)} | "
-                         f"{item['gained_pages']} | {item['lost_pages']} |")
+            review_rows.append(f"| {item['question_id']} | {item['type']} | {'; '.join(misses)} | "
+                               f"{item['gained_pages']} | {item['lost_pages']} |")
+    if review_rows:
+        lines += ["| Question | Type | Missing evidence stages | Gained pages | Lost pages |",
+                  "|---|---|---|---|---|", *review_rows]
+    else:
+        lines.append("No unresolved labeled-evidence losses on this split.")
     lines += ["", "Metrics use (document, PDF page) matches and exclude unanswerable questions. "
               "A page hit does not establish that the exact supporting fact was retrieved. "
               "Failure stages locate losses, not semantic causes: inspect the saved reference evidence "
@@ -224,6 +247,12 @@ def main():
         "query_policy": "Supplied history then question; no gold metadata filters.",
         "automatic_scope": args.auto_scope,
         "reranker_input": "Question/history paired with company, fiscal year, document and chunk text; model truncates long pairs.",
+        "final_rank_ensemble": {
+            "rrf_k": ENSEMBLE_RRF_K,
+            "hybrid_rank_weight": ENSEMBLE_FUSION_WEIGHT,
+            "cross_encoder_rank_weight": ENSEMBLE_RERANK_WEIGHT,
+            "exact_content_bigram_weight": ENSEMBLE_PHRASE_WEIGHT,
+        },
         "timing_policy": "Sequential stage sums after one warm-up; no corpus/model loading.",
     }
     default_prefix = "benchmark-v2" if args.dataset.resolve() != QUESTIONS_PATH.resolve() else "week5"

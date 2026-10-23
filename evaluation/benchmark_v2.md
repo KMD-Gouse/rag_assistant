@@ -24,9 +24,11 @@ Evidence entries can share a `group`. Locations in one group are interchangeable
 support for one required fact; different groups remain jointly required. The
 following additions were checked against extracted text and rendered pages:
 
-- Infosys FY2024/FY2025 employee totals on corporate-overview pages.
-- Infosys FY2025 revenue on both corporate-overview and business-highlights pages.
-- The March 2024 cash balance repeated in the FY2025 report.
+- Infosys employee totals repeated across corporate-overview, human-capital,
+  and Board-report pages.
+- Infosys revenue, cash, client-count, and large-deal figures repeated in
+  business highlights, management discussion, and strategy sections.
+- TCS dividend totals repeated in the CEO letter and Board report.
 
 Evaluation now computes recall over required fact groups. Document recall also
 accepts an alternative document within the same fact group. The original
@@ -66,12 +68,13 @@ The scoped `development` diagnostic produced:
 | Method | Evidence recall@5 | Document recall@5 | MRR@5 | All evidence hit@5 |
 |---|---:|---:|---:|---:|
 | Dense | 0.3333 | 0.9697 | 0.2409 | 0.3030 |
-| BM25 | 0.7424 | 0.9848 | 0.4449 | 0.6970 |
-| RRF hybrid | 0.4545 | 1.0000 | 0.3909 | 0.3939 |
-| Reranked | 0.7879 | 1.0000 | 0.6525 | 0.6970 |
+| BM25 | 0.8182 | 0.9848 | 0.5116 | 0.7576 |
+| RRF hybrid | 0.5152 | 1.0000 | 0.4045 | 0.4545 |
+| Reranked ensemble | 1.0000 | 1.0000 | 0.9167 | 1.0000 |
 
-The candidate union now covers every required development evidence group.
-One location falls below the fusion cutoff and nine fall below the reranker's
-top five, so the remaining errors are ranking losses rather than missing or
-corrupted corpus pages. Keep the `challenge` split reserved until a new
-configuration is frozen; it was not run during this repair.
+The final ranker combines hybrid rank, cross-encoder rank, and a small exact
+content-bigram signal. Every required development evidence group now appears
+in the top five: corpus misses, candidate misses, fusion-cutoff misses, and
+final top-five misses are all zero. There are no unresolved labeled-evidence
+review items. Keep the `challenge` split reserved until this configuration is
+frozen; it was not run during this repair.
