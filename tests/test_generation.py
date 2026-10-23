@@ -184,6 +184,7 @@ def test_groq_request_uses_strict_json_schema_and_parses_response():
     assert "pattern" not in schema["$defs"]["DraftCitation"]["properties"]["evidence_id"]
     assert "maximum" not in schema["properties"]["evidence_sufficiency"]
     assert captured["request"].get_header("Authorization") == "Bearer secret-key"
+    assert captured["request"].get_header("User-agent") == "annual-report-qa/0.1"
     assert captured["timeout"] == 12
 
 
