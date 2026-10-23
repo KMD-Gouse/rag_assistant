@@ -17,5 +17,5 @@ def test_default_settings(monkeypatch: pytest.MonkeyPatch) -> None:
     assert settings.embedding_model == "BAAI/bge-small-en-v1.5"
     assert settings.reranker_model == "BAAI/bge-reranker-base"
     assert settings.groq_model == "openai/gpt-oss-20b"
-    assert settings.rag_min_evidence_sufficiency == 0.70
+    assert settings.rag_min_evidence_sufficiency == 1.0
     assert settings.rag_reranker_model == "cross-encoder/ms-marco-MiniLM-L-6-v2"

@@ -1,6 +1,7 @@
 """Small Groq Chat Completions client with strict structured output."""
 
 import json
+import time
 from typing import Callable
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
@@ -52,6 +53,8 @@ class GroqGenerator:
         api_url: str,
         timeout: float = 30.0,
         opener: Callable = urlopen,
+        sleeper: Callable[[float], None] = time.sleep,
+        rate_limit_retries: int = 3,
     ):
         if not api_key.strip():
             raise ValueError("GROQ_API_KEY is required for live answer generation.")
@@ -62,6 +65,8 @@ class GroqGenerator:
         self.api_url = api_url
         self.timeout = timeout
         self.opener = opener
+        self.sleeper = sleeper
+        self.rate_limit_retries = rate_limit_retries
 
     def generate(self, system_prompt: str, user_prompt: str) -> AnswerDraft:
         schema = _groq_strict_schema()
@@ -93,21 +98,34 @@ class GroqGenerator:
             },
             method="POST",
         )
-        try:
-            with self.opener(request, timeout=self.timeout) as response:
-                payload = json.loads(response.read().decode("utf-8"))
-            content = payload["choices"][0]["message"]["content"]
-            return AnswerDraft.model_validate_json(content)
-        except HTTPError as error:
-            raise GroqGenerationError(f"Groq request failed with HTTP {error.code}.") from error
-        except URLError as error:
-            raise GroqGenerationError("Could not reach the Groq API.") from error
-        except (
-            KeyError,
-            IndexError,
-            TypeError,
-            UnicodeDecodeError,
-            json.JSONDecodeError,
-            ValidationError,
-        ) as error:
-            raise GroqGenerationError("Groq returned an invalid structured response.") from error
+        for attempt in range(self.rate_limit_retries + 1):
+            try:
+                with self.opener(request, timeout=self.timeout) as response:
+                    payload = json.loads(response.read().decode("utf-8"))
+                content = payload["choices"][0]["message"]["content"]
+                return AnswerDraft.model_validate_json(content)
+            except HTTPError as error:
+                if error.code == 429 and attempt < self.rate_limit_retries:
+                    retry_after = error.headers.get("Retry-After")
+                    try:
+                        delay = float(retry_after) if retry_after else 30.0
+                    except ValueError:
+                        delay = 30.0
+                    self.sleeper(max(1.0, min(delay, 60.0)))
+                    continue
+                raise GroqGenerationError(
+                    f"Groq request failed with HTTP {error.code}."
+                ) from error
+            except URLError as error:
+                raise GroqGenerationError("Could not reach the Groq API.") from error
+            except (
+                KeyError,
+                IndexError,
+                TypeError,
+                UnicodeDecodeError,
+                json.JSONDecodeError,
+                ValidationError,
+            ) as error:
+                raise GroqGenerationError("Groq returned an invalid structured response.") from error
+
+        raise AssertionError("Unreachable Groq retry state.")

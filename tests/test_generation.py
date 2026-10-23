@@ -1,5 +1,6 @@
 import json
 from types import SimpleNamespace
+from urllib.error import HTTPError
 
 import pytest
 from pydantic import ValidationError
@@ -51,7 +52,7 @@ class FakeGenerator:
 def draft(**updates):
     values = {
         "answerable": True,
-        "evidence_sufficiency": 0.91,
+        "evidence_sufficiency": 1.0,
         "answer": "TCS reported revenue from operations of ₹13,90,853 million.",
         "citations": [{
             "evidence_id": "E1",
@@ -196,6 +197,29 @@ def test_groq_invalid_response_is_sanitized():
     with pytest.raises(GroqGenerationError, match="invalid structured response") as error:
         generator.generate("system", "user")
     assert "secret-key" not in str(error.value)
+
+
+def test_groq_retries_rate_limit_using_retry_after():
+    calls = []
+    sleeps = []
+
+    def opener(request, timeout):
+        calls.append(request)
+        if len(calls) == 1:
+            raise HTTPError(
+                request.full_url, 429, "limited", {"Retry-After": "2"}, None,
+            )
+        return FakeResponse({
+            "choices": [{"message": {"content": draft().model_dump_json()}}]
+        })
+
+    generator = GroqGenerator(
+        "secret-key", "model", "https://example.test",
+        opener=opener, sleeper=sleeps.append,
+    )
+    assert generator.generate("system", "user").answerable
+    assert len(calls) == 2
+    assert sleeps == [2.0]
 
 
 @pytest.mark.parametrize("top_k, threshold", [(0, 0.7), (5, -0.1), (5, 1.1)])

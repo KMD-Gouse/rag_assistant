@@ -1,0 +1,1571 @@
+{
+  "metadata": {
+    "created_at": "2026-10-23T20:13:40.770236+00:00",
+    "dataset": "evaluation\\benchmark_v2.jsonl",
+    "dataset_sha256": "70bb0805c13e3dd86e6d8d444a998f5da9dc4cd100613dea92a175209b196625",
+    "split": "development",
+    "model": "openai/gpt-oss-20b",
+    "prompt_sha256": "ccfbf4b329e1ffd33ffdbef4300380e228e77ba4823b93005cb19c1d189370bc",
+    "capture_threshold": 0.0,
+    "top_k": 5,
+    "reranker_model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "reranker_revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a"
+  },
+  "questions": [
+    {
+      "question_id": "q002",
+      "type": "table",
+      "question": "According to TCS's FY2024-25 Financial Performance Overview, what were its consolidated revenue from operations and reported growth for FY2025?",
+      "query": "According to TCS's FY2024-25 Financial Performance Overview, what were its consolidated revenue from operations and reported growth for FY2025?",
+      "gold_answerable": true,
+      "expected_answer": "TCS reported consolidated revenue from operations of ₹255,324 crore in FY2025, representing reported growth of 6.0%.",
+      "result": {
+        "question": "According to TCS's FY2024-25 Financial Performance Overview, what were its consolidated revenue from operations and reported growth for FY2025?",
+        "answer": "TCS reported consolidated revenue from operations of ₹255,324 crore for FY 2025, representing a reported growth of 6.0 % over FY 2024.",
+        "abstained": false,
+        "abstention_reason": null,
+        "evidence_sufficiency": 1.0,
+        "threshold": 0.0,
+        "citations": [
+          {
+            "evidence_id": "E1",
+            "chunk_id": "tcs_fy2025:p0088:prose:001",
+            "doc_id": "tcs_fy2025",
+            "company": "TCS",
+            "fiscal_year": "2024-25",
+            "pdf_page": 88,
+            "printed_page": null,
+            "quote": "Revenue from operations 255,324 100.0 6.0 240,893 100.0"
+          },
+          {
+            "evidence_id": "E2",
+            "chunk_id": "tcs_fy2025:p0070:prose:001",
+            "doc_id": "tcs_fy2025",
+            "company": "TCS",
+            "fiscal_year": "2024-25",
+            "pdf_page": 70,
+            "printed_page": null,
+            "quote": "the revenue from operations for FY2025 was `2,55,324 crore, higher by 6.0% over the previous year’s revenue from operations of `2,40,893 crore"
+          }
+        ],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": 0.7567567567567567,
+        "numeric_recall": 0.3333333333333333,
+        "quote_validation_pass": true,
+        "citation_location_precision": 0.5,
+        "citation_group_recall": 1.0
+      },
+      "latency_seconds": 45.801519399974495
+    },
+    {
+      "question_id": "q003",
+      "type": "comparison",
+      "question": "Compare the FY2025 revenue figures reported by Infosys and TCS. What amount did each company report, and which was higher?",
+      "query": "Compare the FY2025 revenue figures reported by Infosys and TCS. What amount did each company report, and which was higher?",
+      "gold_answerable": true,
+      "expected_answer": "Infosys reported total revenues of ₹162,990 crore, while TCS reported consolidated revenue from operations of ₹255,324 crore. TCS's reported figure was higher by ₹92,334 crore.",
+      "result": {
+        "question": "Compare the FY2025 revenue figures reported by Infosys and TCS. What amount did each company report, and which was higher?",
+        "answer": "Infosys reported revenue of ₹1,62,990 crore for FY 2025, while Tata Consultancy Services (TCS) reported revenue of ₹2,55,324 crore for the same period. TCS’s revenue was higher than Infosys’s.",
+        "abstained": false,
+        "abstention_reason": null,
+        "evidence_sufficiency": 1.0,
+        "threshold": 0.0,
+        "citations": [
+          {
+            "evidence_id": "E2",
+            "chunk_id": "infosys_fy2025:p0073:prose:002",
+            "doc_id": "infosys_fy2025",
+            "company": "Infosys",
+            "fiscal_year": "2024-25",
+            "pdf_page": 73,
+            "printed_page": "101",
+            "quote": "Our revenues in reported currency terms for fiscal 2025 is ₹1,62,990 crore, a growth of 6.1%."
+          },
+          {
+            "evidence_id": "E1",
+            "chunk_id": "tcs_fy2025:p0088:prose:001",
+            "doc_id": "tcs_fy2025",
+            "company": "TCS",
+            "fiscal_year": "2024-25",
+            "pdf_page": 88,
+            "printed_page": null,
+            "quote": "Revenue from operations 255,324 100.0 6.0 240,893 100.0"
+          }
+        ],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": 0.5614035087719298,
+        "numeric_recall": 0.6666666666666666,
+        "quote_validation_pass": true,
+        "citation_location_precision": 1.0,
+        "citation_group_recall": 1.0
+      },
+      "latency_seconds": 4.9218245999654755
+    },
+    {
+      "question_id": "q006",
+      "type": "fact",
+      "question": "How many AI-aware employees did Infosys report in FY2024-25?",
+      "query": "How many AI-aware employees did Infosys report in FY2024-25?",
+      "gold_answerable": true,
+      "expected_answer": "Infosys reported more than 270,000 AI-aware employees in FY2024-25.",
+      "result": {
+        "question": "How many AI-aware employees did Infosys report in FY2024-25?",
+        "answer": "Infosys reported that more than 2,70,000 employees were AI‑aware in FY 2024‑25.",
+        "abstained": false,
+        "abstention_reason": null,
+        "evidence_sufficiency": 1.0,
+        "threshold": 0.0,
+        "citations": [
+          {
+            "evidence_id": "E1",
+            "chunk_id": "infosys_fy2025:p0024:prose:001",
+            "doc_id": "infosys_fy2025",
+            "company": "Infosys",
+            "fiscal_year": "2024-25",
+            "pdf_page": 24,
+            "printed_page": "46-47",
+            "quote": "2,70,000+ AI aware employees"
+          },
+          {
+            "evidence_id": "E2",
+            "chunk_id": "infosys_fy2025:p0022:prose:002",
+            "doc_id": "infosys_fy2025",
+            "company": "Infosys",
+            "fiscal_year": "2024-25",
+            "pdf_page": 22,
+            "printed_page": "42-43",
+            "quote": "2,70,000+AI Aware employees"
+          },
+          {
+            "evidence_id": "E3",
+            "chunk_id": "infosys_fy2025:p0021:prose:002",
+            "doc_id": "infosys_fy2025",
+            "company": "Infosys",
+            "fiscal_year": "2024-25",
+            "pdf_page": 21,
+            "printed_page": "40-41",
+            "quote": "Over 2,70,000 of our employees today are AI-aware"
+          }
+        ],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": 0.8,
+        "numeric_recall": 0.6666666666666666,
+        "quote_validation_pass": true,
+        "citation_location_precision": 0.3333333333333333,
+        "citation_group_recall": 1.0
+      },
+      "latency_seconds": 4.897870999993756
+    },
+    {
+      "question_id": "q011",
+      "type": "table",
+      "question": "According to Infosys's FY2024-25 business highlights, what was its basic earnings per share and year-over-year growth?",
+      "query": "According to Infosys's FY2024-25 business highlights, what was its basic earnings per share and year-over-year growth?",
+      "gold_answerable": true,
+      "expected_answer": "Infosys reported basic earnings per share of ₹64.50 in FY2024-25, with year-over-year growth of 8.3%.",
+      "result": {
+        "question": "According to Infosys's FY2024-25 business highlights, what was its basic earnings per share and year-over-year growth?",
+        "answer": "Basic earnings per share: ₹64.50; year‑over‑year growth: 8.3%",
+        "abstained": false,
+        "abstention_reason": null,
+        "evidence_sufficiency": 1.0,
+        "threshold": 0.0,
+        "citations": [
+          {
+            "evidence_id": "E1",
+            "chunk_id": "infosys_fy2025:p0015:prose:001",
+            "doc_id": "infosys_fy2025",
+            "company": "Infosys",
+            "fiscal_year": "2024-25",
+            "pdf_page": 15,
+            "printed_page": "28-29",
+            "quote": "Basic earnings per share (par value of ₹ 5 each) 64.50 8.3% growth Y-o-Y(4)"
+          }
+        ],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": 0.7142857142857143,
+        "numeric_recall": 0.5,
+        "quote_validation_pass": true,
+        "citation_location_precision": 1.0,
+        "citation_group_recall": 1.0
+      },
+      "latency_seconds": 84.26513149996754
+    },
+    {
+      "question_id": "q013",
+      "type": "comparison",
+      "question": "How did Infosys's global employee count change from FY2023-24 to FY2024-25?",
+      "query": "How did Infosys's global employee count change from FY2023-24 to FY2024-25?",
+      "gold_answerable": true,
+      "expected_answer": "Infosys's global employee count increased from 317,240 in FY2023-24 to 323,578 in FY2024-25, an increase of 6,338 employees.",
+      "result": {
+        "question": "How did Infosys's global employee count change from FY2023-24 to FY2024-25?",
+        "answer": "I don't know based on the available annual reports.",
+        "abstained": true,
+        "abstention_reason": "model_says_unanswerable",
+        "evidence_sufficiency": 0.0,
+        "threshold": 0.0,
+        "citations": [],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": false,
+        "token_f1": null,
+        "numeric_recall": null,
+        "quote_validation_pass": false,
+        "citation_location_precision": null,
+        "citation_group_recall": null
+      },
+      "latency_seconds": 4.812366700032726
+    },
+    {
+      "question_id": "q017",
+      "type": "follow_up",
+      "question": "And what was it in FY2024?",
+      "query": "user: What was TCS's consolidated revenue from operations in FY2025?\nassistant: TCS reported consolidated revenue from operations of ₹255,324 crore in FY2025.\nAnd what was it in FY2024?",
+      "gold_answerable": true,
+      "expected_answer": "TCS reported consolidated revenue from operations of ₹240,893 crore in FY2024.",
+      "result": {
+        "question": "user: What was TCS's consolidated revenue from operations in FY2025?\nassistant: TCS reported consolidated revenue from operations of ₹255,324 crore in FY2025.\nAnd what was it in FY2024?",
+        "answer": "I don't know based on the available annual reports.",
+        "abstained": true,
+        "abstention_reason": "invalid_citations",
+        "evidence_sufficiency": 1.0,
+        "threshold": 0.0,
+        "citations": [],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": false,
+        "token_f1": null,
+        "numeric_recall": null,
+        "quote_validation_pass": false,
+        "citation_location_precision": null,
+        "citation_group_recall": null
+      },
+      "latency_seconds": 5.0438042000168934
+    },
+    {
+      "question_id": "q018",
+      "type": "follow_up",
+      "question": "By how much?",
+      "query": "user: Which company reported the higher FY2025 revenue figure, Infosys or TCS?\nassistant: TCS reported the higher FY2025 revenue figure.\nBy how much?",
+      "gold_answerable": true,
+      "expected_answer": "TCS's reported FY2025 revenue figure was ₹92,334 crore higher than Infosys's reported figure.",
+      "result": {
+        "question": "user: Which company reported the higher FY2025 revenue figure, Infosys or TCS?\nassistant: TCS reported the higher FY2025 revenue figure.\nBy how much?",
+        "answer": "TCS reported a higher FY2025 revenue figure than Infosys by ₹92,334 crore.",
+        "abstained": false,
+        "abstention_reason": null,
+        "evidence_sufficiency": 1.0,
+        "threshold": 0.0,
+        "citations": [
+          {
+            "evidence_id": "E1",
+            "chunk_id": "tcs_fy2025:p0088:prose:001",
+            "doc_id": "tcs_fy2025",
+            "company": "TCS",
+            "fiscal_year": "2024-25",
+            "pdf_page": 88,
+            "printed_page": null,
+            "quote": "Revenue from operations 255,324 100.0 6.0 240,893 100.0"
+          },
+          {
+            "evidence_id": "E5",
+            "chunk_id": "infosys_fy2025:p0073:prose:002",
+            "doc_id": "infosys_fy2025",
+            "company": "Infosys",
+            "fiscal_year": "2024-25",
+            "pdf_page": 73,
+            "printed_page": "101",
+            "quote": "Our revenues in reported currency terms for fiscal 2025 is ₹1,62,990 crore, a growth of 6.1%."
+          }
+        ],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": 0.7407407407407408,
+        "numeric_recall": 1.0,
+        "quote_validation_pass": true,
+        "citation_location_precision": 1.0,
+        "citation_group_recall": 1.0
+      },
+      "latency_seconds": 5.068277599988505
+    },
+    {
+      "question_id": "q023",
+      "type": "comparison",
+      "question": "How did Infosys's active-client count change from FY2023-24 to FY2024-25?",
+      "query": "How did Infosys's active-client count change from FY2023-24 to FY2024-25?",
+      "gold_answerable": true,
+      "expected_answer": "Infosys's active-client count decreased from 1,882 in FY2023-24 to 1,869 in FY2024-25, a decrease of 13 clients.",
+      "result": {
+        "question": "How did Infosys's active-client count change from FY2023-24 to FY2024-25?",
+        "answer": "Infosys’s active‑client count fell from 1,882 in FY 2023‑24 to 1,869 in FY 2024‑25, a decrease of 13 clients.",
+        "abstained": false,
+        "abstention_reason": null,
+        "evidence_sufficiency": 1.0,
+        "threshold": 0.0,
+        "citations": [
+          {
+            "evidence_id": "E5",
+            "chunk_id": "infosys_fy2024:p0021:prose:002",
+            "doc_id": "infosys_fy2024",
+            "company": "Infosys",
+            "fiscal_year": "2023-24",
+            "pdf_page": 21,
+            "printed_page": "40-41",
+            "quote": "Total no. of active clients 1,882"
+          },
+          {
+            "evidence_id": "E1",
+            "chunk_id": "infosys_fy2025:p0010:prose:001",
+            "doc_id": "infosys_fy2025",
+            "company": "Infosys",
+            "fiscal_year": "2024-25",
+            "pdf_page": 10,
+            "printed_page": "18-19",
+            "quote": "1,869 Active clients"
+          }
+        ],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": 0.8181818181818182,
+        "numeric_recall": 0.7142857142857143,
+        "quote_validation_pass": true,
+        "citation_location_precision": 1.0,
+        "citation_group_recall": 1.0
+      },
+      "latency_seconds": 5.240647199912928
+    },
+    {
+      "question_id": "q024",
+      "type": "unanswerable",
+      "question": "How many Infosys offices were located in Antarctica in FY2024-25?",
+      "query": "How many Infosys offices were located in Antarctica in FY2024-25?",
+      "gold_answerable": false,
+      "expected_answer": null,
+      "result": {
+        "question": "How many Infosys offices were located in Antarctica in FY2024-25?",
+        "answer": "I don't know based on the available annual reports.",
+        "abstained": true,
+        "abstention_reason": "model_says_unanswerable",
+        "evidence_sufficiency": 0.0,
+        "threshold": 0.0,
+        "citations": [],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": null,
+        "numeric_recall": null,
+        "quote_validation_pass": false,
+        "citation_location_precision": null,
+        "citation_group_recall": null
+      },
+      "latency_seconds": 36.83146349992603
+    },
+    {
+      "question_id": "q025",
+      "type": "table",
+      "question": "What free cash flow and year-over-year free-cash-flow growth did Infosys report for FY2024-25?",
+      "query": "What free cash flow and year-over-year free-cash-flow growth did Infosys report for FY2024-25?",
+      "gold_answerable": true,
+      "expected_answer": "Infosys reported free cash flow of ₹34,549 crore in FY2024-25, with year-over-year growth of 44.8%.",
+      "result": {
+        "question": "What free cash flow and year-over-year free-cash-flow growth did Infosys report for FY2024-25?",
+        "answer": "Infosys reported a free cash flow of ₹34,549 cr for FY 2024‑25, which represented a year‑over‑year free‑cash‑flow growth of 44.8%.",
+        "abstained": false,
+        "abstention_reason": null,
+        "evidence_sufficiency": 1.0,
+        "threshold": 0.0,
+        "citations": [
+          {
+            "evidence_id": "E2",
+            "chunk_id": "infosys_fy2025:p0015:prose:001",
+            "doc_id": "infosys_fy2025",
+            "company": "Infosys",
+            "fiscal_year": "2024-25",
+            "pdf_page": 15,
+            "printed_page": "28-29",
+            "quote": "Highest ever free cash flow of `34,549 cr for fiscal 2025 Free cash flow growth(3) 44.8% Y-o-Y FCF conversion at 129.2% of net profit"
+          }
+        ],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": 0.6511627906976745,
+        "numeric_recall": 0.75,
+        "quote_validation_pass": true,
+        "citation_location_precision": 1.0,
+        "citation_group_recall": 1.0
+      },
+      "latency_seconds": 5.987332900054753
+    },
+    {
+      "question_id": "q026",
+      "type": "table",
+      "question": "What free cash flow and free-cash-flow conversion did Infosys report for FY2023-24?",
+      "query": "What free cash flow and free-cash-flow conversion did Infosys report for FY2023-24?",
+      "gold_answerable": true,
+      "expected_answer": "Infosys reported free cash flow of ₹23,865 crore in FY2023-24, with free-cash-flow conversion at 90.9% of net profit.",
+      "result": {
+        "question": "What free cash flow and free-cash-flow conversion did Infosys report for FY2023-24?",
+        "answer": "I don't know based on the available annual reports.",
+        "abstained": true,
+        "abstention_reason": "model_says_unanswerable",
+        "evidence_sufficiency": 0.0,
+        "threshold": 0.0,
+        "citations": [],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": false,
+        "token_f1": null,
+        "numeric_recall": null,
+        "quote_validation_pass": false,
+        "citation_location_precision": null,
+        "citation_group_recall": null
+      },
+      "latency_seconds": 4.682191099971533
+    },
+    {
+      "question_id": "q028",
+      "type": "fact",
+      "question": "What employee satisfaction score did Infosys report in FY2024-25?",
+      "query": "What employee satisfaction score did Infosys report in FY2024-25?",
+      "gold_answerable": true,
+      "expected_answer": "Infosys reported an employee satisfaction score of 77% in FY2024-25.",
+      "result": {
+        "question": "What employee satisfaction score did Infosys report in FY2024-25?",
+        "answer": "Infosys reported an employee satisfaction score of 77% for FY 2024‑25.",
+        "abstained": false,
+        "abstention_reason": null,
+        "evidence_sufficiency": 1.0,
+        "threshold": 0.0,
+        "citations": [
+          {
+            "evidence_id": "E1",
+            "chunk_id": "infosys_fy2025:p0024:prose:001",
+            "doc_id": "infosys_fy2025",
+            "company": "Infosys",
+            "fiscal_year": "2024-25",
+            "pdf_page": 24,
+            "printed_page": "46-47",
+            "quote": "77% Employee satisfaction score"
+          }
+        ],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": 0.7826086956521738,
+        "numeric_recall": 0.6666666666666666,
+        "quote_validation_pass": true,
+        "citation_location_precision": 1.0,
+        "citation_group_recall": 1.0
+      },
+      "latency_seconds": 15.792702800012194
+    },
+    {
+      "question_id": "q029",
+      "type": "fact",
+      "question": "How many fresh graduates did Infosys report hiring globally in FY2024-25?",
+      "query": "How many fresh graduates did Infosys report hiring globally in FY2024-25?",
+      "gold_answerable": true,
+      "expected_answer": "Infosys reported hiring 15,288 fresh graduates globally in FY2024-25.",
+      "result": {
+        "question": "How many fresh graduates did Infosys report hiring globally in FY2024-25?",
+        "answer": "Infosys reported hiring 15,288 fresh graduates globally in FY2024‑25.",
+        "abstained": false,
+        "abstention_reason": null,
+        "evidence_sufficiency": 1.0,
+        "threshold": 0.0,
+        "citations": [
+          {
+            "evidence_id": "E1",
+            "chunk_id": "infosys_fy2025:p0024:prose:001",
+            "doc_id": "infosys_fy2025",
+            "company": "Infosys",
+            "fiscal_year": "2024-25",
+            "pdf_page": 24,
+            "printed_page": "46-47",
+            "quote": "15,288 Fresh graduates hired globally"
+          },
+          {
+            "evidence_id": "E4",
+            "chunk_id": "infosys_fy2025:p0022:prose:002",
+            "doc_id": "infosys_fy2025",
+            "company": "Infosys",
+            "fiscal_year": "2024-25",
+            "pdf_page": 22,
+            "printed_page": "42-43",
+            "quote": "15,288Fresh graduates hired globally"
+          }
+        ],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": 1.0,
+        "numeric_recall": 1.0,
+        "quote_validation_pass": true,
+        "citation_location_precision": 0.5,
+        "citation_group_recall": 1.0
+      },
+      "latency_seconds": 17.995661200024188
+    },
+    {
+      "question_id": "q030",
+      "type": "unanswerable",
+      "question": "How many employees did TCS hire specifically in October 2025?",
+      "query": "How many employees did TCS hire specifically in October 2025?",
+      "gold_answerable": false,
+      "expected_answer": null,
+      "result": {
+        "question": "How many employees did TCS hire specifically in October 2025?",
+        "answer": "I don't know based on the available annual reports.",
+        "abstained": true,
+        "abstention_reason": "model_says_unanswerable",
+        "evidence_sufficiency": 0.0,
+        "threshold": 0.0,
+        "citations": [],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": null,
+        "numeric_recall": null,
+        "quote_validation_pass": false,
+        "citation_location_precision": null,
+        "citation_group_recall": null
+      },
+      "latency_seconds": 10.711148499976844
+    },
+    {
+      "question_id": "q033",
+      "type": "comparison",
+      "question": "How did TCS's LTM attrition rate in IT services change from FY2023-24 to FY2024-25?",
+      "query": "How did TCS's LTM attrition rate in IT services change from FY2023-24 to FY2024-25?",
+      "gold_answerable": true,
+      "expected_answer": "TCS's LTM attrition rate in IT services increased from 12.5% in FY2023-24 to 13.3% in FY2024-25, an increase of 0.8 percentage points.",
+      "result": {
+        "question": "How did TCS's LTM attrition rate in IT services change from FY2023-24 to FY2024-25?",
+        "answer": "TCS’s LTM attrition rate in IT services rose from 12.5 % in FY 2023‑24 to 13.3 % in FY 2024‑25, an increase of 0.8 percentage points.",
+        "abstained": false,
+        "abstention_reason": null,
+        "evidence_sufficiency": 1.0,
+        "threshold": 0.0,
+        "citations": [
+          {
+            "evidence_id": "E1",
+            "chunk_id": "tcs_fy2024:p0009:prose:003",
+            "doc_id": "tcs_fy2024",
+            "company": "TCS",
+            "fiscal_year": "2023-24",
+            "pdf_page": 9,
+            "printed_page": null,
+            "quote": "our LTM attrition in IT services was 12.5%, down by 760 bps over the previous year."
+          },
+          {
+            "evidence_id": "E2",
+            "chunk_id": "tcs_fy2025:p0013:prose:001",
+            "doc_id": "tcs_fy2025",
+            "company": "TCS",
+            "fiscal_year": "2024-25",
+            "pdf_page": 13,
+            "printed_page": null,
+            "quote": "LTM attrition in IT services at 13.3%."
+          }
+        ],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": 0.8461538461538461,
+        "numeric_recall": 0.42857142857142855,
+        "quote_validation_pass": true,
+        "citation_location_precision": 1.0,
+        "citation_group_recall": 1.0
+      },
+      "latency_seconds": 15.870338100008667
+    },
+    {
+      "question_id": "q034",
+      "type": "fact",
+      "question": "What order-book value did TCS report for FY2023-24?",
+      "query": "What order-book value did TCS report for FY2023-24?",
+      "gold_answerable": true,
+      "expected_answer": "TCS reported an order book of US$42.7 billion for FY2023-24.",
+      "result": {
+        "question": "What order-book value did TCS report for FY2023-24?",
+        "answer": "I don't know based on the available annual reports.",
+        "abstained": true,
+        "abstention_reason": "invalid_citations",
+        "evidence_sufficiency": 1.0,
+        "threshold": 0.0,
+        "citations": [],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": false,
+        "token_f1": null,
+        "numeric_recall": null,
+        "quote_validation_pass": false,
+        "citation_location_precision": null,
+        "citation_group_recall": null
+      },
+      "latency_seconds": 14.668123900075443
+    },
+    {
+      "question_id": "q035",
+      "type": "fact",
+      "question": "What total contract value did TCS report for FY2024-25?",
+      "query": "What total contract value did TCS report for FY2024-25?",
+      "gold_answerable": true,
+      "expected_answer": "TCS reported total contract value of US$39.4 billion for FY2024-25.",
+      "result": {
+        "question": "What total contract value did TCS report for FY2024-25?",
+        "answer": "TCS reported a Total Contract Value (TCV) of US$ 39.4 billion for FY 2024‑25.",
+        "abstained": false,
+        "abstention_reason": null,
+        "evidence_sufficiency": 1.0,
+        "threshold": 0.0,
+        "citations": [
+          {
+            "evidence_id": "E1",
+            "chunk_id": "tcs_fy2025:p0013:prose:001",
+            "doc_id": "tcs_fy2025",
+            "company": "TCS",
+            "fiscal_year": "2024-25",
+            "pdf_page": 13,
+            "printed_page": null,
+            "quote": "We reported a robust Total Contract Value (TCV) of US$ 39.4 billion."
+          }
+        ],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": 0.8148148148148148,
+        "numeric_recall": 0.6666666666666666,
+        "quote_validation_pass": true,
+        "citation_location_precision": 1.0,
+        "citation_group_recall": 1.0
+      },
+      "latency_seconds": 11.746047200052999
+    },
+    {
+      "question_id": "q036",
+      "type": "fact",
+      "question": "What total dividend per share did TCS report for FY2024-25?",
+      "query": "What total dividend per share did TCS report for FY2024-25?",
+      "gold_answerable": true,
+      "expected_answer": "TCS reported a total dividend of ₹126 per share for FY2024-25.",
+      "result": {
+        "question": "What total dividend per share did TCS report for FY2024-25?",
+        "answer": "I don't know based on the available annual reports.",
+        "abstained": true,
+        "abstention_reason": "invalid_citations",
+        "evidence_sufficiency": 1.0,
+        "threshold": 0.0,
+        "citations": [],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": false,
+        "token_f1": null,
+        "numeric_recall": null,
+        "quote_validation_pass": false,
+        "citation_location_precision": null,
+        "citation_group_recall": null
+      },
+      "latency_seconds": 17.911311600008048
+    },
+    {
+      "question_id": "q037",
+      "type": "unanswerable",
+      "question": "What salary will the Infosys CEO receive in FY2025-26?",
+      "query": "What salary will the Infosys CEO receive in FY2025-26?",
+      "gold_answerable": false,
+      "expected_answer": null,
+      "result": {
+        "question": "What salary will the Infosys CEO receive in FY2025-26?",
+        "answer": "I don't know based on the available annual reports.",
+        "abstained": true,
+        "abstention_reason": "no_retrieval_results",
+        "evidence_sufficiency": 0.0,
+        "threshold": 0.0,
+        "citations": [],
+        "retrieved_chunks": 0,
+        "model": null
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": null,
+        "numeric_recall": null,
+        "quote_validation_pass": false,
+        "citation_location_precision": null,
+        "citation_group_recall": null
+      },
+      "latency_seconds": 2.073340700007975
+    },
+    {
+      "question_id": "q038",
+      "type": "follow_up",
+      "question": "What was the rate in the previous fiscal year?",
+      "query": "user: What LTM attrition rate in IT services did TCS report for FY2024-25?\nassistant: TCS reported an LTM attrition rate of 13.3% in IT services for FY2024-25.\nWhat was the rate in the previous fiscal year?",
+      "gold_answerable": true,
+      "expected_answer": "TCS reported an LTM attrition rate of 12.5% in IT services for FY2023-24.",
+      "result": {
+        "question": "user: What LTM attrition rate in IT services did TCS report for FY2024-25?\nassistant: TCS reported an LTM attrition rate of 13.3% in IT services for FY2024-25.\nWhat was the rate in the previous fiscal year?",
+        "answer": "The LTM attrition rate in IT services for the previous fiscal year (FY 2023‑24) was 12.5%.",
+        "abstained": false,
+        "abstention_reason": null,
+        "evidence_sufficiency": 1.0,
+        "threshold": 0.0,
+        "citations": [
+          {
+            "evidence_id": "E1",
+            "chunk_id": "tcs_fy2024:p0009:prose:003",
+            "doc_id": "tcs_fy2024",
+            "company": "TCS",
+            "fiscal_year": "2023-24",
+            "pdf_page": 9,
+            "printed_page": null,
+            "quote": "We have a strength of 601,546 employees, and our LTM attrition in IT services was 12.5%, down by 760 bps over the previous year."
+          },
+          {
+            "evidence_id": "E2",
+            "chunk_id": "tcs_fy2024:p0018:prose:001",
+            "doc_id": "tcs_fy2024",
+            "company": "TCS",
+            "fiscal_year": "2023-24",
+            "pdf_page": 18,
+            "printed_page": null,
+            "quote": "Talent Retention 12.5% LTM attrition in IT services"
+          }
+        ],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": 0.5806451612903226,
+        "numeric_recall": 0.6666666666666666,
+        "quote_validation_pass": true,
+        "citation_location_precision": 0.5,
+        "citation_group_recall": 1.0
+      },
+      "latency_seconds": 10.559832300059497
+    },
+    {
+      "question_id": "q039",
+      "type": "comparison",
+      "question": "How much did Infosys's basic earnings per share increase from FY2023-24 to FY2024-25?",
+      "query": "How much did Infosys's basic earnings per share increase from FY2023-24 to FY2024-25?",
+      "gold_answerable": true,
+      "expected_answer": "Infosys's basic earnings per share increased from ₹63.39 in FY2023-24 to ₹64.50 in FY2024-25, an increase of ₹1.11.",
+      "result": {
+        "question": "How much did Infosys's basic earnings per share increase from FY2023-24 to FY2024-25?",
+        "answer": "I don't know based on the available annual reports.",
+        "abstained": true,
+        "abstention_reason": "invalid_citations",
+        "evidence_sufficiency": 1.0,
+        "threshold": 0.0,
+        "citations": [],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": false,
+        "token_f1": null,
+        "numeric_recall": null,
+        "quote_validation_pass": false,
+        "citation_location_precision": null,
+        "citation_group_recall": null
+      },
+      "latency_seconds": 9.889518999960274
+    },
+    {
+      "question_id": "q040",
+      "type": "fact",
+      "question": "What operating margin did TCS report for FY2023-24?",
+      "query": "What operating margin did TCS report for FY2023-24?",
+      "gold_answerable": true,
+      "expected_answer": "TCS reported an operating margin of 24.6% for FY2023-24.",
+      "result": {
+        "question": "What operating margin did TCS report for FY2023-24?",
+        "answer": "I don't know based on the available annual reports.",
+        "abstained": true,
+        "abstention_reason": "invalid_citations",
+        "evidence_sufficiency": 1.0,
+        "threshold": 0.0,
+        "citations": [],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": false,
+        "token_f1": null,
+        "numeric_recall": null,
+        "quote_validation_pass": false,
+        "citation_location_precision": null,
+        "citation_group_recall": null
+      },
+      "latency_seconds": 18.844700600020587
+    },
+    {
+      "question_id": "q041",
+      "type": "table",
+      "question": "According to Infosys's FY2024-25 business highlights, what was its dividend per share and year-over-year growth?",
+      "query": "According to Infosys's FY2024-25 business highlights, what was its dividend per share and year-over-year growth?",
+      "gold_answerable": true,
+      "expected_answer": "Infosys reported dividend per share of ₹43.00 in FY2024-25, with year-over-year growth of 13.2%.",
+      "result": {
+        "question": "According to Infosys's FY2024-25 business highlights, what was its dividend per share and year-over-year growth?",
+        "answer": "Infosys’s FY2024‑25 business highlights report states that the dividend per share was ₹43.0, representing a 13.2% year‑over‑year growth.",
+        "abstained": false,
+        "abstention_reason": null,
+        "evidence_sufficiency": 1.0,
+        "threshold": 0.0,
+        "citations": [
+          {
+            "evidence_id": "E1",
+            "chunk_id": "infosys_fy2025:p0015:prose:001",
+            "doc_id": "infosys_fy2025",
+            "company": "Infosys",
+            "fiscal_year": "2024-25",
+            "pdf_page": 15,
+            "printed_page": "28-29",
+            "quote": "Dividend per share (in ₹) 43.0 13.2% growth Y-o-Y"
+          }
+        ],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": 0.5641025641025642,
+        "numeric_recall": 0.75,
+        "quote_validation_pass": true,
+        "citation_location_precision": 1.0,
+        "citation_group_recall": 1.0
+      },
+      "latency_seconds": 17.17720240005292
+    },
+    {
+      "question_id": "q042",
+      "type": "fact",
+      "question": "How much consolidated cash and investments did Infosys report as of March 31, 2024?",
+      "query": "How much consolidated cash and investments did Infosys report as of March 31, 2024?",
+      "gold_answerable": true,
+      "expected_answer": "Infosys reported consolidated cash and investments of ₹39,005 crore as of March 31, 2024.",
+      "result": {
+        "question": "How much consolidated cash and investments did Infosys report as of March 31, 2024?",
+        "answer": "Infosys reported consolidated cash and investments of ₹39,005 crore as of March 31, 2024.",
+        "abstained": false,
+        "abstention_reason": null,
+        "evidence_sufficiency": 1.0,
+        "threshold": 0.0,
+        "citations": [
+          {
+            "evidence_id": "E1",
+            "chunk_id": "infosys_fy2024:p0032:prose:002",
+            "doc_id": "infosys_fy2024",
+            "company": "Infosys",
+            "fiscal_year": "2023-24",
+            "pdf_page": 32,
+            "printed_page": "59",
+            "quote": "Consolidated cash and investments stand at ₹30,579 crore on a standalone basis and ₹39,005 crore on a consolidated basis as on March 31, 2024, as against ₹22,509 crore on a standalone basis, and ₹31,286 crore on a consolidated basis as on March 31, 2023."
+          }
+        ],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": 1.0,
+        "numeric_recall": 1.0,
+        "quote_validation_pass": true,
+        "citation_location_precision": 1.0,
+        "citation_group_recall": 1.0
+      },
+      "latency_seconds": 11.304359100060537
+    },
+    {
+      "question_id": "q043",
+      "type": "fact",
+      "question": "How much consolidated cash and investments did Infosys report for FY2024-25?",
+      "query": "How much consolidated cash and investments did Infosys report for FY2024-25?",
+      "gold_answerable": true,
+      "expected_answer": "Infosys reported consolidated cash and investments of ₹47,549 crore for FY2024-25.",
+      "result": {
+        "question": "How much consolidated cash and investments did Infosys report for FY2024-25?",
+        "answer": "Infosys reported consolidated cash and investments of ₹47,549 crore for the year ended March 31, 2025.",
+        "abstained": false,
+        "abstention_reason": null,
+        "evidence_sufficiency": 1.0,
+        "threshold": 0.0,
+        "citations": [
+          {
+            "evidence_id": "E1",
+            "chunk_id": "infosys_fy2025:p0033:prose:002",
+            "doc_id": "infosys_fy2025",
+            "company": "Infosys",
+            "fiscal_year": "2024-25",
+            "pdf_page": 33,
+            "printed_page": "61",
+            "quote": "Consolidated cash and investments stand at `35,916 crore on a standalone basis and ₹47,549 crore on a consolidated basis as on March 31, 2025, as against ₹30,579 crore on a standalone basis, and ₹39,005 crore on a consolidated basis as on March 31, 2024."
+          }
+        ],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": 0.7142857142857143,
+        "numeric_recall": 0.3333333333333333,
+        "quote_validation_pass": true,
+        "citation_location_precision": 1.0,
+        "citation_group_recall": 1.0
+      },
+      "latency_seconds": 14.838458399986848
+    },
+    {
+      "question_id": "q045",
+      "type": "unanswerable",
+      "question": "What total dividend per share will TCS report for FY2025-26?",
+      "query": "What total dividend per share will TCS report for FY2025-26?",
+      "gold_answerable": false,
+      "expected_answer": null,
+      "result": {
+        "question": "What total dividend per share will TCS report for FY2025-26?",
+        "answer": "I don't know based on the available annual reports.",
+        "abstained": true,
+        "abstention_reason": "no_retrieval_results",
+        "evidence_sufficiency": 0.0,
+        "threshold": 0.0,
+        "citations": [],
+        "retrieved_chunks": 0,
+        "model": null
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": null,
+        "numeric_recall": null,
+        "quote_validation_pass": false,
+        "citation_location_precision": null,
+        "citation_group_recall": null
+      },
+      "latency_seconds": 2.0901671000756323
+    },
+    {
+      "question_id": "q046",
+      "type": "fact",
+      "question": "How many US$50-million-plus clients did Infosys report in FY2024-25?",
+      "query": "How many US$50-million-plus clients did Infosys report in FY2024-25?",
+      "gold_answerable": true,
+      "expected_answer": "Infosys reported 85 US$50-million-plus clients in FY2024-25.",
+      "result": {
+        "question": "How many US$50-million-plus clients did Infosys report in FY2024-25?",
+        "answer": "85",
+        "abstained": false,
+        "abstention_reason": null,
+        "evidence_sufficiency": 1.0,
+        "threshold": 0.0,
+        "citations": [
+          {
+            "evidence_id": "E2",
+            "chunk_id": "infosys_fy2025:p0015:prose:001",
+            "doc_id": "infosys_fy2025",
+            "company": "Infosys",
+            "fiscal_year": "2024-25",
+            "pdf_page": 15,
+            "printed_page": "28-29",
+            "quote": "Number of US$50 million + clients 85 Strong client metrics with increase of 2 clients Y-o-Y"
+          }
+        ],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": 0.16666666666666669,
+        "numeric_recall": 0.25,
+        "quote_validation_pass": true,
+        "citation_location_precision": 1.0,
+        "citation_group_recall": 1.0
+      },
+      "latency_seconds": 12.22717259998899
+    },
+    {
+      "question_id": "q047",
+      "type": "fact",
+      "question": "How many US$50-million-plus clients did Infosys report in FY2023-24?",
+      "query": "How many US$50-million-plus clients did Infosys report in FY2023-24?",
+      "gold_answerable": true,
+      "expected_answer": "Infosys reported 83 US$50-million-plus clients in FY2023-24.",
+      "result": {
+        "question": "How many US$50-million-plus clients did Infosys report in FY2023-24?",
+        "answer": "Infosys reported 83 clients with contracts worth US$50 million or more in FY 2023‑24.",
+        "abstained": false,
+        "abstention_reason": null,
+        "evidence_sufficiency": 1.0,
+        "threshold": 0.0,
+        "citations": [
+          {
+            "evidence_id": "E1",
+            "chunk_id": "infosys_fy2024:p0015:prose:002",
+            "doc_id": "infosys_fy2024",
+            "company": "Infosys",
+            "fiscal_year": "2023-24",
+            "pdf_page": 15,
+            "printed_page": "28-29",
+            "quote": "Number of US$ 50 million + clients 83"
+          },
+          {
+            "evidence_id": "E2",
+            "chunk_id": "infosys_fy2024:p0078:prose:001",
+            "doc_id": "infosys_fy2024",
+            "company": "Infosys",
+            "fiscal_year": "2023-24",
+            "pdf_page": 78,
+            "printed_page": "105",
+            "quote": "50 million dollar + 83"
+          }
+        ],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": 0.6666666666666666,
+        "numeric_recall": 0.75,
+        "quote_validation_pass": true,
+        "citation_location_precision": 0.5,
+        "citation_group_recall": 1.0
+      },
+      "latency_seconds": 159.51059650001116
+    },
+    {
+      "question_id": "q048",
+      "type": "comparison",
+      "question": "How did Infosys's number of US$50-million-plus clients change from FY2023-24 to FY2024-25?",
+      "query": "How did Infosys's number of US$50-million-plus clients change from FY2023-24 to FY2024-25?",
+      "gold_answerable": true,
+      "expected_answer": "Infosys's number of US$50-million-plus clients increased from 83 in FY2023-24 to 85 in FY2024-25, an increase of 2 clients.",
+      "result": {
+        "question": "How did Infosys's number of US$50-million-plus clients change from FY2023-24 to FY2024-25?",
+        "answer": "Infosys’s number of US$50‑million‑plus clients rose from 83 in FY2023‑24 to 85 in FY2024‑25, an increase of 2 clients.",
+        "abstained": false,
+        "abstention_reason": null,
+        "evidence_sufficiency": 1.0,
+        "threshold": 0.0,
+        "citations": [
+          {
+            "evidence_id": "E1",
+            "chunk_id": "infosys_fy2024:p0015:prose:002",
+            "doc_id": "infosys_fy2024",
+            "company": "Infosys",
+            "fiscal_year": "2023-24",
+            "pdf_page": 15,
+            "printed_page": "28-29",
+            "quote": "Number of US$ 50 million + clients 83 Strong client metrics with increase of 8 clients Y-o-Y"
+          },
+          {
+            "evidence_id": "E3",
+            "chunk_id": "infosys_fy2025:p0080:prose:002",
+            "doc_id": "infosys_fy2025",
+            "company": "Infosys",
+            "fiscal_year": "2024-25",
+            "pdf_page": 80,
+            "printed_page": "108",
+            "quote": "50 million dollar + 85 83"
+          }
+        ],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": 0.96,
+        "numeric_recall": 1.0,
+        "quote_validation_pass": true,
+        "citation_location_precision": 1.0,
+        "citation_group_recall": 1.0
+      },
+      "latency_seconds": 4.8696988999145105
+    },
+    {
+      "question_id": "q049",
+      "type": "fact",
+      "question": "What large-deal total contract value did Infosys report for FY2024-25?",
+      "query": "What large-deal total contract value did Infosys report for FY2024-25?",
+      "gold_answerable": true,
+      "expected_answer": "Infosys reported large-deal total contract value of US$11.6 billion for FY2024-25.",
+      "result": {
+        "question": "What large-deal total contract value did Infosys report for FY2024-25?",
+        "answer": "Infosys reported a large‑deal total contract value of US$11.6 billion for FY 2024‑25.",
+        "abstained": false,
+        "abstention_reason": null,
+        "evidence_sufficiency": 1.0,
+        "threshold": 0.0,
+        "citations": [
+          {
+            "evidence_id": "E1",
+            "chunk_id": "infosys_fy2025:p0015:prose:001",
+            "doc_id": "infosys_fy2025",
+            "company": "Infosys",
+            "fiscal_year": "2024-25",
+            "pdf_page": 15,
+            "printed_page": "28-29",
+            "quote": "Large deal TCV (Total contract value in US$ billion) 11.6"
+          },
+          {
+            "evidence_id": "E3",
+            "chunk_id": "infosys_fy2025:p0021:prose:001",
+            "doc_id": "infosys_fy2025",
+            "company": "Infosys",
+            "fiscal_year": "2024-25",
+            "pdf_page": 21,
+            "printed_page": "40-41",
+            "quote": "In fiscal 2025, we won a total contract value of over US$11.6 billion in large deals"
+          }
+        ],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": 0.8666666666666666,
+        "numeric_recall": 0.6666666666666666,
+        "quote_validation_pass": true,
+        "citation_location_precision": 1.0,
+        "citation_group_recall": 1.0
+      },
+      "latency_seconds": 4.8344654000829905
+    },
+    {
+      "question_id": "q050",
+      "type": "fact",
+      "question": "What large-deal total contract value did Infosys report for FY2023-24?",
+      "query": "What large-deal total contract value did Infosys report for FY2023-24?",
+      "gold_answerable": true,
+      "expected_answer": "Infosys reported large-deal total contract value of US$17.7 billion for FY2023-24.",
+      "result": {
+        "question": "What large-deal total contract value did Infosys report for FY2023-24?",
+        "answer": "The large‑deal total contract value (TCV) reported by Infosys for FY 2023‑24 was US$ 17.7 billion.",
+        "abstained": false,
+        "abstention_reason": null,
+        "evidence_sufficiency": 1.0,
+        "threshold": 0.0,
+        "citations": [
+          {
+            "evidence_id": "E1",
+            "chunk_id": "infosys_fy2024:p0015:prose:002",
+            "doc_id": "infosys_fy2024",
+            "company": "Infosys",
+            "fiscal_year": "2023-24",
+            "pdf_page": 15,
+            "printed_page": "28-29",
+            "quote": "Large deal TCV (Total contract value in US$ billion) 17.7"
+          }
+        ],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": 0.75,
+        "numeric_recall": 0.6666666666666666,
+        "quote_validation_pass": true,
+        "citation_location_precision": 1.0,
+        "citation_group_recall": 1.0
+      },
+      "latency_seconds": 6.50787540001329
+    },
+    {
+      "question_id": "q051",
+      "type": "comparison",
+      "question": "How did Infosys's large-deal total contract value change from FY2023-24 to FY2024-25?",
+      "query": "How did Infosys's large-deal total contract value change from FY2023-24 to FY2024-25?",
+      "gold_answerable": true,
+      "expected_answer": "Infosys's large-deal total contract value decreased from US$17.7 billion in FY2023-24 to US$11.6 billion in FY2024-25, a decrease of US$6.1 billion.",
+      "result": {
+        "question": "How did Infosys's large-deal total contract value change from FY2023-24 to FY2024-25?",
+        "answer": "Infosys’s large‑deal total contract value fell from US$17.7 billion in FY 2023‑24 to US$11.6 billion in FY 2024‑25, a decline of US$6.1 billion.",
+        "abstained": false,
+        "abstention_reason": null,
+        "evidence_sufficiency": 1.0,
+        "threshold": 0.0,
+        "citations": [
+          {
+            "evidence_id": "E1",
+            "chunk_id": "infosys_fy2024:p0015:prose:002",
+            "doc_id": "infosys_fy2024",
+            "company": "Infosys",
+            "fiscal_year": "2023-24",
+            "pdf_page": 15,
+            "printed_page": "28-29",
+            "quote": "Large deal TCV (Total contract value in US$ billion) 17.7"
+          },
+          {
+            "evidence_id": "E4",
+            "chunk_id": "infosys_fy2025:p0015:prose:001",
+            "doc_id": "infosys_fy2025",
+            "company": "Infosys",
+            "fiscal_year": "2024-25",
+            "pdf_page": 15,
+            "printed_page": "28-29",
+            "quote": "Large deal TCV (Total contract value in US$ billion) 11.6"
+          }
+        ],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": 0.8275862068965518,
+        "numeric_recall": 0.7142857142857143,
+        "quote_validation_pass": true,
+        "citation_location_precision": 1.0,
+        "citation_group_recall": 1.0
+      },
+      "latency_seconds": 17.480033900006674
+    },
+    {
+      "question_id": "q052",
+      "type": "unanswerable",
+      "question": "How many employees did Infosys hire specifically in May 2025?",
+      "query": "How many employees did Infosys hire specifically in May 2025?",
+      "gold_answerable": false,
+      "expected_answer": null,
+      "result": {
+        "question": "How many employees did Infosys hire specifically in May 2025?",
+        "answer": "I don't know based on the available annual reports.",
+        "abstained": true,
+        "abstention_reason": "model_says_unanswerable",
+        "evidence_sufficiency": 0.0,
+        "threshold": 0.0,
+        "citations": [],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": null,
+        "numeric_recall": null,
+        "quote_validation_pass": false,
+        "citation_location_precision": null,
+        "citation_group_recall": null
+      },
+      "latency_seconds": 16.704488400020637
+    },
+    {
+      "question_id": "q053",
+      "type": "fact",
+      "question": "How many people were part of Infosys's digital-skilling initiatives in FY2024-25?",
+      "query": "How many people were part of Infosys's digital-skilling initiatives in FY2024-25?",
+      "gold_answerable": true,
+      "expected_answer": "Infosys reported that 13.3 million people were part of its digital-skilling initiatives in FY2024-25.",
+      "result": {
+        "question": "How many people were part of Infosys's digital-skilling initiatives in FY2024-25?",
+        "answer": "13.3 million people were part of Infosys’s digital‑skilling initiatives in FY 2024‑25.",
+        "abstained": false,
+        "abstention_reason": null,
+        "evidence_sufficiency": 1.0,
+        "threshold": 0.0,
+        "citations": [
+          {
+            "evidence_id": "E2",
+            "chunk_id": "infosys_fy2025:p0015:prose:002",
+            "doc_id": "infosys_fy2025",
+            "company": "Infosys",
+            "fiscal_year": "2024-25",
+            "pdf_page": 15,
+            "printed_page": "28-29",
+            "quote": "Digital skilling 13.3 mn People are a part of our digital skilling initiatives"
+          },
+          {
+            "evidence_id": "E5",
+            "chunk_id": "infosys_fy2025:p0081:prose:001",
+            "doc_id": "infosys_fy2025",
+            "company": "Infosys",
+            "fiscal_year": "2024-25",
+            "pdf_page": 81,
+            "printed_page": "109",
+            "quote": "We have expanded our skilling initiatives to include 13.3 million people."
+          }
+        ],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": 0.7741935483870969,
+        "numeric_recall": 0.6666666666666666,
+        "quote_validation_pass": true,
+        "citation_location_precision": 0.5,
+        "citation_group_recall": 1.0
+      },
+      "latency_seconds": 16.68292609998025
+    },
+    {
+      "question_id": "q054",
+      "type": "fact",
+      "question": "How many lives did Infosys report empowering through its Tech for Good solutions in FY2024-25?",
+      "query": "How many lives did Infosys report empowering through its Tech for Good solutions in FY2024-25?",
+      "gold_answerable": true,
+      "expected_answer": "Infosys reported empowering more than 125 million lives through its Tech for Good solutions in FY2024-25.",
+      "result": {
+        "question": "How many lives did Infosys report empowering through its Tech for Good solutions in FY2024-25?",
+        "answer": "I don't know based on the available annual reports.",
+        "abstained": true,
+        "abstention_reason": "invalid_citations",
+        "evidence_sufficiency": 1.0,
+        "threshold": 0.0,
+        "citations": [],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": false,
+        "token_f1": null,
+        "numeric_recall": null,
+        "quote_validation_pass": false,
+        "citation_location_precision": null,
+        "citation_group_recall": null
+      },
+      "latency_seconds": 19.466465200064704
+    },
+    {
+      "question_id": "q055",
+      "type": "fact",
+      "question": "How many freshers did TCS report for FY2024-25?",
+      "query": "How many freshers did TCS report for FY2024-25?",
+      "gold_answerable": true,
+      "expected_answer": "TCS reported 42,000 freshers for FY2024-25.",
+      "result": {
+        "question": "How many freshers did TCS report for FY2024-25?",
+        "answer": "TCS reported hiring 42,000 freshers in FY 2024‑25.",
+        "abstained": false,
+        "abstention_reason": null,
+        "evidence_sufficiency": 1.0,
+        "threshold": 0.0,
+        "citations": [
+          {
+            "evidence_id": "E1",
+            "chunk_id": "tcs_fy2025:p0024:prose:001",
+            "doc_id": "tcs_fy2025",
+            "company": "TCS",
+            "fiscal_year": "2024-25",
+            "pdf_page": 24,
+            "printed_page": "401",
+            "quote": "42,000 freshers"
+          },
+          {
+            "evidence_id": "E3",
+            "chunk_id": "tcs_fy2025:p0084:prose:002",
+            "doc_id": "tcs_fy2025",
+            "company": "TCS",
+            "fiscal_year": "2024-25",
+            "pdf_page": 84,
+            "printed_page": null,
+            "quote": "hiring 42,000 freshers"
+          }
+        ],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": 0.6250000000000001,
+        "numeric_recall": 0.6666666666666666,
+        "quote_validation_pass": true,
+        "citation_location_precision": 0.5,
+        "citation_group_recall": 1.0
+      },
+      "latency_seconds": 12.40708050003741
+    },
+    {
+      "question_id": "q056",
+      "type": "fact",
+      "question": "How many learning hours did TCS report for FY2024-25?",
+      "query": "How many learning hours did TCS report for FY2024-25?",
+      "gold_answerable": true,
+      "expected_answer": "TCS reported 56 million learning hours for FY2024-25.",
+      "result": {
+        "question": "How many learning hours did TCS report for FY2024-25?",
+        "answer": "TCS reported that more than 56 million learning hours were clocked by its associates in FY 2024‑25.",
+        "abstained": false,
+        "abstention_reason": null,
+        "evidence_sufficiency": 1.0,
+        "threshold": 0.0,
+        "citations": [
+          {
+            "evidence_id": "E1",
+            "chunk_id": "tcs_fy2025:p0024:prose:001",
+            "doc_id": "tcs_fy2025",
+            "company": "TCS",
+            "fiscal_year": "2024-25",
+            "pdf_page": 24,
+            "printed_page": "401",
+            "quote": "56 Million+ learning hours"
+          }
+        ],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": 0.5185185185185185,
+        "numeric_recall": 0.6666666666666666,
+        "quote_validation_pass": true,
+        "citation_location_precision": 1.0,
+        "citation_group_recall": 1.0
+      },
+      "latency_seconds": 14.30332870001439
+    },
+    {
+      "question_id": "q057",
+      "type": "unanswerable",
+      "question": "How many TCS employees resigned specifically during April 2025?",
+      "query": "How many TCS employees resigned specifically during April 2025?",
+      "gold_answerable": false,
+      "expected_answer": null,
+      "result": {
+        "question": "How many TCS employees resigned specifically during April 2025?",
+        "answer": "I don't know based on the available annual reports.",
+        "abstained": true,
+        "abstention_reason": "model_says_unanswerable",
+        "evidence_sufficiency": 0.0,
+        "threshold": 0.0,
+        "citations": [],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": null,
+        "numeric_recall": null,
+        "quote_validation_pass": false,
+        "citation_location_precision": null,
+        "citation_group_recall": null
+      },
+      "latency_seconds": 11.520249600056559
+    },
+    {
+      "question_id": "q059",
+      "type": "fact",
+      "question": "What net margin did TCS report for FY2023-24?",
+      "query": "What net margin did TCS report for FY2023-24?",
+      "gold_answerable": true,
+      "expected_answer": "TCS reported a net margin of 19.3% for FY2023-24.",
+      "result": {
+        "question": "What net margin did TCS report for FY2023-24?",
+        "answer": "TCS reported a net margin of 19.3% for FY 2023‑24.",
+        "abstained": false,
+        "abstention_reason": null,
+        "evidence_sufficiency": 1.0,
+        "threshold": 0.0,
+        "citations": [
+          {
+            "evidence_id": "E1",
+            "chunk_id": "tcs_fy2024:p0008:prose:001",
+            "doc_id": "tcs_fy2024",
+            "company": "TCS",
+            "fiscal_year": "2023-24",
+            "pdf_page": 8,
+            "printed_page": null,
+            "quote": "Our Net Margin was at 19.3%2."
+          },
+          {
+            "evidence_id": "E3",
+            "chunk_id": "tcs_fy2024:p0075:prose:001",
+            "doc_id": "tcs_fy2024",
+            "company": "TCS",
+            "fiscal_year": "2023-24",
+            "pdf_page": 75,
+            "printed_page": null,
+            "quote": "Profit after tax attributable to shareholders of the company 46,585 19.3 10.5 45,908 19.1 42,147 18.7"
+          }
+        ],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": 0.8571428571428572,
+        "numeric_recall": 0.6666666666666666,
+        "quote_validation_pass": true,
+        "citation_location_precision": 0.5,
+        "citation_group_recall": 1.0
+      },
+      "latency_seconds": 16.393289999919944
+    },
+    {
+      "question_id": "q060",
+      "type": "unanswerable",
+      "question": "What basic earnings per share will Infosys report for FY2025-26?",
+      "query": "What basic earnings per share will Infosys report for FY2025-26?",
+      "gold_answerable": false,
+      "expected_answer": null,
+      "result": {
+        "question": "What basic earnings per share will Infosys report for FY2025-26?",
+        "answer": "I don't know based on the available annual reports.",
+        "abstained": true,
+        "abstention_reason": "no_retrieval_results",
+        "evidence_sufficiency": 0.0,
+        "threshold": 0.0,
+        "citations": [],
+        "retrieved_chunks": 0,
+        "model": null
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": null,
+        "numeric_recall": null,
+        "quote_validation_pass": false,
+        "citation_location_precision": null,
+        "citation_group_recall": null
+      },
+      "latency_seconds": 2.056945899967104
+    }
+  ]
+}

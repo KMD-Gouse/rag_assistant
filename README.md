@@ -181,9 +181,10 @@ only chooses evidence IDs and verbatim quotes; it cannot invent document IDs
 or page numbers. Unknown evidence IDs, duplicate citations, and quotes absent
 from the cited chunk cause an abstention.
 
-The default `RAG_MIN_EVIDENCE_SUFFICIENCY=0.70` is an explicit heuristic gate
-on the model's assessment of whether the retrieved text directly supports the
-complete answer. It is not a calibrated correctness probability. Empty
+The development generation run found that the model emits binary evidence-
+sufficiency scores (`0.0` or `1.0`), so the default
+`RAG_MIN_EVIDENCE_SUFFICIENCY=1.0` accepts only a fully sufficient assessment.
+This is a semantic gate, not a calibrated correctness probability. Empty
 retrieval, a model `answerable=false` decision, a score below the gate, or
 invalid citations returns `I don't know based on the available annual reports.`
 
@@ -197,3 +198,14 @@ python -m app.generation "What revenue did TCS report in FY2024-25?"
 The API endpoint uses Groq Chat Completions with strict JSON Schema output on
 `openai/gpt-oss-20b`. Offline tests use an injected retriever and generator,
 so citation and abstention behavior can be verified without an API key.
+
+Run or resume the generation-development evaluation with:
+
+```powershell
+python -m evaluation.generation --split development
+```
+
+It saves each Groq output once, creates an automatic threshold and abstention
+report, and writes a CSV for second-person review of answer correctness,
+citation entailment, and citation completeness. Threshold comparisons reuse
+the saved outputs and do not call Groq again.
