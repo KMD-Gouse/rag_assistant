@@ -1,0 +1,766 @@
+{
+  "metadata": {
+    "created_at": "2026-10-24T05:22:49.903392+00:00",
+    "dataset": "evaluation\\generation_challenge_v1.jsonl",
+    "dataset_sha256": "442c5646e43cba4a7edf134aa72aad09c15f16a23075b1db2ec2455a6e248cdc",
+    "split": "challenge",
+    "model": "openai/gpt-oss-20b",
+    "prompt_sha256": "ccfbf4b329e1ffd33ffdbef4300380e228e77ba4823b93005cb19c1d189370bc",
+    "capture_threshold": 1.0,
+    "top_k": 5,
+    "reranker_model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "reranker_revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a"
+  },
+  "questions": [
+    {
+      "question_id": "q101",
+      "type": "fact",
+      "question": "What operating margin did Infosys report for FY2023-24?",
+      "query": "What operating margin did Infosys report for FY2023-24?",
+      "gold_answerable": true,
+      "expected_answer": "Infosys reported an operating margin of 20.7% for FY2023-24.",
+      "result": {
+        "question": "What operating margin did Infosys report for FY2023-24?",
+        "answer": "The operating margin reported for Infosys in FY2023‑24 was 20.7%.",
+        "abstained": false,
+        "abstention_reason": null,
+        "evidence_sufficiency": 1.0,
+        "threshold": 1.0,
+        "citations": [
+          {
+            "evidence_id": "E2",
+            "chunk_id": "infosys_fy2024:p0015:prose:001",
+            "doc_id": "infosys_fy2024",
+            "company": "Infosys",
+            "fiscal_year": "2023-24",
+            "pdf_page": 15,
+            "printed_page": "28-29",
+            "quote": "Operating margin 20.7% Robust operating margin 85% of free cash flow for fiscal 2020 to fiscal 2024 returned to shareholders in line with the Capital Allocation Policy."
+          },
+          {
+            "evidence_id": "E4",
+            "chunk_id": "infosys_fy2024:p0073:prose:002",
+            "doc_id": "infosys_fy2024",
+            "company": "Infosys",
+            "fiscal_year": "2023-24",
+            "pdf_page": 73,
+            "printed_page": "100",
+            "quote": "Operating margin (%) 22.3 22.5 20.7 21.1"
+          }
+        ],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": 0.761904761904762,
+        "numeric_recall": 1.0,
+        "quote_validation_pass": true,
+        "citation_location_precision": 0.5,
+        "citation_group_recall": 1.0
+      },
+      "latency_seconds": 61.58186959999148
+    },
+    {
+      "question_id": "q102",
+      "type": "fact",
+      "question": "What operating margin did Infosys report for FY2024-25?",
+      "query": "What operating margin did Infosys report for FY2024-25?",
+      "gold_answerable": true,
+      "expected_answer": "Infosys reported an operating margin of 21.1% for FY2024-25.",
+      "result": {
+        "question": "What operating margin did Infosys report for FY2024-25?",
+        "answer": "Infosys reported an operating margin of 21.1% for FY 2024‑25.",
+        "abstained": false,
+        "abstention_reason": null,
+        "evidence_sufficiency": 1.0,
+        "threshold": 1.0,
+        "citations": [
+          {
+            "evidence_id": "E1",
+            "chunk_id": "infosys_fy2025:p0017:prose:001",
+            "doc_id": "infosys_fy2025",
+            "company": "Infosys",
+            "fiscal_year": "2024-25",
+            "pdf_page": 17,
+            "printed_page": "32-33",
+            "quote": "Financial year 2025 was another year of strong execution for Infosys. We had growth of 4.2%, operating margin of 21.1%, and free cash flow of US$4.1 billion."
+          },
+          {
+            "evidence_id": "E2",
+            "chunk_id": "infosys_fy2025:p0015:prose:001",
+            "doc_id": "infosys_fy2025",
+            "company": "Infosys",
+            "fiscal_year": "2024-25",
+            "pdf_page": 15,
+            "printed_page": "28-29",
+            "quote": "Operating margin 21.1%"
+          }
+        ],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": 0.8571428571428572,
+        "numeric_recall": 0.6666666666666666,
+        "quote_validation_pass": true,
+        "citation_location_precision": 0.5,
+        "citation_group_recall": 1.0
+      },
+      "latency_seconds": 5.109450200106949
+    },
+    {
+      "question_id": "q103",
+      "type": "comparison",
+      "question": "How did Infosys's operating margin change from FY2023-24 to FY2024-25?",
+      "query": "How did Infosys's operating margin change from FY2023-24 to FY2024-25?",
+      "gold_answerable": true,
+      "expected_answer": "Infosys's operating margin increased from 20.7% in FY2023-24 to 21.1% in FY2024-25, an increase of 0.4 percentage points.",
+      "result": {
+        "question": "How did Infosys's operating margin change from FY2023-24 to FY2024-25?",
+        "answer": "Infosys’s operating margin increased from 20.7 % in FY 2023‑24 to 21.1 % in FY 2024‑25, a rise of 0.4 percentage points.",
+        "abstained": false,
+        "abstention_reason": null,
+        "evidence_sufficiency": 1.0,
+        "threshold": 1.0,
+        "citations": [
+          {
+            "evidence_id": "E1",
+            "chunk_id": "infosys_fy2024:p0073:prose:002",
+            "doc_id": "infosys_fy2024",
+            "company": "Infosys",
+            "fiscal_year": "2023-24",
+            "pdf_page": 73,
+            "printed_page": "100",
+            "quote": "Operating margin (%) 22.3 22.5 20.7 21.1"
+          },
+          {
+            "evidence_id": "E4",
+            "chunk_id": "infosys_fy2025:p0023:prose:001",
+            "doc_id": "infosys_fy2025",
+            "company": "Infosys",
+            "fiscal_year": "2024-25",
+            "pdf_page": 23,
+            "printed_page": "44-45",
+            "quote": "Operating margin 29.0%"
+          }
+        ],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": 0.7727272727272727,
+        "numeric_recall": 0.42857142857142855,
+        "quote_validation_pass": true,
+        "citation_location_precision": 0.0,
+        "citation_group_recall": 0.0
+      },
+      "latency_seconds": 5.182258800021373
+    },
+    {
+      "question_id": "q104",
+      "type": "table",
+      "question": "What consolidated net profit attributable to owners did Infosys report for FY2023-24?",
+      "query": "What consolidated net profit attributable to owners did Infosys report for FY2023-24?",
+      "gold_answerable": true,
+      "expected_answer": "Infosys reported consolidated net profit attributable to owners of ₹26,233 crore for FY2023-24.",
+      "result": {
+        "question": "What consolidated net profit attributable to owners did Infosys report for FY2023-24?",
+        "answer": "Infosys reported a consolidated net profit attributable to owners of ₹26,233 crore for the fiscal year ended March 31, 2024.",
+        "abstained": false,
+        "abstention_reason": null,
+        "evidence_sufficiency": 1.0,
+        "threshold": 1.0,
+        "citations": [
+          {
+            "evidence_id": "E1",
+            "chunk_id": "infosys_fy2024:p0273:prose:001",
+            "doc_id": "infosys_fy2024",
+            "company": "Infosys",
+            "fiscal_year": "2023-24",
+            "pdf_page": 273,
+            "printed_page": "300",
+            "quote": "Owners of the Company\n\n26,233 24,095"
+          },
+          {
+            "evidence_id": "E2",
+            "chunk_id": "infosys_fy2024:p0338:prose:001",
+            "doc_id": "infosys_fy2024",
+            "company": "Infosys",
+            "fiscal_year": "2023-24",
+            "pdf_page": 338,
+            "printed_page": "365",
+            "quote": "Profit attributable to:\n\nOwners of the Company\n\n26,233 24,095"
+          },
+          {
+            "evidence_id": "E3",
+            "chunk_id": "infosys_fy2024:p0029:prose:002",
+            "doc_id": "infosys_fy2024",
+            "company": "Infosys",
+            "fiscal_year": "2023-24",
+            "pdf_page": 29,
+            "printed_page": "56",
+            "quote": "Profit attributable to owners of the Company 27,234 23,268 26,233 24,095"
+          }
+        ],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": 0.7058823529411764,
+        "numeric_recall": 0.3333333333333333,
+        "quote_validation_pass": true,
+        "citation_location_precision": 0.0,
+        "citation_group_recall": 0.0
+      },
+      "latency_seconds": 12.163460500072688
+    },
+    {
+      "question_id": "q105",
+      "type": "table",
+      "question": "What market capitalization did Infosys report for FY2024-25 in its five-year key trends?",
+      "query": "What market capitalization did Infosys report for FY2024-25 in its five-year key trends?",
+      "gold_answerable": true,
+      "expected_answer": "Infosys reported market capitalization of ₹652,332 crore for FY2024-25.",
+      "result": {
+        "question": "What market capitalization did Infosys report for FY2024-25 in its five-year key trends?",
+        "answer": "Infosys reported a market capitalization of ₹6,52,332 crore for FY 2024‑25.",
+        "abstained": false,
+        "abstention_reason": null,
+        "evidence_sufficiency": 1.0,
+        "threshold": 1.0,
+        "citations": [
+          {
+            "evidence_id": "E1",
+            "chunk_id": "infosys_fy2025:p0015:prose:002",
+            "doc_id": "infosys_fy2025",
+            "company": "Infosys",
+            "fiscal_year": "2024-25",
+            "pdf_page": 15,
+            "printed_page": "28-29",
+            "quote": "Market capitalization 6,52,332 6,21,821 5,92,394 8,02,162 5,82,880"
+          }
+        ],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": 0.8181818181818182,
+        "numeric_recall": 0.6666666666666666,
+        "quote_validation_pass": true,
+        "citation_location_precision": 1.0,
+        "citation_group_recall": 1.0
+      },
+      "latency_seconds": 20.124684900045395
+    },
+    {
+      "question_id": "q106",
+      "type": "fact",
+      "question": "What percentage of Infosys employees were women in FY2023-24?",
+      "query": "What percentage of Infosys employees were women in FY2023-24?",
+      "gold_answerable": true,
+      "expected_answer": "Women represented 39.3% of Infosys employees in FY2023-24.",
+      "result": {
+        "question": "What percentage of Infosys employees were women in FY2023-24?",
+        "answer": "39.3%",
+        "abstained": false,
+        "abstention_reason": null,
+        "evidence_sufficiency": 1.0,
+        "threshold": 1.0,
+        "citations": [
+          {
+            "evidence_id": "E1",
+            "chunk_id": "infosys_fy2024:p0023:prose:001",
+            "doc_id": "infosys_fy2024",
+            "company": "Infosys",
+            "fiscal_year": "2023-24",
+            "pdf_page": 23,
+            "printed_page": "44-45",
+            "quote": "In fiscal 2024, we had 1,24,569 women, making 39.3% of the total workforce."
+          },
+          {
+            "evidence_id": "E3",
+            "chunk_id": "infosys_fy2024:p0015:prose:003",
+            "doc_id": "infosys_fy2024",
+            "company": "Infosys",
+            "fiscal_year": "2023-24",
+            "pdf_page": 15,
+            "printed_page": "28-29",
+            "quote": "Women employees 39.3%"
+          }
+        ],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": 0.19999999999999998,
+        "numeric_recall": 0.3333333333333333,
+        "quote_validation_pass": true,
+        "citation_location_precision": 0.5,
+        "citation_group_recall": 1.0
+      },
+      "latency_seconds": 15.313351499964483
+    },
+    {
+      "question_id": "q107",
+      "type": "fact",
+      "question": "What employee satisfaction score did Infosys record for FY2023-24?",
+      "query": "What employee satisfaction score did Infosys record for FY2023-24?",
+      "gold_answerable": true,
+      "expected_answer": "Infosys recorded an employee satisfaction score of 80% for FY2023-24.",
+      "result": {
+        "question": "What employee satisfaction score did Infosys record for FY2023-24?",
+        "answer": "Infosys recorded an employee satisfaction score of 80% for FY 2023‑24.",
+        "abstained": false,
+        "abstention_reason": null,
+        "evidence_sufficiency": 1.0,
+        "threshold": 1.0,
+        "citations": [
+          {
+            "evidence_id": "E2",
+            "chunk_id": "infosys_fy2024:p0023:prose:003",
+            "doc_id": "infosys_fy2024",
+            "company": "Infosys",
+            "fiscal_year": "2023-24",
+            "pdf_page": 23,
+            "printed_page": "44-45",
+            "quote": "Employee satisfaction for fiscal 2024 was recorded at 80%."
+          }
+        ],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": 0.8695652173913043,
+        "numeric_recall": 0.6666666666666666,
+        "quote_validation_pass": true,
+        "citation_location_precision": 1.0,
+        "citation_group_recall": 1.0
+      },
+      "latency_seconds": 20.050309999962337
+    },
+    {
+      "question_id": "q108",
+      "type": "fact",
+      "question": "What percentage of employees did Infosys recruit locally in its markets during FY2023-24?",
+      "query": "What percentage of employees did Infosys recruit locally in its markets during FY2023-24?",
+      "gold_answerable": true,
+      "expected_answer": "Infosys recruited 90% of employees locally in its markets during FY2023-24.",
+      "result": {
+        "question": "What percentage of employees did Infosys recruit locally in its markets during FY2023-24?",
+        "answer": "90%",
+        "abstained": false,
+        "abstention_reason": null,
+        "evidence_sufficiency": 1.0,
+        "threshold": 1.0,
+        "citations": [
+          {
+            "evidence_id": "E1",
+            "chunk_id": "infosys_fy2024:p0023:prose:003",
+            "doc_id": "infosys_fy2024",
+            "company": "Infosys",
+            "fiscal_year": "2023-24",
+            "pdf_page": 23,
+            "printed_page": "44-45",
+            "quote": "In fiscal 2024, we recruited 90% employees locally in our markets."
+          }
+        ],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": 0.15384615384615385,
+        "numeric_recall": 0.3333333333333333,
+        "quote_validation_pass": true,
+        "citation_location_precision": 1.0,
+        "citation_group_recall": 1.0
+      },
+      "latency_seconds": 18.156262800097466
+    },
+    {
+      "question_id": "q109",
+      "type": "table",
+      "question": "How many TCS employees received human-rights training in FY2024-25, and what percentage of total employees did that represent?",
+      "query": "How many TCS employees received human-rights training in FY2024-25, and what percentage of total employees did that represent?",
+      "gold_answerable": true,
+      "expected_answer": "TCS reported that 613,215 employees received human-rights training in FY2024-25, representing 96.3% of total employees.",
+      "result": {
+        "question": "How many TCS employees received human-rights training in FY2024-25, and what percentage of total employees did that represent?",
+        "answer": "In FY 2024‑25, 6,31,858 TCS employees received human‑rights training, representing 97.1 % of the total employee base.",
+        "abstained": false,
+        "abstention_reason": null,
+        "evidence_sufficiency": 1.0,
+        "threshold": 1.0,
+        "citations": [
+          {
+            "evidence_id": "E1",
+            "chunk_id": "tcs_fy2025:p0148:prose:001",
+            "doc_id": "tcs_fy2025",
+            "company": "TCS",
+            "fiscal_year": "2024-25",
+            "pdf_page": 148,
+            "printed_page": null,
+            "quote": "Total Employees 6,36,833 6,13,215 96.3 6,31,858 6,13,242 97.1"
+          }
+        ],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": 0.6285714285714287,
+        "numeric_recall": 0.25,
+        "quote_validation_pass": true,
+        "citation_location_precision": 1.0,
+        "citation_group_recall": 1.0
+      },
+      "latency_seconds": 18.134245099965483
+    },
+    {
+      "question_id": "q110",
+      "type": "table",
+      "question": "How much renewable and non-renewable energy did TCS consume in FY2024-25?",
+      "query": "How much renewable and non-renewable energy did TCS consume in FY2024-25?",
+      "gold_answerable": true,
+      "expected_answer": "TCS consumed 1,537,637,748 MJ from renewable sources and 403,288,984 MJ from non-renewable sources in FY2024-25.",
+      "result": {
+        "question": "How much renewable and non-renewable energy did TCS consume in FY2024-25?",
+        "answer": "I don't know based on the available annual reports.",
+        "abstained": true,
+        "abstention_reason": "invalid_citations",
+        "evidence_sufficiency": 1.0,
+        "threshold": 1.0,
+        "citations": [],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": false,
+        "token_f1": null,
+        "numeric_recall": null,
+        "quote_validation_pass": false,
+        "citation_location_precision": null,
+        "citation_group_recall": null
+      },
+      "latency_seconds": 18.176962499972433
+    },
+    {
+      "question_id": "q111",
+      "type": "table",
+      "question": "What total Scope 1 and Scope 2 emissions did TCS report for FY2024-25?",
+      "query": "What total Scope 1 and Scope 2 emissions did TCS report for FY2024-25?",
+      "gold_answerable": true,
+      "expected_answer": "TCS reported Scope 1 emissions of 20,494.8 metric tonnes of CO2 equivalent and Scope 2 emissions of 55,599.0 metric tonnes of CO2 equivalent for FY2024-25.",
+      "result": {
+        "question": "What total Scope 1 and Scope 2 emissions did TCS report for FY2024-25?",
+        "answer": "I don't know based on the available annual reports.",
+        "abstained": true,
+        "abstention_reason": "invalid_citations",
+        "evidence_sufficiency": 1.0,
+        "threshold": 1.0,
+        "citations": [],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": false,
+        "token_f1": null,
+        "numeric_recall": null,
+        "quote_validation_pass": false,
+        "citation_location_precision": null,
+        "citation_group_recall": null
+      },
+      "latency_seconds": 21.235993599984795
+    },
+    {
+      "question_id": "q112",
+      "type": "fact",
+      "question": "How many water-stress zones and TCS offices in those zones were identified in FY2024-25?",
+      "query": "How many water-stress zones and TCS offices in those zones were identified in FY2024-25?",
+      "gold_answerable": true,
+      "expected_answer": "TCS identified 23 water-stress zones containing 49 TCS offices in FY2024-25.",
+      "result": {
+        "question": "How many water-stress zones and TCS offices in those zones were identified in FY2024-25?",
+        "answer": "I don't know based on the available annual reports.",
+        "abstained": true,
+        "abstention_reason": "invalid_citations",
+        "evidence_sufficiency": 1.0,
+        "threshold": 1.0,
+        "citations": [],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": false,
+        "token_f1": null,
+        "numeric_recall": null,
+        "quote_validation_pass": false,
+        "citation_location_precision": null,
+        "citation_group_recall": null
+      },
+      "latency_seconds": 19.599579299916513
+    },
+    {
+      "question_id": "q113",
+      "type": "fact",
+      "question": "What percentage of TCS value-chain partners by spend were assessed for sustainability criteria in FY2024-25?",
+      "query": "What percentage of TCS value-chain partners by spend were assessed for sustainability criteria in FY2024-25?",
+      "gold_answerable": true,
+      "expected_answer": "TCS assessed 23.8% of its value-chain partners by spend for sustainability criteria in FY2024-25.",
+      "result": {
+        "question": "What percentage of TCS value-chain partners by spend were assessed for sustainability criteria in FY2024-25?",
+        "answer": "23.8% of TCS value‑chain partners (by spend) were assessed for sustainability criteria in FY 2024‑25.",
+        "abstained": false,
+        "abstention_reason": null,
+        "evidence_sufficiency": 1.0,
+        "threshold": 1.0,
+        "citations": [
+          {
+            "evidence_id": "E1",
+            "chunk_id": "tcs_fy2025:p0160:prose:002",
+            "doc_id": "tcs_fy2025",
+            "company": "TCS",
+            "fiscal_year": "2024-25",
+            "pdf_page": 160,
+            "printed_page": null,
+            "quote": "During FY 2025, 23.8% of value chain partners (byspend) were successfully assessed for sustainability criteria."
+          },
+          {
+            "evidence_id": "E2",
+            "chunk_id": "tcs_fy2025:p0150:prose:002",
+            "doc_id": "tcs_fy2025",
+            "company": "TCS",
+            "fiscal_year": "2024-25",
+            "pdf_page": 150,
+            "printed_page": null,
+            "quote": "23.8% of value chain partners were assessed."
+          },
+          {
+            "evidence_id": "E3",
+            "chunk_id": "tcs_fy2025:p0144:prose:002",
+            "doc_id": "tcs_fy2025",
+            "company": "TCS",
+            "fiscal_year": "2024-25",
+            "pdf_page": 144,
+            "printed_page": null,
+            "quote": "During FY 2025, 23.8% of suppliers have been assessed on sustainability pillars including health & safety through a Sustainable Supply Chain Assessment Platform."
+          }
+        ],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": 0.8484848484848485,
+        "numeric_recall": 0.6666666666666666,
+        "quote_validation_pass": true,
+        "citation_location_precision": 0.3333333333333333,
+        "citation_group_recall": 1.0
+      },
+      "latency_seconds": 17.135695700068027
+    },
+    {
+      "question_id": "q114",
+      "type": "comparison",
+      "question": "How did TCS's basic and diluted earnings per share change from the year ended March 31, 2024 to March 31, 2025?",
+      "query": "How did TCS's basic and diluted earnings per share change from the year ended March 31, 2024 to March 31, 2025?",
+      "gold_answerable": true,
+      "expected_answer": "TCS's basic and diluted earnings per share increased from ₹119.44 for the year ended March 31, 2024 to ₹132.83 for the year ended March 31, 2025, an increase of ₹13.39.",
+      "result": {
+        "question": "How did TCS's basic and diluted earnings per share change from the year ended March 31, 2024 to March 31, 2025?",
+        "answer": "I don't know based on the available annual reports.",
+        "abstained": true,
+        "abstention_reason": "invalid_citations",
+        "evidence_sufficiency": 1.0,
+        "threshold": 1.0,
+        "citations": [],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": false,
+        "token_f1": null,
+        "numeric_recall": null,
+        "quote_validation_pass": false,
+        "citation_location_precision": null,
+        "citation_group_recall": null
+      },
+      "latency_seconds": 18.138920199940912
+    },
+    {
+      "question_id": "q115",
+      "type": "unanswerable",
+      "question": "How many quantum-computing patents did TCS file specifically in April 2026?",
+      "query": "How many quantum-computing patents did TCS file specifically in April 2026?",
+      "gold_answerable": false,
+      "expected_answer": null,
+      "result": {
+        "question": "How many quantum-computing patents did TCS file specifically in April 2026?",
+        "answer": "I don't know based on the available annual reports.",
+        "abstained": true,
+        "abstention_reason": "model_says_unanswerable",
+        "evidence_sufficiency": 0.0,
+        "threshold": 1.0,
+        "citations": [],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": null,
+        "numeric_recall": null,
+        "quote_validation_pass": false,
+        "citation_location_precision": null,
+        "citation_group_recall": null
+      },
+      "latency_seconds": 18.802224399987608
+    },
+    {
+      "question_id": "q116",
+      "type": "unanswerable",
+      "question": "How much FY2024-25 revenue did Infosys earn from clients located in Antarctica?",
+      "query": "How much FY2024-25 revenue did Infosys earn from clients located in Antarctica?",
+      "gold_answerable": false,
+      "expected_answer": null,
+      "result": {
+        "question": "How much FY2024-25 revenue did Infosys earn from clients located in Antarctica?",
+        "answer": "I don't know based on the available annual reports.",
+        "abstained": true,
+        "abstention_reason": "model_says_unanswerable",
+        "evidence_sufficiency": 0.0,
+        "threshold": 1.0,
+        "citations": [],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": null,
+        "numeric_recall": null,
+        "quote_validation_pass": false,
+        "citation_location_precision": null,
+        "citation_group_recall": null
+      },
+      "latency_seconds": 18.77953840000555
+    },
+    {
+      "question_id": "q117",
+      "type": "unanswerable",
+      "question": "Exactly how many Infosys employees used Groq models in February 2025?",
+      "query": "Exactly how many Infosys employees used Groq models in February 2025?",
+      "gold_answerable": false,
+      "expected_answer": null,
+      "result": {
+        "question": "Exactly how many Infosys employees used Groq models in February 2025?",
+        "answer": "I don't know based on the available annual reports.",
+        "abstained": true,
+        "abstention_reason": "model_says_unanswerable",
+        "evidence_sufficiency": 0.0,
+        "threshold": 1.0,
+        "citations": [],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": null,
+        "numeric_recall": null,
+        "quote_validation_pass": false,
+        "citation_location_precision": null,
+        "citation_group_recall": null
+      },
+      "latency_seconds": 19.097737000091
+    },
+    {
+      "question_id": "q118",
+      "type": "unanswerable",
+      "question": "How much water did TCS consume at offices located on the Moon in FY2024-25?",
+      "query": "How much water did TCS consume at offices located on the Moon in FY2024-25?",
+      "gold_answerable": false,
+      "expected_answer": null,
+      "result": {
+        "question": "How much water did TCS consume at offices located on the Moon in FY2024-25?",
+        "answer": "I don't know based on the available annual reports.",
+        "abstained": true,
+        "abstention_reason": "model_says_unanswerable",
+        "evidence_sufficiency": 0.0,
+        "threshold": 1.0,
+        "citations": [],
+        "retrieved_chunks": 5,
+        "model": "openai/gpt-oss-20b"
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": null,
+        "numeric_recall": null,
+        "quote_validation_pass": false,
+        "citation_location_precision": null,
+        "citation_group_recall": null
+      },
+      "latency_seconds": 12.322088900022209
+    },
+    {
+      "question_id": "q119",
+      "type": "unanswerable",
+      "question": "For how many consecutive years will Infosys be carbon neutral in FY2025-26?",
+      "query": "For how many consecutive years will Infosys be carbon neutral in FY2025-26?",
+      "gold_answerable": false,
+      "expected_answer": null,
+      "result": {
+        "question": "For how many consecutive years will Infosys be carbon neutral in FY2025-26?",
+        "answer": "I don't know based on the available annual reports.",
+        "abstained": true,
+        "abstention_reason": "no_retrieval_results",
+        "evidence_sufficiency": 0.0,
+        "threshold": 1.0,
+        "citations": [],
+        "retrieved_chunks": 0,
+        "model": null
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": null,
+        "numeric_recall": null,
+        "quote_validation_pass": false,
+        "citation_location_precision": null,
+        "citation_group_recall": null
+      },
+      "latency_seconds": 2.101610600017011
+    },
+    {
+      "question_id": "q120",
+      "type": "unanswerable",
+      "question": "What total Scope 1 emissions will TCS report for FY2025-26?",
+      "query": "What total Scope 1 emissions will TCS report for FY2025-26?",
+      "gold_answerable": false,
+      "expected_answer": null,
+      "result": {
+        "question": "What total Scope 1 emissions will TCS report for FY2025-26?",
+        "answer": "I don't know based on the available annual reports.",
+        "abstained": true,
+        "abstention_reason": "no_retrieval_results",
+        "evidence_sufficiency": 0.0,
+        "threshold": 1.0,
+        "citations": [],
+        "retrieved_chunks": 0,
+        "model": null
+      },
+      "automatic": {
+        "answerability_decision_correct": true,
+        "token_f1": null,
+        "numeric_recall": null,
+        "quote_validation_pass": false,
+        "citation_location_precision": null,
+        "citation_group_recall": null
+      },
+      "latency_seconds": 2.1002195000182837
+    }
+  ]
+}

@@ -282,8 +282,9 @@ def write_markdown(report: dict, review_path: Path, path: Path) -> None:
     sweep = threshold_sweep(report, review)
     rows = [row for row in report["questions"] if "error" not in row]
     errors = [row for row in report["questions"] if "error" in row]
+    split = report["metadata"]["split"]
     lines = [
-        "# Week 6 generation development evaluation",
+        f"# Week 6 generation {split} evaluation",
         "",
         f"Completed outputs: {len(rows)}; errors: {len(errors)}. Groq outputs were captured with "
         f"threshold {report['metadata']['capture_threshold']:.2f}.",
@@ -337,8 +338,12 @@ def write_markdown(report: dict, review_path: Path, path: Path) -> None:
         f"Observed scores: {', '.join(f'{score:.2f}' for score in sorted(set(scores)))}",
         "",
         "All generated scores are binary, so thresholds from 0.50 through 1.00 "
-        "do not change a single development decision. The former 0.70 default is "
-        "therefore not empirically special.",
+        f"do not change a single {split} decision. "
+        + (
+            "The former 0.70 default is therefore not empirically special."
+            if split == "development" else
+            "The challenge was executed with the frozen threshold of 1.00."
+        ),
         "",
         "## Automatic citation and failure audit",
         "",
