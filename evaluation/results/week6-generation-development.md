@@ -1,19 +1,19 @@
 # Week 6 generation development evaluation
 
-Completed outputs: 40; errors: 0. Groq outputs were captured with threshold 0.0 so higher thresholds can be evaluated without regenerating answers.
+Completed outputs: 40; errors: 0. Groq outputs were captured with threshold 0.00.
 
 Automatic lexical overlap is diagnostic only. Final answer correctness, citation entailment, and citation completeness require the review CSV.
 
 | Threshold | Answerability accuracy | Answerable coverage | Unanswerable abstention | Balanced accuracy | End-to-end success |
 |---:|---:|---:|---:|---:|---:|
-| 0.00 | 80.00% | 75.76% | 100.00% | 87.88% | pending |
-| 0.50 | 80.00% | 75.76% | 100.00% | 87.88% | pending |
-| 0.60 | 80.00% | 75.76% | 100.00% | 87.88% | pending |
-| 0.70 | 80.00% | 75.76% | 100.00% | 87.88% | pending |
-| 0.80 | 80.00% | 75.76% | 100.00% | 87.88% | pending |
-| 0.90 | 80.00% | 75.76% | 100.00% | 87.88% | pending |
-| 0.95 | 80.00% | 75.76% | 100.00% | 87.88% | pending |
-| 1.00 | 80.00% | 75.76% | 100.00% | 87.88% | pending |
+| 0.00 | 80.00% | 75.76% | 100.00% | 87.88% | 80.00% |
+| 0.50 | 80.00% | 75.76% | 100.00% | 87.88% | 80.00% |
+| 0.60 | 80.00% | 75.76% | 100.00% | 87.88% | 80.00% |
+| 0.70 | 80.00% | 75.76% | 100.00% | 87.88% | 80.00% |
+| 0.80 | 80.00% | 75.76% | 100.00% | 87.88% | 80.00% |
+| 0.90 | 80.00% | 75.76% | 100.00% | 87.88% | 80.00% |
+| 0.95 | 80.00% | 75.76% | 100.00% | 87.88% | 80.00% |
+| 1.00 | 80.00% | 75.76% | 100.00% | 87.88% | 80.00% |
 
 ## Score distribution
 
@@ -30,8 +30,8 @@ Answerable false abstentions: invalid_citations=6, model_says_unanswerable=2. Co
 
 Gold-page citation precision is only diagnostic because valid supporting pages can be absent from the benchmark labels. Citation entailment and completeness still require review of the quoted text.
 
-## Required second-person review
+## Second-person review
 
-Open the review CSV and enter `1` (yes) or `0` (no) in `answer_correct`, `citations_entail_answer`, and `citations_complete` for each non-abstained answerable row. Answerable abstentions are automatically marked `0`; unanswerable rows may remain blank because their gold decision is scored automatically. Add a short note for every manual `0`.
+Review complete. Every non-abstained answerable output has a manual answer-correctness, citation-entailment, and citation-completeness decision.
 
 Human review file: `evaluation\results\week6-generation-development-review.csv`

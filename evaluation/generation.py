@@ -113,11 +113,16 @@ def run_generation(
     report_path: Path,
     dataset_path: Path,
     delay_seconds: float = 2.0,
+    capture_threshold: float = 0.0,
     answerer=answer_question,
 ) -> dict:
     settings = get_settings()
     if report_path.exists():
         report = json.loads(report_path.read_text(encoding="utf-8"))
+        if report["metadata"].get("capture_threshold") != capture_threshold:
+            raise ValueError(
+                "Existing report capture threshold does not match the requested threshold."
+            )
     else:
         report = {
             "metadata": {
@@ -127,7 +132,7 @@ def run_generation(
                 "split": questions[0].split,
                 "model": settings.groq_model,
                 "prompt_sha256": hashlib.sha256(SYSTEM_PROMPT.encode()).hexdigest(),
-                "capture_threshold": 0.0,
+                "capture_threshold": capture_threshold,
                 "top_k": settings.rag_top_k,
                 "reranker_model": settings.rag_reranker_model,
                 "reranker_revision": settings.rag_reranker_revision,
@@ -143,7 +148,7 @@ def run_generation(
         try:
             result = answerer(
                 query,
-                min_evidence_sufficiency=0.0,
+                min_evidence_sufficiency=capture_threshold,
             ).model_dump(mode="json")
             row = {
                 "question_id": question.id,
@@ -281,7 +286,7 @@ def write_markdown(report: dict, review_path: Path, path: Path) -> None:
         "# Week 6 generation development evaluation",
         "",
         f"Completed outputs: {len(rows)}; errors: {len(errors)}. Groq outputs were captured with "
-        "threshold 0.0 so higher thresholds can be evaluated without regenerating answers.",
+        f"threshold {report['metadata']['capture_threshold']:.2f}.",
         "",
         "Automatic lexical overlap is diagnostic only. Final answer correctness, citation "
         "entailment, and citation completeness require the review CSV.",
@@ -324,6 +329,7 @@ def write_markdown(report: dict, review_path: Path, path: Path) -> None:
         row["automatic"]["citation_group_recall"] == 1.0
         for row in answered_gold
     )
+    review_complete = sweep[0]["reviewed_end_to_end_success"] is not None
     lines += [
         "",
         "## Score distribution",
@@ -354,17 +360,73 @@ def write_markdown(report: dict, review_path: Path, path: Path) -> None:
         "pages can be absent from the benchmark labels. Citation entailment and "
         "completeness still require review of the quoted text.",
         "",
-        "## Required second-person review",
+        "## Second-person review",
         "",
-        "Open the review CSV and enter `1` (yes) or `0` (no) in "
-        "`answer_correct`, `citations_entail_answer`, and `citations_complete` for "
-        "each non-abstained answerable row. Answerable abstentions are automatically "
-        "marked `0`; unanswerable rows may remain blank because their gold decision "
-        "is scored automatically. Add a short note for every manual `0`.",
+        (
+            "Review complete. Every non-abstained answerable output has a manual "
+            "answer-correctness, citation-entailment, and citation-completeness decision."
+            if review_complete else
+            "Review pending. Enter `1` (yes) or `0` (no) in `answer_correct`, "
+            "`citations_entail_answer`, and `citations_complete` for each "
+            "non-abstained answerable row."
+        ),
         "",
         f"Human review file: `{review_path}`",
     ]
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def write_frozen_config(
+    report: dict,
+    review_path: Path,
+    dataset_path: Path,
+    path: Path,
+    threshold: float,
+) -> dict:
+    """Freeze the reviewed development result before challenge evaluation."""
+    review = read_review(review_path)
+    selected = next(
+        item for item in threshold_sweep(report, review)
+        if item["threshold"] == threshold
+    )
+    if selected["reviewed_end_to_end_success"] is None:
+        raise ValueError("The second-person review is incomplete; refusing to freeze.")
+    settings = get_settings()
+    frozen = {
+        "frozen_at": datetime.now(timezone.utc).isoformat(),
+        "freeze_scope": "Week 6 generation pipeline before the one-time challenge run",
+        "challenge_status_at_freeze": "not_run",
+        "dataset": str(dataset_path),
+        "dataset_sha256": hashlib.sha256(dataset_path.read_bytes()).hexdigest(),
+        "development_report_sha256": hashlib.sha256(
+            json.dumps(report, sort_keys=True, ensure_ascii=False).encode()
+        ).hexdigest(),
+        "development_review_sha256": hashlib.sha256(review_path.read_bytes()).hexdigest(),
+        "model": settings.groq_model,
+        "system_prompt_sha256": hashlib.sha256(SYSTEM_PROMPT.encode()).hexdigest(),
+        "structured_output": "AnswerDraft JSON schema validated by Pydantic",
+        "citation_policy": "Every citation quote must be an exact substring of its retrieved chunk.",
+        "abstention_threshold": threshold,
+        "threshold_note": (
+            "Development evidence scores were binary (0.0 or 1.0), so thresholds "
+            "from 0.50 through 1.00 produced identical decisions."
+        ),
+        "top_k": settings.rag_top_k,
+        "candidate_limit": settings.rag_candidate_limit,
+        "reranker_model": settings.rag_reranker_model,
+        "reranker_revision": settings.rag_reranker_revision,
+        "development_metrics": selected,
+        "manual_review": {
+            "reviewed_non_abstained_answerable_outputs": sum(
+                row["gold_answerable"] and not row["result"]["abstained"]
+                for row in report["questions"] if "error" not in row
+            ),
+            "review_file": str(review_path),
+            "review_complete": True,
+        },
+    }
+    _save_report(path, frozen)
+    return frozen
 
 
 def main() -> None:
@@ -373,6 +435,8 @@ def main() -> None:
     parser.add_argument("--split", default="development")
     parser.add_argument("--prefix", type=Path, default=DEFAULT_PREFIX)
     parser.add_argument("--delay-seconds", type=float, default=2.0)
+    parser.add_argument("--capture-threshold", type=float, default=0.0)
+    parser.add_argument("--freeze-config", type=Path)
     args = parser.parse_args()
     questions = load_questions(args.dataset, args.split)
     report_path = args.prefix.with_suffix(".json")
@@ -380,9 +444,15 @@ def main() -> None:
     markdown_path = args.prefix.with_suffix(".md")
     report = run_generation(
         questions, report_path, args.dataset, delay_seconds=args.delay_seconds,
+        capture_threshold=args.capture_threshold,
     )
     write_review_csv(report, review_path)
     write_markdown(report, review_path, markdown_path)
+    if args.freeze_config:
+        write_frozen_config(
+            report, review_path, args.dataset, args.freeze_config,
+            threshold=get_settings().rag_min_evidence_sufficiency,
+        )
     print(markdown_path.read_text(encoding="utf-8"))
 
 

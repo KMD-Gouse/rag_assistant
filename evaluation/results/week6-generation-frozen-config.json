@@ -1,0 +1,33 @@
+{
+  "frozen_at": "2026-10-24T05:14:14.925596+00:00",
+  "freeze_scope": "Week 6 generation pipeline before the one-time challenge run",
+  "challenge_status_at_freeze": "not_run",
+  "dataset": "evaluation\\benchmark_v2.jsonl",
+  "dataset_sha256": "70bb0805c13e3dd86e6d8d444a998f5da9dc4cd100613dea92a175209b196625",
+  "development_report_sha256": "a3e86d68793609a9b2c83dde4c058adc7eb98b2f72853a605b61c4f22beb5320",
+  "development_review_sha256": "71431a289259f65a2987f9b898ef0d5ebd053ae9461cd5d2d7c319c6cef0e098",
+  "model": "openai/gpt-oss-20b",
+  "system_prompt_sha256": "ccfbf4b329e1ffd33ffdbef4300380e228e77ba4823b93005cb19c1d189370bc",
+  "structured_output": "AnswerDraft JSON schema validated by Pydantic",
+  "citation_policy": "Every citation quote must be an exact substring of its retrieved chunk.",
+  "abstention_threshold": 1.0,
+  "threshold_note": "Development evidence scores were binary (0.0 or 1.0), so thresholds from 0.50 through 1.00 produced identical decisions.",
+  "top_k": 5,
+  "candidate_limit": 50,
+  "reranker_model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+  "reranker_revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+  "development_metrics": {
+    "threshold": 1.0,
+    "answerability_accuracy": 0.8,
+    "answerable_coverage": 0.7575757575757576,
+    "unanswerable_abstention_accuracy": 1.0,
+    "balanced_answerability_accuracy": 0.8787878787878788,
+    "reviewed_end_to_end_success": 0.8,
+    "reviewed_questions": 40
+  },
+  "manual_review": {
+    "reviewed_non_abstained_answerable_outputs": 25,
+    "review_file": "evaluation\\results\\week6-generation-development-review.csv",
+    "review_complete": true
+  }
+}
