@@ -331,6 +331,13 @@ def write_markdown(report: dict, review_path: Path, path: Path) -> None:
         for row in answered_gold
     )
     review_complete = sweep[0]["reviewed_end_to_end_success"] is not None
+    reviewed_answers = [
+        review[row["question_id"]]
+        for row in rows
+        if review
+        and row["gold_answerable"]
+        and not row["result"]["abstained"]
+    ]
     lines += [
         "",
         "## Score distribution",
@@ -378,6 +385,32 @@ def write_markdown(report: dict, review_path: Path, path: Path) -> None:
         "",
         f"Human review file: `{review_path}`",
     ]
+    if review_complete and reviewed_answers:
+        fully_successful = sum(
+            all(item[field] == "1" for field in REVIEW_FIELDS)
+            for item in reviewed_answers
+        )
+        lines += [
+            "",
+            "## Final human-reviewed metrics",
+            "",
+            f"Generated answer correctness: "
+            f"{sum(item['answer_correct'] == '1' for item in reviewed_answers)}/"
+            f"{len(reviewed_answers)} "
+            f"({sum(item['answer_correct'] == '1' for item in reviewed_answers) / len(reviewed_answers):.2%}).",
+            f"Citation entailment: "
+            f"{sum(item['citations_entail_answer'] == '1' for item in reviewed_answers)}/"
+            f"{len(reviewed_answers)} "
+            f"({sum(item['citations_entail_answer'] == '1' for item in reviewed_answers) / len(reviewed_answers):.2%}).",
+            f"Citation completeness: "
+            f"{sum(item['citations_complete'] == '1' for item in reviewed_answers)}/"
+            f"{len(reviewed_answers)} "
+            f"({sum(item['citations_complete'] == '1' for item in reviewed_answers) / len(reviewed_answers):.2%}).",
+            f"Fully successful generated answers: {fully_successful}/"
+            f"{len(reviewed_answers)} ({fully_successful / len(reviewed_answers):.2%}).",
+            f"Overall end-to-end success, including correct abstentions: "
+            f"{sweep[0]['reviewed_end_to_end_success']:.2%}.",
+        ]
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 

@@ -6,14 +6,14 @@ Automatic lexical overlap is diagnostic only. Final answer correctness, citation
 
 | Threshold | Answerability accuracy | Answerable coverage | Unanswerable abstention | Balanced accuracy | End-to-end success |
 |---:|---:|---:|---:|---:|---:|
-| 0.00 | 80.00% | 71.43% | 100.00% | 85.71% | pending |
-| 0.50 | 80.00% | 71.43% | 100.00% | 85.71% | pending |
-| 0.60 | 80.00% | 71.43% | 100.00% | 85.71% | pending |
-| 0.70 | 80.00% | 71.43% | 100.00% | 85.71% | pending |
-| 0.80 | 80.00% | 71.43% | 100.00% | 85.71% | pending |
-| 0.90 | 80.00% | 71.43% | 100.00% | 85.71% | pending |
-| 0.95 | 80.00% | 71.43% | 100.00% | 85.71% | pending |
-| 1.00 | 80.00% | 71.43% | 100.00% | 85.71% | pending |
+| 0.00 | 80.00% | 71.43% | 100.00% | 85.71% | 70.00% |
+| 0.50 | 80.00% | 71.43% | 100.00% | 85.71% | 70.00% |
+| 0.60 | 80.00% | 71.43% | 100.00% | 85.71% | 70.00% |
+| 0.70 | 80.00% | 71.43% | 100.00% | 85.71% | 70.00% |
+| 0.80 | 80.00% | 71.43% | 100.00% | 85.71% | 70.00% |
+| 0.90 | 80.00% | 71.43% | 100.00% | 85.71% | 70.00% |
+| 0.95 | 80.00% | 71.43% | 100.00% | 85.71% | 70.00% |
+| 1.00 | 80.00% | 71.43% | 100.00% | 85.71% | 70.00% |
 
 ## Score distribution
 
@@ -32,6 +32,14 @@ Gold-page citation precision is only diagnostic because valid supporting pages c
 
 ## Second-person review
 
-Review pending. Enter `1` (yes) or `0` (no) in `answer_correct`, `citations_entail_answer`, and `citations_complete` for each non-abstained answerable row.
+Review complete. Every non-abstained answerable output has a manual answer-correctness, citation-entailment, and citation-completeness decision.
 
 Human review file: `evaluation\results\week6-generation-challenge-review.csv`
+
+## Final human-reviewed metrics
+
+Generated answer correctness: 9/10 (90.00%).
+Citation entailment: 8/10 (80.00%).
+Citation completeness: 8/10 (80.00%).
+Fully successful generated answers: 8/10 (80.00%).
+Overall end-to-end success, including correct abstentions: 70.00%.

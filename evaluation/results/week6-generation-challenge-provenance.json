@@ -6,7 +6,6 @@
   "challenge_dataset_commit": "6b8cec8",
   "challenge_dataset_sha256": "442c5646e43cba4a7edf134aa72aad09c15f16a23075b1db2ec2455a6e248cdc",
   "challenge_report_sha256": "26a57a6fdde4e806a66df69071c1493ec25e142918f29e10df186e8020534ce6",
-  "challenge_review_template_sha256": "668956445df19317c14933835c5b1cbf98f94720e8b59fbf2dd79895e64218e0",
   "execution_note": "The initial sandboxed process saved two no-retrieval abstentions and recorded network errors for 18 Groq calls. The same report was resumed outside the network sandbox; only error rows were retried, with identical frozen configuration.",
   "model": "openai/gpt-oss-20b",
   "prompt_sha256": "ccfbf4b329e1ffd33ffdbef4300380e228e77ba4823b93005cb19c1d189370bc",
@@ -22,5 +21,19 @@
     "accepted_answerable_outputs": 10,
     "gold_group_complete_accepted_outputs": 8
   },
-  "manual_review_status": "pending"
+  "manual_review_status": "complete",
+  "challenge_review_sha256": "cb819e9a647d0c50d26978504e75e173db8a7cbd78df568c8e8e9e04a884ad51",
+  "final_metrics": {
+    "threshold": 1.0,
+    "answerability_accuracy": 0.8,
+    "answerable_coverage": 0.7142857142857143,
+    "unanswerable_abstention_accuracy": 1.0,
+    "balanced_answerability_accuracy": 0.8571428571428572,
+    "reviewed_end_to_end_success": 0.7,
+    "reviewed_questions": 20,
+    "generated_answer_correctness": 0.9,
+    "citation_entailment": 0.8,
+    "citation_completeness": 0.8,
+    "fully_successful_generated_answers": 0.8
+  }
 }
