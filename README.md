@@ -1,211 +1,438 @@
 # Annual Report Q&A
 
-A citation-focused RAG application for answering and comparing questions across
-Infosys and TCS annual reports.
+A citation-focused retrieval-augmented generation (RAG) system for answering
+and comparing questions across Infosys and TCS annual reports. The repository
+currently contains the complete, evaluated Weeks 1–6 pipeline: document
+ingestion, dense and lexical retrieval, hybrid candidate generation,
+cross-encoder reranking, grounded Groq generation, structured output,
+citation validation, and abstention.
 
-The project is being built incrementally. Ingestion parses, chunks, embeds,
-and indexes reports in Qdrant. Week 4 adds dense retrieval, BM25, RRF hybrid
-retrieval, and a reproducible retrieval evaluation.
+Week 7 will add FastAPI, Streamlit, SQLite conversation history, and follow-up
+rewriting around the frozen Week 6 answer pipeline. Those application features
+are intentionally not claimed as implemented yet.
 
-The initial corpus contains Infosys and TCS annual reports for FY2023–24 and
-FY2024–25.
+## Current status
 
-## Setup and ingestion
+- Four annual reports indexed as 4,083 chunks in Qdrant.
+- Dense retrieval, BM25, reciprocal-rank fusion (RRF), and cross-encoder
+  reranking implemented.
+- Company and fiscal-year scope inferred from explicit question text.
+- Groq responses validated with a strict Pydantic-compatible JSON schema.
+- Citations accepted only when their evidence ID exists and their quote is an
+  exact substring of the retrieved chunk.
+- Unsupported, insufficient, or citation-invalid answers return a fixed
+  `I don't know` response.
+- Retrieval and generation development configurations were frozen before
+  their one-time challenge evaluations.
+- Week 6 generation challenge evaluation is complete and human-reviewed.
 
-Use Python 3.11 or 3.12, install the project with `pip install -e ".[dev]"`,
-and start Qdrant with `docker compose up -d`. Configure `.env` using
-`.env.example`. With the report PDFs in the locations specified by
-`data/manifest.json`, index all four reports:
+## System architecture
+
+```text
+PDF annual reports
+    ↓
+PyMuPDF extraction and verified text repair
+    ↓
+Metadata-aware chunking
+    ↓
+BGE embeddings + Qdrant payload index
+    ↓
+Dense retrieval ─┐
+                 ├─ equal-weight RRF candidate pool (top 50)
+BM25 retrieval ──┘
+    ↓
+Cross-encoder + hybrid-rank + exact-phrase rank ensemble
+    ↓
+Top five evidence chunks
+    ↓
+Groq strict structured generation
+    ↓
+Pydantic and citation validation
+    ↓
+Grounded answer with citations, or abstention
+```
+
+The initial Week 4/5 experiments remain under `evaluation/results/` for
+traceability. The production Week 6 answer path uses the later frozen
+benchmark-v2 retrieval configuration.
+
+## Corpus
+
+| Document ID | Company | Fiscal year | PDF pages |
+|---|---|---:|---:|
+| `infosys_fy2024` | Infosys | 2023–24 | 352 |
+| `infosys_fy2025` | Infosys | 2024–25 | 369 |
+| `tcs_fy2024` | TCS | 2023–24 | 340 |
+| `tcs_fy2025` | TCS | 2024–25 | 336 |
+
+Source URLs, filenames, SHA-256 hashes, and validation metadata are recorded
+in [`data/manifest.json`](data/manifest.json). Raw PDFs and processed chunks
+are local data artifacts and are not required in Git history.
+
+## Implemented milestones
+
+### Weeks 1–3: ingestion and vector search
+
+- Manifest-backed document identity and checksums.
+- PDF page extraction using PyMuPDF.
+- Verified repair of broken TCS embedded-font mappings.
+- Prose and table-aware chunks with company, fiscal year, page, section, and
+  source metadata.
+- BGE-small embeddings stored in Qdrant.
+- Index verification and filtered dense search.
+
+### Week 4: retrieval baselines
+
+- Dense semantic retrieval.
+- In-memory BM25 over the exact Qdrant text payloads.
+- Equal-weight reciprocal-rank fusion.
+- Page-level evidence recall, MRR, document recall, and all-evidence-hit
+  evaluation.
+
+BM25 uses `k1=1.5`, `b=0.75`, positive IDF, case-folded word tokens, and
+commas removed within numbers. RRF uses `1 / (60 + rank)` with ranks starting
+at one. Retrieval scores and fusion scores are ordering signals, not
+probabilities.
+
+### Week 5: reranking and failure analysis
+
+- `cross-encoder/ms-marco-MiniLM-L-6-v2` with a pinned model revision.
+- Top-50 hybrid candidate pool reranked to top five.
+- Final rank ensemble combining hybrid rank, cross-encoder rank, and a small
+  exact content-bigram signal.
+- Ablations, ±50% weight sensitivity, and failure-stage analysis.
+- Corrected evidence labels with grouped alternative pages.
+
+### Week 6: grounded answer generation
+
+- Groq Chat Completions using `openai/gpt-oss-20b`.
+- Strict structured output validated with Pydantic.
+- Trusted citation metadata resolved from retrieved evidence IDs.
+- Exact-quote validation against retrieved chunk text.
+- Fixed abstention response and evidence-sufficiency gate.
+- Resumable development and challenge evaluation.
+- Second-person review of answer correctness, citation entailment, and
+  citation completeness.
+
+The model produced only `0.0` and `1.0` evidence-sufficiency values during
+development. Thresholds from `0.50` through `1.00` therefore made identical
+decisions. The frozen `1.0` threshold is a strict semantic gate, not a
+calibrated probability.
+
+## Final retrieval results
+
+The benchmark-v2 development split contains 40 questions, including 33
+answerable questions. The one-time retrieval challenge contains 20 questions,
+including 17 answerable questions.
+
+### Development split
+
+| Retrieval stage | Evidence recall@5 | MRR@5 | All evidence hit@5 |
+|---|---:|---:|---:|
+| Dense | 33.33% | 24.09% | 30.30% |
+| BM25 | 81.82% | 51.16% | 75.76% |
+| Equal-weight RRF | 51.52% | 40.45% | 45.45% |
+| Cross-encoder only | 93.94% | 75.86% | 90.91% |
+| Frozen final ensemble | **100.00%** | **91.67%** | **100.00%** |
+
+These are tuned development results and are not treated as unseen-test
+performance.
+
+### One-time challenge split
+
+| Retrieval stage | Evidence recall@5 | MRR@5 | All evidence hit@5 |
+|---|---:|---:|---:|
+| Dense | 55.88% | 41.37% | 52.94% |
+| BM25 | 67.65% | 42.65% | 64.71% |
+| Equal-weight RRF | 64.71% | 41.86% | 58.82% |
+| Frozen final ensemble | **88.24%** | **68.14%** | **82.35%** |
+
+The retrieval configuration was frozen at tag
+`retrieval-v2-pre-challenge`. No labels or ranking settings were changed after
+the challenge result was observed.
+
+## Final generation results
+
+Generation uses a separately authored 20-question challenge containing 14
+answerable and six unanswerable questions. The configuration was frozen at
+tag `week6-generation-v1-pre-challenge` before this challenge was executed.
+
+| Metric | Development | Challenge |
+|---|---:|---:|
+| Answerability accuracy | 80.00% | 80.00% |
+| Answerable coverage | 75.76% | 71.43% |
+| Unanswerable abstention accuracy | 100.00% | 100.00% |
+| Balanced answerability accuracy | 87.88% | 85.71% |
+| Human-reviewed end-to-end success | **80.00%** | **70.00%** |
+
+Among the ten generated challenge answers:
+
+- Answer correctness: 9/10 (90%).
+- Citation entailment: 8/10 (80%).
+- Citation completeness: 8/10 (80%).
+- Fully correct and fully supported answers: 8/10 (80%).
+
+Overall challenge success is 14/20: eight fully successful generated answers
+plus six correct abstentions. Four answerable questions were false
+abstentions, one generated answer was incorrect, and one otherwise correct
+answer lacked adequate citation support. These failures are retained in the
+reported result; the pipeline was not tuned after the challenge run.
+
+## Evaluation protocol
+
+The project follows this order:
+
+1. Build and inspect the development benchmark.
+2. Tune parsing, labels, retrieval, ranking, generation, and thresholds only
+   on development data.
+3. Complete second-person review of generated development answers.
+4. Save hashes, model revisions, settings, and metrics in a frozen-config
+   JSON file.
+5. Commit and tag the frozen pipeline.
+6. Validate and commit the fresh challenge dataset before running it.
+7. Run the challenge with the frozen configuration.
+8. Complete human review and report the result without further tuning.
+
+The development and challenge JSON files are machine-readable sources of
+truth. Review CSV files provide the human judgments. Markdown files are
+derived reports. Frozen-config and provenance JSON files record hashes and
+the exact experiment state.
+
+Important artifacts:
+
+- [`evaluation/benchmark_v2.md`](evaluation/benchmark_v2.md): retrieval
+  benchmark design.
+- [`evaluation/results/benchmark-v2-final-development-analysis.md`](evaluation/results/benchmark-v2-final-development-analysis.md): label audit,
+  ablations, and frozen retrieval decisions.
+- [`evaluation/results/benchmark-v2-challenge-analysis.md`](evaluation/results/benchmark-v2-challenge-analysis.md): one-time retrieval challenge.
+- [`evaluation/results/benchmark-v2-frozen-config.json`](evaluation/results/benchmark-v2-frozen-config.json): exact retrieval freeze.
+- [`evaluation/results/week6-generation-development.md`](evaluation/results/week6-generation-development.md): reviewed generation development result.
+- [`evaluation/results/week6-generation-frozen-config.json`](evaluation/results/week6-generation-frozen-config.json): exact generation freeze.
+- [`evaluation/results/week6-generation-challenge.md`](evaluation/results/week6-generation-challenge.md): final reviewed generation challenge.
+- [`evaluation/results/week6-generation-challenge-provenance.json`](evaluation/results/week6-generation-challenge-provenance.json): challenge hashes and run provenance.
+
+## Requirements
+
+- Python 3.11 or 3.12.
+- Docker Desktop or another Docker engine.
+- A Groq API key for answer generation.
+- Enough local memory to load the embedding and cross-encoder models.
+
+## Installation
+
+From PowerShell:
+
+```powershell
+cd C:\Users\infom\OneDrive\Desktop\gouse\rag_assistant
+
+py -3.12 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install -e ".[dev]"
+```
+
+Copy the environment template and set `GROQ_API_KEY`:
+
+```powershell
+Copy-Item .env.example .env
+notepad .env
+```
+
+Do not commit `.env` or the API key.
+
+## Start Qdrant
+
+```powershell
+docker compose up -d
+Invoke-RestMethod http://127.0.0.1:6333/collections
+```
+
+The indexed collection is named `annual_report_chunks`.
+
+To build the index from the PDFs listed in the manifest:
 
 ```powershell
 python -m app.ingestion.pipeline --all
-python -m evaluation.validate_dataset
 ```
 
-## Week 4: retrieval
+Reingestion is unnecessary when the existing Docker volume already contains
+the verified 4,083-chunk collection.
 
-- **v1:** existing BGE dense retrieval.
-- **BM25:** lexical baseline using the exact text payloads in the dense collection.
-- **v2:** equal-weight reciprocal-rank fusion of dense and BM25 candidates.
+## Run retrieval directly
 
 ```powershell
 python -m app.pipeline "How many employees did Infosys report in FY2024-25?" --method dense
+
 python -m app.pipeline "How many employees did Infosys report in FY2024-25?" --method bm25
-python -m app.pipeline "How many employees did Infosys report in FY2024-25?" --method hybrid --limit 5 --candidates 50 --rrf-k 60
+
+python -m app.pipeline "How many employees did Infosys report in FY2024-25?" `
+  --method hybrid --limit 5 --candidates 50 --rrf-k 60
+
+python -m app.pipeline "How many employees did Infosys report in FY2024-25?" `
+  --method reranked --limit 5 --candidates 50 --rerank-candidates 50 `
+  --reranker-model cross-encoder/ms-marco-MiniLM-L-6-v2 `
+  --reranker-revision 233902d25c440f23af6f7d6e94d2946bac0bee0a
 ```
 
-All methods accept `--doc-id`, `--company`, and `--fiscal-year` exact-match
-filters. BM25 uses k1=1.5, b=0.75, positive IDF, case-folded word tokens, and
-commas removed inside numbers. It does not stem or remove stop words.
-It returns only chunks with lexical matches. Corpus-wide BM25 statistics
-remain fixed when applying filters.
+All methods support `--doc-id`, `--company`, and `--fiscal-year` exact-match
+filters. The production generation service also applies automatic scope
+inference for explicitly named companies and fiscal years.
 
-BM25 reads the Qdrant collection once into memory per CLI run. This is suitable
-for the four-report corpus; rebuild the index after ingestion. RRF sums
-`1 / (60 + rank)` by Qdrant point ID, with ranks starting at one, and uses
-point IDs to break score ties. Dense, BM25, and fusion scores have different
-meanings. Fusion scores are not confidence probabilities.
-
-## Week 4: v1 versus v2 evaluation
-
-```powershell
-python -m evaluation.run_eval --split dev --k 5 --candidates 50 --output evaluation/results/week4-dev.json
-```
-
-The runner compares all three methods on the same queries and corpus. It
-writes JSON with configuration, dataset/corpus fingerprints, retrieved text,
-and per-question missing evidence, plus a Markdown comparison table. The
-table includes page evidence recall, document recall, MRR, and the fraction
-of questions with all evidence retrieved, overall and by question type.
-Metrics are macro-averaged over answerable questions only.
-
-An evidence match means the same `(doc_id, pdf_page)`. The cutoff counts
-chunks, so repeated chunks from one page consume retrieval slots without
-increasing recall. This page-level proxy does not establish that a chunk
-contains the precise supporting fact. Unanswerable queries are retrieved
-and logged but receive N/A metrics; answer correctness and abstention need
-a later generation evaluation.
-
-Follow-up queries concatenate the supplied conversation history and current
-question identically for all methods. Gold answers and evidence never enter
-queries or metadata filters. This tests supplied-history retrieval, not a
-query rewriter or predicted conversation history.
-
-Keep the collection unchanged while evaluating. Tune candidate depth and
-RRF parameters on dev only. Freeze settings before the held-out run:
-
-```powershell
-python -m evaluation.run_eval --split held_out --k 5 --candidates 50 --output evaluation/results/week4-held-out.json
-python -m pytest -m "not integration" -q
-```
-
-Use separate output paths to retain comparisons; the runner overwrites the
-specified output files. Corpus fingerprints cover point IDs and payloads,
-not vector bytes. Keep the embedding model and ingestion settings fixed too.
-
-## Week 5: cross-encoder reranking and final ablation
-
-**v3** scores each (query, passage) pair with a cross-encoder. Retrieve 50
-dense and 50 BM25 candidates, fuse their union, retain the top 50, then
-rerank those same 50 to return five. v2 returns the first five from that
-same fused pool. No gold evidence or document filters enter either method.
-
-```powershell
-python -m app.pipeline "How many employees did Infosys report in FY2024-25?" --method reranked --reranker-model cross-encoder/ms-marco-MiniLM-L-6-v2
-python -m evaluation.week5 --split dev --reranker-model cross-encoder/ms-marco-MiniLM-L-6-v2
-```
-
-The first measured experiment uses the locally cached MiniLM cross-encoder.
-The application default still follows `RERANKER_MODEL` (BGE by default);
-pass the explicit model above to reproduce this experiment. Models are
-loaded lazily and reused within a process. Pair inputs are truncated to
-512 model tokens, with inference batches of eight. Scores are used for
-ordering, not as probabilities that an answer is supported.
-
-The runner writes `evaluation/results/week5-dev.json` and `.md`, including:
-
-- Dense, BM25, hybrid, and reranked metrics, overall and by question type.
-- Complete fused candidates and reranked ordering for manual inspection.
-- Candidate-union and rerank-pool evidence coverage, plus evidence pages
-  gained or lost by reranking.
-- Failure stages: page absent from corpus, absent from candidate union,
-  removed by fusion cutoff, or present in the rerank pool but below top five.
-- Median query latency after model/corpus loading and one warm-up query.
-  Hybrid and v3 timings sum sequential stage durations. These single-run
-  timings are exploratory, not a throughput benchmark.
-
-Failure stages identify where evidence disappears. They do not automatically
-establish semantic causes such as a parsing error or wrong-year confusion.
-Inspect the saved passage text and reference evidence before drawing those
-conclusions. Page-level hits still require a supporting-text check.
-
-After freezing the model, candidate budget, query policy, and cutoff on dev:
-
-```powershell
-python -m evaluation.week5 --split held_out --reranker-model cross-encoder/ms-marco-MiniLM-L-6-v2
-python -m pytest -q
-```
-
-The held-out run writes separate `week5-held_out.json` and `.md` files.
-Do not tune settings using its results. Retain dataset/corpus fingerprints
-and model/package metadata with every comparison. The JSON also records the
-actual embedding model constant used by the loader, rather than assuming
-the environment setting changed that loader.
-
-The completed experiment is documented in
-[the final ablation and failure analysis](evaluation/results/week5-final-ablation.md).
-V3 improved dev evidence recall@5 to 57.35%, but reached only 18.75% on
-held-out, where BM25 reached 56.25%. V3 is therefore opt-in, not the default.
-For exact model reproduction, append
-`--reranker-revision 233902d25c440f23af6f7d6e94d2946bac0bee0a`
-to the Week 5 commands. The frozen configuration and both split reports are
-saved under `evaluation/results/`; future tuning needs a fresh held-out set.
-
-## Retrieval repair and benchmark v2
-
-PDF extraction now disables artificial intra-word spaces and repairs verified
-TCS embedded-font mappings for digits, currency, percentages, punctuation,
-and operators. The mapping is character-based and never substitutes values
-from evaluation answers. Indexed payloads include an ingestion version so a
-parser change cannot be mistaken for an unchanged index.
-
-The CLI infers exact company and fiscal-year constraints from explicit query
-text. Multi-company and multi-year comparisons use multi-value filters. The
-full names `Infosys Limited` and `Tata Consultancy Services` map to their
-canonical company values, and previous-fiscal-year follow-ups resolve from
-supplied history. The cross-encoder receives company, fiscal year, and document
-ID alongside each passage so similar figures from different reports are
-distinguishable. Its final ordering blends the hybrid and cross-encoder ranks
-with a small exact content-bigram signal. This preserves precise phrases such
-as “total contract value” when the neural score alone ranks broader passages
-too highly.
-
-Benchmark v2 is described in
-[evaluation/benchmark_v2.md](evaluation/benchmark_v2.md). It adds grouped
-alternative evidence and a more balanced 40-question development / 20-question
-challenge split while preserving the original Week 4/5 files and scores. The
-development split has 100% evidence recall@5. The configuration was frozen at
-tag `retrieval-v2-pre-challenge`, then run once on the challenge split: the
-final ensemble reached 88.24% evidence recall@5 and 68.14% MRR@5, compared
-with BM25 at 67.65% and 42.65%. No tuning or post-hoc relabelling was performed
-after the challenge run. See
-[the final development analysis](evaluation/results/benchmark-v2-final-development-analysis.md)
-and [challenge analysis](evaluation/results/benchmark-v2-challenge-analysis.md).
-
-## Week 6: single-turn grounded generation
-
-`answer_question()` runs the frozen benchmark-v2 retrieval pipeline, sends the
-top five chunks to Groq, validates Groq's strict JSON response with Pydantic,
-and returns trusted citation metadata from the retrieved chunks. The model
-only chooses evidence IDs and verbatim quotes; it cannot invent document IDs
-or page numbers. Unknown evidence IDs, duplicate citations, and quotes absent
-from the cited chunk cause an abstention.
-
-The development generation run found that the model emits binary evidence-
-sufficiency scores (`0.0` or `1.0`), so the default
-`RAG_MIN_EVIDENCE_SUFFICIENCY=1.0` accepts only a fully sufficient assessment.
-This is a semantic gate, not a calibrated correctness probability. Empty
-retrieval, a model `answerable=false` decision, a score below the gate, or
-invalid citations returns `I don't know based on the available annual reports.`
-
-Copy `.env.example` to `.env`, set `GROQ_API_KEY`, keep the Qdrant container
-running, then execute one turn:
+## Run a grounded answer
 
 ```powershell
 python -m app.generation "What revenue did TCS report in FY2024-25?"
+
+python -m app.generation "What operating margin did Infosys report in FY2024-25?"
+
+python -m app.generation "How many AI-aware employees did Infosys report in FY2024-25?"
 ```
 
-The API endpoint uses Groq Chat Completions with strict JSON Schema output on
-`openai/gpt-oss-20b`. Offline tests use an injected retriever and generator,
-so citation and abstention behavior can be verified without an API key.
+The CLI prints structured JSON containing the answer, abstention decision,
+reason, evidence-sufficiency value, validated citations, retrieved-chunk
+count, threshold, and model.
 
-Run or resume the generation-development evaluation with:
+## Reproduce the generation evaluation
+
+Development output capture:
 
 ```powershell
-python -m evaluation.generation --split development
+python -m evaluation.generation `
+  --dataset evaluation/benchmark_v2.jsonl `
+  --split development `
+  --prefix evaluation/results/week6-generation-development `
+  --delay-seconds 2 `
+  --capture-threshold 0.0
 ```
 
-It saves each Groq output once, creates an automatic threshold and abstention
-report, and writes a CSV for second-person review of answer correctness,
-citation entailment, and citation completeness. Threshold comparisons reuse
-the saved outputs and do not call Groq again.
+After completing the review CSV, regenerate the report and frozen config
+without regenerating completed Groq outputs:
+
+```powershell
+python -m evaluation.generation `
+  --dataset evaluation/benchmark_v2.jsonl `
+  --split development `
+  --prefix evaluation/results/week6-generation-development `
+  --delay-seconds 0 `
+  --capture-threshold 0.0 `
+  --freeze-config evaluation/results/week6-generation-frozen-config.json
+```
+
+Validate the separately authored challenge:
+
+```powershell
+python -m evaluation.validate_generation_challenge
+```
+
+The official challenge has already been run. The following command documents
+how it was produced; running it now will reuse completed saved outputs rather
+than create a new official result:
+
+```powershell
+python -m evaluation.generation `
+  --dataset evaluation/generation_challenge_v1.jsonl `
+  --split challenge `
+  --prefix evaluation/results/week6-generation-challenge `
+  --delay-seconds 0 `
+  --capture-threshold 1.0
+```
+
+`evaluation.generation` saves each successful output immediately and skips
+completed question IDs when resumed. Runtime-error rows may be retried with
+the identical frozen configuration; successful rows are not sampled again.
+
+## Tests
+
+Run deterministic tests that do not require external services:
+
+```powershell
+python -m pytest -m "not integration" -q
+```
+
+With Qdrant running, execute live integration tests:
+
+```powershell
+python -m pytest -m "integration" -q
+```
+
+The current suite contains 118 offline tests and eight integration tests.
+The Qdrant client may emit a compatibility warning because the installed
+client is newer than the pinned `qdrant/qdrant:v1.15.3` server; the verified
+queries still pass.
+
+## Repository layout
+
+```text
+app/
+  ingestion/        PDF parsing, repair, chunking, embedding, indexing
+  retrieval/        dense, BM25, RRF, scope inference, reranking
+  generation/       Groq client, schemas, citation validation, service
+  api/              reserved for Week 7 FastAPI implementation
+  memory/           reserved for Week 7 SQLite conversation history
+
+data/
+  manifest.json     corpus identity, sources, hashes, page counts
+  raw/              local PDF files
+  processed/        local extracted pages and chunks
+
+evaluation/
+  benchmark_v2.jsonl
+  generation_challenge_v1.jsonl
+  generation.py
+  validate_generation_challenge.py
+  results/           raw results, review CSVs, reports, freezes, provenance
+
+tests/              deterministic and live integration tests
+docker-compose.yml  pinned Qdrant service
+```
+
+## Known limitations
+
+- The corpus contains only four annual reports from two companies.
+- Development results reflect iterative tuning and should not be presented as
+  unseen performance.
+- The challenge sets are project regression sets, not statistically
+  representative population samples.
+- Equal-weight RRF underperforms BM25 at top five; its purpose here is to
+  create a diverse high-recall candidate pool for later reranking.
+- Comparison and multi-period questions remain the main retrieval weakness.
+- Evidence sufficiency is binary and has not been probability-calibrated.
+- Exact-quote validation proves that a quote exists in a retrieved chunk; the
+  separate human review is still needed to judge whether it entails the
+  answer and covers every claim.
+- Four answerable generation-challenge questions abstained because proposed
+  citations failed validation.
+
+## Week 7 plan
+
+Week 7 will wrap the frozen single-turn answer service in an application and
+conversation layer:
+
+```text
+Streamlit
+    ↓
+FastAPI receives question + session_id
+    ↓
+Load recent SQLite history for that session
+    ↓
+Rewrite a contextual follow-up into a standalone question
+    ↓
+Run the frozen Week 6 answer pipeline
+    ↓
+Store the original question, rewritten question, answer, and citations
+    ↓
+Return the answer and citations to Streamlit
+```
+
+Planned implementation order:
+
+1. SQLite session-history repository.
+2. Follow-up rewriting.
+3. FastAPI request and response models plus endpoint.
+4. Streamlit interface using FastAPI as its backend.
+5. Session-isolation, history-window, follow-up, and API tests.
+
+Week 7 application changes will not alter the frozen retrieval and generation
+evaluation results. If the underlying prompt, retriever, reranker, citation
+policy, or threshold changes, that creates a new pipeline version and requires
+a new development freeze and a new untouched challenge set.
