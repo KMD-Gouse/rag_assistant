@@ -8,6 +8,8 @@ application abstains.
 Built with **Python, FastAPI, Streamlit, Qdrant, SQLite, Sentence Transformers,
 PyMuPDF, and Groq**.
 
+![Annual Report Q&A interface with starter questions and report library](docs/images/interface.png)
+
 ## Features
 
 - **Document ingestion:** manifest-backed PDF identity, checksums, text repair,
@@ -21,6 +23,8 @@ PyMuPDF, and Groq**.
   Partial answers identify missing sides instead of inventing figures.
 - **Conversation history:** SQLite persistence and contextual follow-up rewriting,
   with session isolation and clarification handling.
+- **Guided interface:** clickable starter questions, a compact conversation sidebar,
+  and distinct answer, calculation, and source sections.
 - **Source inspection:** open a cited PDF page in the chat, browse nearby pages,
   or download the original report.
 

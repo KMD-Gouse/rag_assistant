@@ -220,3 +220,38 @@ def test_report_binary_client():
     assert client.report_page("tcs_fy2025", 10) == b"binary-report"
     assert client.report_pdf("tcs_fy2025") == b"binary-report"
     assert seen == ["/reports/tcs_fy2025/pages/10", "/reports/tcs_fy2025/pdf"]
+
+
+def test_starter_question_submits_once_and_disappears(monkeypatch):
+    calls = []
+    monkeypatch.setattr(APIClient, "history", lambda self, session: [])
+
+    def chat(self, session, question):
+        calls.append(question)
+        return Completed.model_validate(completed(session, question))
+
+    monkeypatch.setattr(APIClient, "chat", chat)
+    app = AppTest.from_file(str(APP_PATH)).run()
+    app.button(key="starter_Compare companies").click().run()
+    assert not app.exception
+    assert calls == ["Compare TCS and Infosys revenue in FY2024-25."]
+    assert len(app.chat_message) == 2
+    assert not any(button.key == "starter_Compare companies" for button in app.button)
+    app.run()
+    assert len(calls) == 1
+
+
+def test_calculated_comparison_is_separate_from_answer(monkeypatch):
+    def history(self, session):
+        saved = turn(session)
+        saved["result"]["answer"] = "TCS: 200. Infosys: 100.\n\n**Calculated:** Difference: 100 crore."
+        return [Turn.model_validate(saved)]
+
+    monkeypatch.setattr(APIClient, "history", history)
+    app = AppTest.from_file(str(APP_PATH)).run()
+    assert not app.exception
+    rendered = [element.value for element in app.markdown]
+    assert "TCS: 200. Infosys: 100." in rendered
+    assert "**Calculated comparison**" in rendered
+    assert "Difference: 100 crore." in rendered
+    assert any(button.label.startswith("[E1]") for button in app.button)

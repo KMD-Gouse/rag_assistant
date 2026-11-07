@@ -68,7 +68,15 @@ def render_turn(turn: Turn, client: APIClient) -> None:
                     elif turn.result.abstention_reason == "invalid_citations":
                         st.text("This saved turn has no detailed validation error. New requests record the exact failure.")
         else:
-            st.write(turn.result.answer)
+            st.caption("ANSWER")
+            answer, separator, calculation = turn.result.answer.partition("\n\n**Calculated:** ")
+            st.write(answer)
+            if separator:
+                with st.container(border=True):
+                    st.markdown("**Calculated comparison**")
+                    st.write(calculation)
+        if turn.result.citations:
+            st.caption("SOURCE DOCUMENTS · Select a citation to inspect the original page")
         for index, citation in enumerate(turn.result.citations):
             selection = f"{turn.session_id}_{turn.id}_{index}"
             if st.button(
@@ -108,24 +116,31 @@ def main() -> None:
 
     with st.sidebar:
         st.header("Conversations")
-        if st.button("New conversation", use_container_width=True):
+        if st.button("New conversation", type="primary", use_container_width=True):
             switch_session(str(uuid4()))
             st.rerun()
-        st.caption("Current session ID — save this to resume later")
-        st.code(st.session_state.session_id, language=None)
-        with st.form("resume_session"):
-            session_id = st.text_input("Resume session ID", max_chars=128)
-            if st.form_submit_button("Resume conversation"):
-                if session_id.strip():
-                    switch_session(session_id)
-                    st.rerun()
-                else:
-                    st.error("Enter a session ID.")
+        with st.expander("Save or resume a conversation"):
+            st.caption("Current session ID — save this to resume later")
+            st.code(st.session_state.session_id, language=None)
+            with st.form("resume_session"):
+                session_id = st.text_input("Resume session ID", max_chars=128)
+                if st.form_submit_button("Resume conversation"):
+                    if session_id.strip():
+                        switch_session(session_id)
+                        st.rerun()
+                    else:
+                        st.error("Enter a session ID.")
         if st.button("Refresh history", use_container_width=True):
             st.session_state.history_loaded = False
             st.rerun()
-        st.caption("Shows up to 100 saved turns. New conversations keep earlier history intact.")
+        st.caption("Your completed conversations are saved locally. New conversations keep earlier history intact.")
+        st.divider()
+        st.markdown("**Report library**")
+        st.markdown("Infosys · TCS · Wipro")
+        st.caption("FY2023–24 and FY2024–25 · 6 annual reports")
+        st.caption("Answers use the indexed reports. Missing evidence is reported rather than guessed.")
 
+    st.caption("FINANCIAL RESEARCH · SOURCE-BACKED ANSWERS")
     st.title("Annual Report Q&A")
     st.caption("Ask about Infosys, TCS, and Wipro annual reports for FY2023–24 and FY2024–25, then explore with follow-up questions.")
     if not st.session_state.history_loaded:
@@ -152,9 +167,25 @@ def main() -> None:
                 else:
                     st.info(entry["message"])
 
+    starter_question = None
     if not st.session_state.entries:
-        st.info("Try: What revenue did TCS report in FY2024-25?")
+        st.divider()
+        st.subheader("Start with a question")
+        st.caption("Explore a reported figure, compare companies, or follow a topic across years.")
+        examples = [
+            ("Find a figure", "What revenue did TCS report in FY2024-25?"),
+            ("Compare companies", "Compare TCS and Infosys revenue in FY2024-25."),
+            ("Explore the workforce", "How many employees did Wipro report in FY2024-25?"),
+        ]
+        for column, (label, example) in zip(st.columns(3), examples):
+            with column, st.container(border=True):
+                st.markdown(f"**{label}**")
+                st.caption(example)
+                if st.button("Ask this question", key=f"starter_{label}", use_container_width=True):
+                    starter_question = example
+        st.caption("Then try a follow-up like “And Infosys?” in the same conversation. Open any citation to check the source.")
     question = st.chat_input("Ask a question about the annual reports", max_chars=4000)
+    question = question or starter_question
     if question:
         if not question.strip():
             st.warning("Enter a nonblank question.")

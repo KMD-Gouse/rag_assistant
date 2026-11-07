@@ -25,6 +25,13 @@ Open `http://127.0.0.1:8501`. The UI defaults to `http://127.0.0.1:8000` for
 FastAPI. To override it, set `$env:RAG_API_URL = "http://127.0.0.1:8001"`
 before starting Streamlit (the UI does not load `.env`).
 
+- The opening screen includes three starter questions; clicking **Ask this question**
+  submits that prompt through the same API flow as typing a question.
+- The default theme uses a light background and teal accent, configured in
+  `.streamlit/config.toml`.
+- Calculated comparisons appear in a separate panel beneath the answer; source
+  buttons remain directly accessible.
+- Session IDs and resume controls are under **Save or resume a conversation**.
 - Each browser session starts with a new random conversation ID. Save the ID
   shown in the sidebar to resume after a browser reload or reconnect.
 - **New conversation** creates a new ID without deleting saved history.
