@@ -1,0 +1,78 @@
+{
+  "checked_at": "2026-11-06T16:46:59.344473+00:00",
+  "purpose": "Current application demo regression checks; not an accuracy benchmark.",
+  "pipeline": {
+    "generation": "source-excerpts-v1",
+    "comparison": "balanced-v1"
+  },
+  "notes": [
+    "Groq returned HTTP 429 on the first unsupported-question attempt. The API surfaced it without storing a turn; retry after the wait succeeded.",
+    "Models loaded from the local Hugging Face cache with HF_HUB_OFFLINE=1.",
+    "Saved history and cited PDF page were inspected in the Streamlit interface."
+  ],
+  "scenarios": [
+    {
+      "scenario": "factual",
+      "question": "What revenue did TCS report in FY2024-25?",
+      "rewritten_question": "What revenue did TCS report in FY2024-25?",
+      "answer": "TCS reported consolidated revenue from operations of ₹2,55,324 crore for FY 2024‑25.",
+      "abstained": false,
+      "citations": [
+        {
+          "doc_id": "tcs_fy2025",
+          "pdf_page": 69
+        },
+        {
+          "doc_id": "tcs_fy2025",
+          "pdf_page": 88
+        }
+      ]
+    },
+    {
+      "scenario": "followup",
+      "question": "And Infosys?",
+      "rewritten_question": "What revenue did Infosys report in FY2024-25?",
+      "answer": "Infosys reported consolidated revenue from operations of ₹1,62,990 crore for the fiscal year ended March 31 2025.",
+      "abstained": false,
+      "citations": [
+        {
+          "doc_id": "infosys_fy2025",
+          "pdf_page": 30
+        }
+      ]
+    },
+    {
+      "scenario": "comparison",
+      "question": "Compare TCS and Infosys revenue in FY2024-25.",
+      "rewritten_question": "Compare TCS and Infosys revenue in FY2024-25.",
+      "answer": "Infosys (FY2024-25): Total revenue from operations: 1,62,990 ₹ crore [E1].\nTCS (FY2024-25): Total revenue from operations: 255,324 ₹ crore [E2]\n\n**Calculated:** Infosys (2024-25): 162,990 ₹ crore vs TCS (2024-25): 255,324 ₹ crore; a difference of +92,334 ₹ crore (second minus first; +56.65% relative to the first).",
+      "abstained": false,
+      "citations": [
+        {
+          "doc_id": "infosys_fy2025",
+          "pdf_page": 321
+        },
+        {
+          "doc_id": "tcs_fy2025",
+          "pdf_page": 95
+        }
+      ]
+    },
+    {
+      "scenario": "unsupported",
+      "question": "What revenue did Apple report in FY2024-25?",
+      "rewritten_question": "What revenue did Apple report in FY2024-25?",
+      "answer": "I don't know based on the available annual reports.",
+      "abstained": true,
+      "citations": []
+    }
+  ],
+  "automated_tests": {
+    "command": "HF_HUB_OFFLINE=1 python -m pytest -q",
+    "passed": 291,
+    "warnings": [
+      "Starlette/AnyIO deprecation warning",
+      "Installed Qdrant client 1.19.1 is newer than server 1.15.3; live integration tests passed."
+    ]
+  }
+}

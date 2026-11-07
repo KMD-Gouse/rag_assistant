@@ -12,7 +12,7 @@ def test_default_settings(monkeypatch: pytest.MonkeyPatch) -> None:
         monkeypatch.delenv(key, raising=False)
     settings = Settings(_env_file=None)
 
-    assert settings.qdrant_url == "http://localhost:6333"
+    assert settings.qdrant_url == "http://127.0.0.1:6333"
     assert settings.qdrant_collection == "annual_report_chunks"
     assert settings.embedding_model == "BAAI/bge-small-en-v1.5"
     assert settings.reranker_model == "BAAI/bge-reranker-base"

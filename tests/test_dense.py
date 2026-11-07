@@ -151,6 +151,16 @@ def test_search_embeds_question_and_sends_filter(
             "How many permanent employees did TCS report?",
             "6,07,979",
         ),
+        (
+            "wipro_fy2024",
+            "What was Wipro's revenue from operations?",
+            "897,603",
+        ),
+        (
+            "wipro_fy2025",
+            "What was Wipro's revenue from operations?",
+            "890,884",
+        ),
     ],
 )
 def test_live_filtered_search_finds_known_fact(

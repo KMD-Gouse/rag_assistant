@@ -14,6 +14,10 @@ dependencies = [
     "qdrant-client>=1,<2",
     "pymupdf>=1.24,<2",
     "sentence-transformers>=3,<6",
+    "fastapi>=0.115,<1",
+    "uvicorn>=0.30,<1",
+    "httpx>=0.27,<1",
+    "streamlit>=1.40,<2",
 ]
 [project.optional-dependencies]
 dev = [
@@ -22,7 +26,7 @@ dev = [
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["app*", "evaluation*"]
+include = ["app*", "evaluation*", "ui*"]
 namespaces = false
 
 [tool.pytest.ini_options]

@@ -19,14 +19,16 @@ EXPECTED_DOCUMENT_IDS = [
     "infosys_fy2024",
     "tcs_fy2025",
     "tcs_fy2024",
+    "wipro_fy2025",
+    "wipro_fy2024",
 ]
 
 
-def test_real_manifest_contains_four_reports() -> None:
+def test_real_manifest_contains_six_reports() -> None:
     manifest = load_manifest()
 
     assert manifest.schema_version == 1
-    assert len(manifest.documents) == 4
+    assert len(manifest.documents) == 6
     assert get_manifest_document_ids() == (
         EXPECTED_DOCUMENT_IDS
     )

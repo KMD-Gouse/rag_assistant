@@ -14,33 +14,86 @@ from app.generation.models import AnswerDraft
 class GroqGenerationError(RuntimeError):
     """A sanitized generation failure safe to show without leaking secrets."""
 
+    def __init__(
+        self, message: str, *, status_code: int | None = None,
+        provider_detail: str | None = None,
+    ):
+        super().__init__(message)
+        self.status_code = status_code
+        self.provider_detail = provider_detail
+
 
 def _groq_strict_schema() -> dict:
-    """Keep Pydantic's shape while avoiding undocumented schema constraints."""
+    """Hand-craft a Groq-compatible strict JSON schema for AnswerDraft.
 
-    unsupported = {
-        "default",
-        "maxItems",
-        "maxLength",
-        "maximum",
-        "minItems",
-        "minLength",
-        "minimum",
-        "pattern",
+    Groq's strict mode requires:
+    1. Every property listed in ``required`` — including nullable ones.
+    2. ``additionalProperties: false`` at every object level.
+    3. No unsupported keywords (``default``, ``pattern``, min/max variants, etc.).
+
+    We build the schema manually rather than transforming Pydantic's output so
+    that nullable fields like ``comparable_facts`` stay in ``required`` with an
+    explicit ``["array", "null"]`` type union, which Groq accepts.
+    """
+    comparable_fact = {
+        "type": "object",
+        "properties": {
+            "company":           {"type": "string"},
+            "fiscal_year":       {"type": "string"},
+            "metric":            {"type": "string"},
+            "definition":        {"type": "string"},
+            "value_text":        {"type": "string"},
+            "unit":              {"type": "string"},
+            "evidence_id":       {"type": "string"},
+            "supporting_quote":  {"type": "string"},
+        },
+        "required": [
+            "company", "fiscal_year", "metric", "definition",
+            "value_text", "unit", "evidence_id", "supporting_quote",
+        ],
+        "additionalProperties": False,
     }
 
-    def clean(value):
-        if isinstance(value, dict):
-            return {
-                key: clean(item)
-                for key, item in value.items()
-                if key not in unsupported
-            }
-        if isinstance(value, list):
-            return [clean(item) for item in value]
-        return value
+    draft_citation = {
+        "type": "object",
+        "properties": {
+            "evidence_id": {"type": "string"},
+            "quote":       {"type": "string"},
+        },
+        "required": ["evidence_id", "quote"],
+        "additionalProperties": False,
+    }
 
-    return clean(AnswerDraft.model_json_schema())
+    return {
+        "type": "object",
+        "$defs": {
+            "DraftCitation": draft_citation,
+            "ComparableFact": comparable_fact,
+        },
+        "properties": {
+            "answerable":          {"type": "boolean"},
+            "evidence_sufficiency": {"type": "number"},
+            "answer":              {"type": "string"},
+            "citations": {
+                "type": "array",
+                "items": {"$ref": "#/$defs/DraftCitation"},
+            },
+            # Required but nullable: null for single-side answers,
+            # array of exactly 2 ComparableFact objects for comparisons.
+            "comparable_facts": {
+                "type": ["array", "null"],
+                "items": {"$ref": "#/$defs/ComparableFact"},
+            },
+        },
+        "required": [
+            "answerable",
+            "evidence_sufficiency",
+            "answer",
+            "citations",
+            "comparable_facts",   # always required; value may be null
+        ],
+        "additionalProperties": False,
+    }
 
 
 class GroqGenerator:
@@ -54,7 +107,7 @@ class GroqGenerator:
         timeout: float = 30.0,
         opener: Callable = urlopen,
         sleeper: Callable[[float], None] = time.sleep,
-        rate_limit_retries: int = 3,
+        rate_limit_retries: int = 1,
     ):
         if not api_key.strip():
             raise ValueError("GROQ_API_KEY is required for live answer generation.")
@@ -86,7 +139,7 @@ class GroqGenerator:
             },
             "reasoning_effort": "low",
             "temperature": 0,
-            "max_completion_tokens": 1200,
+            "max_completion_tokens": 800,
         }
         request = Request(
             self.api_url,
@@ -105,16 +158,25 @@ class GroqGenerator:
                 content = payload["choices"][0]["message"]["content"]
                 return AnswerDraft.model_validate_json(content)
             except HTTPError as error:
-                if error.code == 429 and attempt < self.rate_limit_retries:
+                if error.code in {500, 502, 503, 504} and attempt < self.rate_limit_retries:
                     retry_after = error.headers.get("Retry-After")
                     try:
-                        delay = float(retry_after) if retry_after else 30.0
+                        delay = float(retry_after) if retry_after else 2 ** attempt
                     except ValueError:
-                        delay = 30.0
-                    self.sleeper(max(1.0, min(delay, 60.0)))
+                        delay = 2 ** attempt
+                    self.sleeper(max(1.0, min(delay, 5.0)))
                     continue
+                provider_detail = None
+                try:
+                    error_payload = json.loads(error.read().decode("utf-8"))
+                    candidate = error_payload.get("error", {}).get("message")
+                    if isinstance(candidate, str):
+                        provider_detail = candidate.replace(self.api_key, "[redacted]")[:500]
+                except (UnicodeDecodeError, json.JSONDecodeError, AttributeError, TypeError):
+                    pass
                 raise GroqGenerationError(
-                    f"Groq request failed with HTTP {error.code}."
+                    f"Groq request failed with HTTP {error.code}.",
+                    status_code=error.code, provider_detail=provider_detail,
                 ) from error
             except URLError as error:
                 raise GroqGenerationError("Could not reach the Groq API.") from error

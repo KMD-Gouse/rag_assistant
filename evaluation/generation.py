@@ -5,6 +5,7 @@ from collections import Counter
 import csv
 from datetime import datetime, timezone
 import hashlib
+from functools import partial
 import json
 from pathlib import Path
 import re
@@ -114,7 +115,12 @@ def run_generation(
     dataset_path: Path,
     delay_seconds: float = 2.0,
     capture_threshold: float = 0.0,
-    answerer=answer_question,
+    answerer=partial(
+        answer_question,
+        citation_retries=0,
+        citation_mode="verbatim",
+        balanced_comparisons=False,
+    ),
 ) -> dict:
     settings = get_settings()
     if report_path.exists():

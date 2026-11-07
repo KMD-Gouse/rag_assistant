@@ -19,8 +19,11 @@ class Settings(BaseSettings):
         extra="ignore",
     )
 
-    qdrant_url: str = "http://localhost:6333"
+    qdrant_url: str = "http://127.0.0.1:6333"
+    qdrant_api_key: SecretStr | None = None   # set for Qdrant Cloud; leave unset for local Docker
     qdrant_collection: str = "annual_report_chunks"
+
+    history_db_path: Path = PROJECT_ROOT / "data" / "history.sqlite3"
 
     embedding_model: str = "BAAI/bge-small-en-v1.5"
     reranker_model: str = "BAAI/bge-reranker-base"

@@ -1,5 +1,7 @@
 """Query scope inference and multi-value retrieval filters."""
 
+import pytest
+
 from app.retrieval.dense import build_search_filter
 from app.retrieval.scope import infer_query_scope
 from qdrant_client import models
@@ -21,6 +23,21 @@ def test_scope_recognizes_company_aliases_and_fiscal_wording() -> None:
     scope = infer_query_scope(
         "Compare Infosys Limited in fiscal year 2025 with Tata Consultancy Services."
     )
+    assert scope.companies == ("Infosys", "TCS")
+    assert scope.fiscal_years == ("2024-25",)
+
+
+def test_scope_recognizes_wipro_alias() -> None:
+    scope = infer_query_scope("Compare Wipro Limited and TCS revenue in FY2024-25")
+    assert scope.companies == ("TCS", "Wipro")
+    assert scope.fiscal_years == ("2024-25",)
+
+
+@pytest.mark.parametrize("wording", [
+    "year 24-25", "FY24-25", "fiscal year 24-25",
+])
+def test_scope_recognizes_short_fiscal_year(wording: str) -> None:
+    scope = infer_query_scope(f"Compare TCS and Infosys revenue in {wording}.")
     assert scope.companies == ("Infosys", "TCS")
     assert scope.fiscal_years == ("2024-25",)
 
